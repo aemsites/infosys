@@ -1,14 +1,89 @@
 footer {
   padding: 2rem;
-  background-color: var(--light-color);
+  background: #f8f8f8;
   font-size: var(--body-font-size-s);
 }
 
+* {
+  box-sizing: border-box;
+}
 footer .footer {
-  max-width: 1200px;
+  max-width: 1210px;
+  padding: 0 20px;
   margin: auto;
+  position: relative;
+  padding-top: 50px;
+  color: #333;
+  
 }
 
 footer .footer p {
   margin: 0;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+.footer-links .links-title {
+  color: #000000;
+  font-size: 22px;
+  font-weight: 900;
+  margin-top: 0;
+  display: block;
+}
+
+.footer-links {
+  max-width: 1210px;
+  padding: 0 20px;
+}
+
+.footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.footer .col-copyright {
+  flex: 0 0 58.33333%;
+  max-width: 58.33333%;
+  margin-bottom: 0;
+    font-size: 18px;
+    line-height: 1.45;
+    font-weight: 300;
+}
+.footer .col-country {
+  flex: 0 0 41.66667%;
+  max-width: 41.66667%;
+  
+}
+
+.footer .col-country select{
+  
+  float: right;
+  border: 1px solid #7e7e7e;
+  padding: 5px 15px;
+  display: inline-block;
+  color: #3f3f3f;
+  font-size: 18px;
+}
+
+.footer-links .links-column {
+  flex: 0 0 16.66667%;
+  max-width: 16.66667%;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.footer-links .links-column > a {
+  color: #3f3f3f;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
 }
