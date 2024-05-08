@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { fetchData } from '../../scripts/blocks-utils.js';
 
 function decorateFooterTop(block) {
   // Create the article element
@@ -346,10 +347,91 @@ function decorateFooterLinks(block) {
   defaultWrapper.appendChild(row);
 }
 
+function positionDropdownUpward(dropdownContainer) {
+  var rect = dropdownContainer.getBoundingClientRect();
+  var windowHeight = window.innerHeight;
+  var dropdownHeight = dropdownContainer.offsetHeight;
+
+ 
+      dropdownContainer.style.bottom = "100%";
+      dropdownContainer.style.top = "auto";
+      
+  
+}
+
+// Function to create a custom dropdown
+function createDropdown( div) {
+  const countries = fetchData("/countrydropdown.json");
+  // Create dropdown container
+  var dropdownContainer = document.createElement("div");
+  dropdownContainer.classList.add("dropdown");
+
+  // Create dropdown button
+  var dropdownToggle = document.createElement("div");
+  dropdownToggle.classList.add("dropdown-toggle");
+  dropdownToggle.textContent = "Select Country/region";
+  dropdownToggle.onclick = toggleDropdown;
+
+  const spanElement = document.createElement('span');
+  spanElement.className = 'down-arrow';
+  dropdownToggle.appendChild(spanElement);
+
+  // Create dropdown content
+  var dropdownContent = document.createElement("div");
+  dropdownContent.classList.add("dropdown-content");
+  dropdownContent.id = "dropdown-content";    
+
+  // Create dropdown options
+  countries.data.forEach(function(option) {
+      var optionLink = document.createElement("a");
+      optionLink.href = option.url;
+      optionLink.textContent = option.name;
+      dropdownContent.appendChild(optionLink);
+  });
+
+  // Append dropdown button and content to the container
+  dropdownContainer.appendChild(dropdownToggle);
+  dropdownContainer.appendChild(dropdownContent);
+
+  positionDropdownUpward(dropdownContainer);
+
+  // Append the dropdown container to the body or any other container
+  div.appendChild(dropdownContainer);
+}
+
+// Function to toggle dropdown visibility
+function toggleDropdown() {
+  var dropdownContent = document.getElementById("dropdown-content");
+  if (dropdownContent.style.display === "none") {
+      dropdownContent.style.display = "block";
+  } else {
+      dropdownContent.style.display = "none";
+  }
+
+  var arrowSpan = document.querySelector(".dropdown-toggle span");
+  if (arrowSpan.classList.contains("down-arrow")) {
+    // Remove "down-arrow" class and add "up-arrow" class
+    arrowSpan.classList.remove("down-arrow");
+    arrowSpan.classList.add("up-arrow");
+} else {
+    // Remove "up-arrow" class and add "down-arrow" class
+    arrowSpan.classList.remove("up-arrow");
+    arrowSpan.classList.add("down-arrow");
+}
+}
+
+// Example usage
+
+
+
 function decorateFooterBottom(block) {
+  const footerBottom = block.querySelector('.footer-copyright');
+
+  
+
+
   // Create container-fluid div
-  const containerFluidDiv = document.createElement('div');
-  containerFluidDiv.className = 'container-fluid ptb15 bg-white';
+
 
   // Create container div within container-fluid
   const containerDiv = document.createElement('div');
@@ -374,116 +456,9 @@ function decorateFooterBottom(block) {
   // Create second column div within row
   const colDiv2 = document.createElement('div');
   colDiv2.className = 'col-country';
-
-  // // Create pull-right pull-left-xs mt-xs-20 div within second column
-  // const pullDiv = document.createElement('div');
-  // pullDiv.className = 'pull-right pull-left-xs mt-xs-20';
-
-  // // Create country div within pull-right pull-left-xs mt-xs-20 div
-  // const countryDiv = document.createElement('div');
-  // countryDiv.className = 'country';
-
-  // // Create select-country div within country div
-  // const selectCountryDiv = document.createElement('div');
-  // selectCountryDiv.className = 'select-country';
-
-  // // Create anchor element within select-country div
-  // const anchor = document.createElement('a');
-  // anchor.href = 'javascript:void(0);';
-  // anchor.title = 'Select Country/region';
-  // anchor.setAttribute('aria-label', 'Click to Select Country/region');
-  // anchor.setAttribute('aria-haspopup', 'true');
-  // anchor.setAttribute('aria-expanded', 'false');
-  // anchor.textContent = 'Select Country/region';
-
-  // // Create span element within anchor element
-  // const spanElement = document.createElement('span');
-  // spanElement.className = 'icon-down-arrow';
-
-  // // Append span to anchor
-  // anchor.appendChild(spanElement);
-
-  // // Append anchor to select-country
-  // selectCountryDiv.appendChild(anchor);
-
-  // // Create option-country div within country div
-  // const optionCountryDiv = document.createElement('div');
-  // optionCountryDiv.className = 'option-country';
-
-  // // Create ul within option-country div
-  // const ulElement = document.createElement('ul');
-  // ulElement.className = 'list-unstyled country-align';
-
-  // // Create list items within ul
-  // const countries = [
-  //   { title: 'Australia', href: '/australia.html' },
-  //   { title: 'Austria', href: '/at-en/' },
-  //   { title: 'Belgium', href: '/be-en/' },
-  //   { title: 'Brazil', href: '/br/' },
-  //   { title: 'Bulgaria', href: '/bg-en/' },
-  //   { title: 'Canada', href: '/contact/country.html?region=Americas&subsidiary=Infosys#Canada' },
-  // // Add more countries as needed
-  // ];
+  createDropdown(colDiv2);
 
 
-
-
-  // countries.forEach((country) => {
-  //   const liElement = document.createElement('li');
-  //   const anchor = document.createElement('a');
-  //   anchor.href = country.href;
-  //   anchor.title = country.title;
-  //   anchor.textContent = country.title;
-  //   liElement.appendChild(anchor);
-  //   ulElement.appendChild(liElement);
-  // });
-
-  // // Append ul to option-country
-  // optionCountryDiv.appendChild(ulElement);
-
-  // // Append select-country and option-country to country
-  // countryDiv.appendChild(selectCountryDiv);
-  // countryDiv.appendChild(optionCountryDiv);
-
-  // // Append country to pull-right pull-left-xs mt-xs-20
-  // pullDiv.appendChild(countryDiv);
-
-  // Append pull-right pull-left-xs mt-xs-20 to second column
-  //colDiv2.appendChild(pullDiv);
-
-  
-  // Create the select element
-  var dropdownLink = document.createElement("a");
-dropdownLink.href = "#";
-dropdownLink.id = "dropdown-link";
-var selectElement = document.createElement("select");
-selectElement.id = "dropdown";
-
-// Create and append the first option (default)
-var defaultOption = document.createElement("option");
-defaultOption.value = "";
-defaultOption.disabled = true;
-defaultOption.selected = true;
-defaultOption.textContent = "Select Country/region";
-selectElement.appendChild(defaultOption);
-
-// Create and append the other options
-var options = [
-    { value: "https://www.example.com", text: "Australia" },
-    { value: "https://www.example2.com", text: "Austria" },
-    { value: "https://www.example3.com", text: "Belgium" }
-];
-
-options.forEach(function(option) {
-    var optionElement = document.createElement("option");
-    optionElement.value = option.value;
-    optionElement.textContent = option.text;
-    selectElement.appendChild(optionElement);
-});
-
-// Append select element to anchor element
-dropdownLink.appendChild(selectElement);
-colDiv2.appendChild(dropdownLink);
   // Append first and second columns to row
   rowDiv.appendChild(colDiv1);
   rowDiv.appendChild(colDiv2);
@@ -491,11 +466,10 @@ colDiv2.appendChild(dropdownLink);
   // Append row to container
   containerDiv.appendChild(rowDiv);
 
-  // Append container to container-fluid
-  containerFluidDiv.appendChild(containerDiv);
+  footerBottom.textContent = '';s
 
   // Append container-fluid to body or desired parent element
-  block.appendChild(containerFluidDiv);
+  footerBottom.appendChild(containerDiv);
 }
 /**
  * loads and decorates the footer
@@ -504,15 +478,18 @@ colDiv2.appendChild(dropdownLink);
 export default async function decorate(block) {
   // load footer as fragment
   const footerMeta = getMetadata('footer');
-  // const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  const footerPath = '/drafts/sneh/footer';
+ //const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
+  const footerPath = '/footer';
+  block.textContent = '';
   const fragment = await loadFragment(footerPath);
   decorateFooterLinks(fragment);
+  decorateFooterBottom(fragment);
   // decorate footer DOM
-  block.textContent = '';
+  
   const footer = document.createElement('div');
-  while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
+  while (fragment.firstElementChild) 
+    footer.append(fragment.firstElementChild);
 
   block.append(footer);
-  decorateFooterBottom(block);
+  
 }

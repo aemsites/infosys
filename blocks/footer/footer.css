@@ -1,77 +1,47 @@
 footer {
-  padding: 2rem;
-  background: #f8f8f8;
-  font-size: var(--body-font-size-s);
+  background: #f8f8f8;    
 }
 
 * {
   box-sizing: border-box;
 }
-footer .footer {
-  max-width: 1210px;
-  padding: 0 20px;
+footer .footer-links {
+
   margin: auto;
   position: relative;
   padding-top: 50px;
   color: #333;
-  
-}
-
-footer .footer p {
-  margin: 0;
-}
-
-.bg-white {
-  background-color: #fff !important;
-}
-
-.footer-links .links-title {
-  color: #000000;
-  font-size: 22px;
-  font-weight: 900;
-  margin-top: 0;
+  background: #f8f8f8; 
+  padding: 50px 15px;
   display: block;
 }
 
-.footer-links {
+
+.section.footer-links .default-content-wrapper{
   max-width: 1210px;
-  padding: 0 20px;
+  padding: 15px 0px;
 }
 
-.footer .row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+.section.footer-copyright {
+  background-color: #fff; 
+  padding: 15px 0;
+
+}
+.footer .container{
+  max-width: 1210px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto
+
 }
 
-.footer .col-copyright {
-  flex: 0 0 58.33333%;
-  max-width: 58.33333%;
-  margin-bottom: 0;
-    font-size: 18px;
-    line-height: 1.45;
-    font-weight: 300;
-}
-.footer .col-country {
-  flex: 0 0 41.66667%;
-  max-width: 41.66667%;
-  
-}
 
-.footer .col-country select{
-  
-  float: right;
-  border: 1px solid #7e7e7e;
-  padding: 5px 15px;
-  display: inline-block;
-  color: #3f3f3f;
-  font-size: 18px;
-}
 
 .footer-links .links-column {
-  flex: 0 0 16.66667%;
-  max-width: 16.66667%;
+  flex: 0 0 100%;
+  
+  max-width: 100%;
   position: relative;
   width: 100%;
   min-height: 1px;
@@ -79,11 +49,166 @@ footer .footer p {
   padding-left: 15px;
 }
 
+.footer-links .links-title {
+  color: #000000;
+  font-size: 22px;
+  font-weight: 900;
+  margin-top: 20px;
+}
+
 .footer-links .links-column > a {
+  margin-top: 20px;
+  margin-bottom: 10px;
   color: #3f3f3f;
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
   text-decoration: none;
+  display: block;
+}
+
+
+.footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;   
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.footer .col-copyright {
+  flex: 0 0 100%;
+  max-width:100%;
+  margin-bottom: 0;
+    font-size: 18px;
+    line-height: 1.45;  
+    font-weight: 300;
+    padding :0px 15px;
+}
+.footer .col-country {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding :0px 15px;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: var(--body-font-family);
+  color: #7e7e7e;
+  
+}
+
+.footer .col-country a{
+  padding: 10px 15px;
+  display: block;
+  
+  font-size: 18px;
+  
+  font-family: var(--body-font-family);
+}
+.col-country .dropdown {
+  
+  float:left;
+  margin-top: 20px;
+}
+.col-country .dropdown-toggle {
+  border: 1px solid #7e7e7e;
+  
+  position: relative;
+    z-index: 1;
+    padding: 5px 15px;
+}
+
+.up-arrow {
+  background-image: url('../../icons/up-arrow.svg');
+}
+
+.down-arrow {
+  background-image: url('../../icons/down-arrow.svg');
+}
+
+.down-arrow,.up-arrow {
+  position: relative;
+  margin-left: 100px;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: 12px 25px;
   display: inline-block;
+  height: 20px;
+  width: 12px;
+  border:none;
+}
+
+.down-arrow:before {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  color: #333;
+  font-size: 18px;
+  top: 2px;
+  left: 0
+}
+
+.down-arrow:before {
+  content: "\f0d7"
+}
+
+.col-country .dropdown-content {
+ 
+  box-shadow: 2px 1px 10px rgba(0,0,0,0.5);
+  
+  display: block; 
+  width:100%;
+  bottom :100%;
+  position: relative;
+  max-height: 200px; /* Adjust the maximum height as needed */
+    overflow-y: auto;
+}
+
+
+.col-country .dropdown-content  a:hover {
+  background: #63b0ff;
+  color: #fff;
+  text-decoration: none
+}
+
+
+
+
+@media(min-width: 768px) {
+  .footer-links .links-column {
+    flex: 0 0 33.33%;
+    max-width: 33.33%
+  }
+  .footer .col-copyright {
+    flex: 0 0 50%;
+    max-width: 50%
+  }
+  .footer .col-country {
+    flex: 0 0 50%;
+    max-width: 50%;
+    color: #3f3f3f; 
+    
+  }
+}
+
+@media(min-width: 992px) {
+  .footer-links .links-column {
+    flex: 0 0 25%;
+    max-width: 25%
+  }
+}
+
+@media(min-width: 1200px) {
+  .footer-links .links-column {
+    flex: 0 0 16.66%;
+    max-width: 16.66%
+  }
+  .footer .col-copyright {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%
+  }
+  .footer .col-country {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%
+  }
 }
