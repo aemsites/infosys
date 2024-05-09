@@ -56,7 +56,7 @@
 }
 
   @font-face {
-  font-family:"myriad-pro";
+  font-family:myriad-pro;
   src:url("../fonts/myriad-pro-900.woff2") format("woff2"),
       url("../fonts/myriad-pro-900.woff") format("woff"),
       url("../fonts/myriad-pro-900.otf") format("opentype");
@@ -67,7 +67,7 @@
   }
   
   @font-face {
-  font-family:"myriad-pro";
+  font-family:myriad-pro;
   src:url("../fonts/myriad-pro-700.woff2") format("woff2"),
   url("../fonts/myriad-pro-700.woff") format("woff"),
   url("../fonts/myriad-pro-700.otf") format("opentype");
@@ -78,7 +78,7 @@
   }
   
   @font-face {
-  font-family:"myriad-pro";
+  font-family:myriad-pro;
   src:url("../fonts/myriad-pro-400-i.woff2") format("woff2"),
       url("../fonts/myriad-pro-400-i.woff") format("woff"),
       url("../fonts/myriad-pro-400-i.otf") format("opentype");
@@ -89,7 +89,7 @@
   }
   
   @font-face {
-  font-family:"myriad-pro";
+  font-family:myriad-pro;
   src:url("../fonts/myriad-pro-300.woff2") format("woff2"),
       url("../fonts/myriad-pro-300.woff") format("woff"),
       url("../fonts/myriad-pro-300.otf") format("opentype");
@@ -100,7 +100,7 @@
   }
   
   @font-face {
-  font-family:"myriad-pro";
+  font-family:myriad-pro;
   src:url("../fonts/myriad-pro-400.woff2") format("woff2"),
       url("../fonts/myriad-pro-400.woff") format("woff"),
       url("../fonts/myriad-pro-400.otf") format("opentype");
@@ -111,7 +111,7 @@
   }
   
   @font-face {
-  font-family:"myriad-pro";
+  font-family:myriad-pro;
   src:url("../fonts/myriad-pro-600.woff2") format("woff2"),
       url("../fonts/myriad-pro-600.woff") format("woff"),
       url("../fonts/myriad-pro-600.otf") format("opentype");
