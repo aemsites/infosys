@@ -1,4 +1,3 @@
-
 function createElement(tagname, className) {
   const element = document.createElement(tagname);
   if (className) {
@@ -30,24 +29,24 @@ function readBlockMarkup(block) {
   return config;
 }
 
-function fetchData(url) {
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return data.data.map((country) => ({
-        name: country.name,
-        link: country.url,
-      }));
-    })
-    .catch((error) => {
-      callback(error, null);
-    });
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const jsonData = await response.json(); // Wait for JSON parsing
+    return jsonData.data.map((country) => ({
+      name: country.name,
+      link: country.url,
+    }));
+  } catch (error) {
+    return null;
+  }
 }
 
 export {
   createElement,
   readBlockMarkup,
-  fetchData 
+  fetchData,
 };
