@@ -315,7 +315,15 @@ function traverseAndPrint(element, level, columnDiv) {
       title.textContent = customTrim(element.childNodes[0].textContent);
       columnDiv.appendChild(title);
     } else if (level === 3) {
-      columnDiv.appendChild(element.children[0]);
+      if (element.children.length > 1) {
+        const link = element.children[0];
+        link.classList.add('icons-link');
+        const icon = element.children[1].querySelector('img');
+        link.appendChild(icon);
+        columnDiv.appendChild(link);
+      } else {
+        columnDiv.appendChild(element.children[0]);
+      }
     }
   }
   if (element.children.length > 0) {
@@ -348,28 +356,25 @@ function decorateFooterLinks(block) {
 }
 
 function positionDropdownUpward(dropdownContainer) {
-  var rect = dropdownContainer.getBoundingClientRect();
-  var windowHeight = window.innerHeight;
-  var dropdownHeight = dropdownContainer.offsetHeight;
+  const rect = dropdownContainer.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  const dropdownHeight = dropdownContainer.offsetHeight;
 
- 
-      dropdownContainer.style.bottom = "100%";
-      dropdownContainer.style.top = "auto";
-      
-  
+  dropdownContainer.style.bottom = '100%';
+  dropdownContainer.style.top = 'auto';
 }
 
 // Function to create a custom dropdown
-function createDropdown( div) {
-  const countries = fetchData("/countrydropdown.json");
+async function createDropdown(div) {
+  const countries = await fetchData('/drafts/sneh/countrydropdown.json');
   // Create dropdown container
-  var dropdownContainer = document.createElement("div");
-  dropdownContainer.classList.add("dropdown");
+  const dropdownContainer = document.createElement('div');
+  dropdownContainer.classList.add('dropdown');
 
   // Create dropdown button
-  var dropdownToggle = document.createElement("div");
-  dropdownToggle.classList.add("dropdown-toggle");
-  dropdownToggle.textContent = "Select Country/region";
+  const dropdownToggle = document.createElement('div');
+  dropdownToggle.classList.add('dropdown-toggle');
+  dropdownToggle.textContent = 'Select Country/region';
   dropdownToggle.onclick = toggleDropdown;
 
   const spanElement = document.createElement('span');
@@ -377,16 +382,16 @@ function createDropdown( div) {
   dropdownToggle.appendChild(spanElement);
 
   // Create dropdown content
-  var dropdownContent = document.createElement("div");
-  dropdownContent.classList.add("dropdown-content");
-  dropdownContent.id = "dropdown-content";    
+  const dropdownContent = document.createElement('div');
+  dropdownContent.classList.add('dropdown-content');
+  dropdownContent.id = 'dropdown-content';
 
   // Create dropdown options
-  countries.data.forEach(function(option) {
-      var optionLink = document.createElement("a");
-      optionLink.href = option.url;
-      optionLink.textContent = option.name;
-      dropdownContent.appendChild(optionLink);
+  countries.forEach((option) => {
+    const optionLink = document.createElement('a');
+    optionLink.href = option.url;
+    optionLink.textContent = option.name;
+    dropdownContent.appendChild(optionLink);
   });
 
   // Append dropdown button and content to the container
@@ -401,37 +406,29 @@ function createDropdown( div) {
 
 // Function to toggle dropdown visibility
 function toggleDropdown() {
-  var dropdownContent = document.getElementById("dropdown-content");
-  if (dropdownContent.style.display === "none") {
-      dropdownContent.style.display = "block";
+  const dropdownContent = document.getElementById('dropdown-content');
+  if (dropdownContent.style.display === 'none') {
+    dropdownContent.style.display = 'block';
   } else {
-      dropdownContent.style.display = "none";
+    dropdownContent.style.display = 'none';
   }
 
-  var arrowSpan = document.querySelector(".dropdown-toggle span");
-  if (arrowSpan.classList.contains("down-arrow")) {
+  const arrowSpan = document.querySelector('.dropdown-toggle span');
+  if (arrowSpan.classList.contains('down-arrow')) {
     // Remove "down-arrow" class and add "up-arrow" class
-    arrowSpan.classList.remove("down-arrow");
-    arrowSpan.classList.add("up-arrow");
-} else {
+    arrowSpan.classList.remove('down-arrow');
+    arrowSpan.classList.add('up-arrow');
+  } else {
     // Remove "up-arrow" class and add "down-arrow" class
-    arrowSpan.classList.remove("up-arrow");
-    arrowSpan.classList.add("down-arrow");
-}
+    arrowSpan.classList.remove('up-arrow');
+    arrowSpan.classList.add('down-arrow');
+  }
 }
 
 // Example usage
 
-
-
 function decorateFooterBottom(block) {
   const footerBottom = block.querySelector('.footer-copyright');
-
-  
-
-
-  // Create container-fluid div
-
 
   // Create container div within container-fluid
   const containerDiv = document.createElement('div');
@@ -458,7 +455,6 @@ function decorateFooterBottom(block) {
   colDiv2.className = 'col-country';
   createDropdown(colDiv2);
 
-
   // Append first and second columns to row
   rowDiv.appendChild(colDiv1);
   rowDiv.appendChild(colDiv2);
@@ -466,7 +462,7 @@ function decorateFooterBottom(block) {
   // Append row to container
   containerDiv.appendChild(rowDiv);
 
-  footerBottom.textContent = '';s
+  footerBottom.textContent = '';
 
   // Append container-fluid to body or desired parent element
   footerBottom.appendChild(containerDiv);
@@ -478,18 +474,16 @@ function decorateFooterBottom(block) {
 export default async function decorate(block) {
   // load footer as fragment
   const footerMeta = getMetadata('footer');
- //const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  const footerPath = '/footer';
+  // const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
+  const footerPath = '/drafts/sneh/footer1';
   block.textContent = '';
   const fragment = await loadFragment(footerPath);
   decorateFooterLinks(fragment);
   decorateFooterBottom(fragment);
   // decorate footer DOM
-  
+
   const footer = document.createElement('div');
-  while (fragment.firstElementChild) 
-    footer.append(fragment.firstElementChild);
+  while (fragment.firstElementChild) { footer.append(fragment.firstElementChild); }
 
   block.append(footer);
-  
 }

@@ -16,7 +16,6 @@ footer .footer-links {
   display: block;
 }
 
-
 .section.footer-links .default-content-wrapper{
   max-width: 1210px;
   padding: 15px 0px;
@@ -36,11 +35,8 @@ footer .footer-links {
 
 }
 
-
-
 .footer-links .links-column {
-  flex: 0 0 100%;
-  
+  flex: 0 0 100%;  
   max-width: 100%;
   position: relative;
   width: 100%;
@@ -65,8 +61,17 @@ footer .footer-links {
   cursor: pointer;
   text-decoration: none;
   display: block;
+  
 }
 
+.footer-links .links-column a.icons-link{
+  display: inline-block; /* Ensures the anchor tag takes up space */
+  text-decoration: none; /* Removes underline */
+  border: none; /* Removes border */
+  padding: 0px 5px; /* Removes padding */
+  font-size: 0;
+  background-color: transparent; /* Makes background transparent */
+}
 
 .footer .row {
   display: flex;
@@ -98,26 +103,56 @@ footer .footer-links {
 
 .footer .col-country a{
   padding: 10px 15px;
-  display: block;
-  
+  display: block; 
   font-size: 18px;
-  
   font-family: var(--body-font-family);
 }
+
 .col-country .dropdown {
-  
   float:left;
   margin-top: 20px;
 }
+
 .col-country .dropdown-toggle {
   border: 1px solid #7e7e7e;
-  
+  bottom: 100%;
   position: relative;
-    z-index: 1;
-    padding: 5px 15px;
+  z-index: 1;
+  padding: 5px 15px;
 }
 
-.up-arrow {
+ .down-arrow, .up-arrow { 
+  position: relative;
+  margin-left: 100px;
+  font-family: icomoon;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: rotate(180deg);
+  content: "\f0d7";
+}
+
+.down-arrow:before, .up-arrow:before {
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  content: "\f0d7";
+}
+
+.footer img{
+  
+    vertical-align: middle;
+    border-style: none;
+    width: 16px;
+    aspect-ratio: auto 16 / 16;
+    height: 16px;
+}
+
+/* .up-arrow {
   background-image: url('../../icons/up-arrow.svg');
 }
 
@@ -135,9 +170,9 @@ footer .footer-links {
   height: 20px;
   width: 12px;
   border:none;
-}
+} */
 
-.down-arrow:before {
+/* .down-arrow:before {
   font-family: FontAwesome;
   font-style: normal;
   font-weight: normal;
@@ -146,11 +181,9 @@ footer .footer-links {
   font-size: 18px;
   top: 2px;
   left: 0
-}
+} */
 
-.down-arrow:before {
-  content: "\f0d7"
-}
+
 
 .col-country .dropdown-content {
  
@@ -170,9 +203,6 @@ footer .footer-links {
   color: #fff;
   text-decoration: none
 }
-
-
-
 
 @media(min-width: 768px) {
   .footer-links .links-column {
