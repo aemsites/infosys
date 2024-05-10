@@ -212,7 +212,7 @@ main .section.highlight {
 
 [class*=" icon-"],
 [class^="icon-"] {
-  font-family: icomoon !important;
+  font-family: icomoon, sans-serif;
   speak: never;
   font-style: normal;
   font-weight: 400;

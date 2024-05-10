@@ -72,12 +72,30 @@ function decorateHeroBanners(block) {
   });
 }
 
-function decorateFindMoreButton(card) {
+function decorateCardFindMoreButton(card) {
   const findMore = card.querySelector('p > a');
   if (!findMore) return;
   const findMoreIcon = createElement('span', { class: 'icon-chevron-right-circle-white' });
   findMore.prepend(findMoreIcon);
   findMore.classList.add('find-more');
+}
+
+function decorateCardListWithControls(block) {
+  const cardsList = block.querySelector('.cards-list');
+  const leftControl = createElement('button', { class: 'arrow left' });
+  const rightControl = createElement('button', { class: 'arrow right' });
+
+  const arrowControls = createElement('div', { class: 'arrow-controls' }, null, leftControl, rightControl);
+
+  leftControl.addEventListener('click', () => {
+    cardsList.scrollLeft -= 200;
+  });
+
+  rightControl.addEventListener('click', () => {
+    cardsList.scrollLeft += 200;
+  });
+
+  block.append(arrowControls);
 }
 
 function decorateHeroSlidingCards(block) {
@@ -96,7 +114,7 @@ function decorateHeroSlidingCards(block) {
       stopProgressBar(block);
       startProgressBar(block, index);
     });
-    decorateFindMoreButton(card);
+    decorateCardFindMoreButton(card);
   });
   block.append(cardsList);
 }
@@ -145,5 +163,6 @@ function onLoadSetItemsPosition(block) {
 export default function decorate(block) {
   decorateHeroBanners(block);
   decorateHeroSlidingCards(block);
+  decorateCardListWithControls(block);
   onLoadSetItemsPosition(block);
 }
