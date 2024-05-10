@@ -1,0 +1,143 @@
+.subscription *{
+  display: block;
+  box-sizing: border-box;
+}
+
+.subscription .container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.subscription .iki-subscribtion-footer .row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.subscription .subscription .iki-subscribtion-footer .row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+.subscription .iki-subscribtion-footer .podcast-box {
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.subscription a {
+  text-decoration: none;
+  color: #007cc3;
+  cursor: pointer;
+}
+
+.subscription .iki-subscribtion-footer .box {
+  padding: 60px;
+  color: #fff;
+  border-right: 1px solid #fff;
+  height: 100%;
+  /* background-color: #df9926; */
+  background-color: #ab6604;
+}
+.subscription .col-lg-3 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  text-align: center;
+}
+
+
+.subscription .iki-subscribtion-footer .box-content span {
+  display: block;
+  font-size: 20px;
+  margin: 10px auto;
+}
+
+.subscription .iki-subscribtion-footer .sub-ins {
+  display: flex;
+  height: 100%;
+  color: #fff;
+  flex-direction: column;
+  padding: 30px;
+  justify-content: center;
+  text-align: left;
+  opacity: 0;
+}
+
+.subscription .iki-subscribtion-footer .iki-icons {
+  font-size: 30px !important;
+  transform: translateY(0px);
+  transition: all 0.5s ease;
+}
+
+[class*=" icon-"], [class^="icon-"] {
+  font-family: icomoon !important;
+  speak: never;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.subscription .iki-subscribtion-footer .sub-ins {
+  display: flex;
+  height: 100%;
+  color: #fff;
+  flex-direction: column;
+  padding: 30px;
+  justify-content: center;
+  text-align: left;
+}
+
+.subscription .bg-topaz-dark {
+  background-color: #2f1113 !important;
+}
+
+.subscription .iki-subscribtion-footer .tooltip-content ul li a [class*='icon-'] {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.subscription .iki-subscribtion-footer .tooltip-content {
+  opacity: 0;
+  display:none;
+}
+
+@media(width >=1200px) {
+  .subscription .col-lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+.subscription .iki-subscribtion-footer a {
+  height: 100%;
+}
+.icon-connect:before {
+  content: "";
+  color: #fff;
+}
+.icon-request-expert:before {
+  content: "";
+  color: #fff;
+}
+.icon-insight:before {
+  content: "";
+  color: #fff;
+}
+.icon-podcast:before {
+  content: "";
+  color: #fff;
+}
+.iki-subscribtion-footer .iki-icons {
+  font-size: 30px !important;
+  transform: translateY(0px);
+  transition: all 0.5s ease;
+}
