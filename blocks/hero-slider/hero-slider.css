@@ -20,7 +20,7 @@ div {
   opacity: 0;
 }
 
-.hero-slider .banner.show {
+.hero-slider .banner.active {
   display: block;
   opacity: 1;
 }
