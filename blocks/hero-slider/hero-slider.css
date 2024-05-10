@@ -59,7 +59,7 @@ div {
   margin-right: auto;
   display: flex;
   flex-direction: row;
-  background-color: lightgray;
+  background-color: white;
   min-width: calc(100% - 33rem);
   max-width: 90vw;
   overflow-x: scroll;
@@ -109,21 +109,28 @@ div {
   margin-top: 0;
 }
 
-.card-item .button-container a {
+.card-item a.find-more {
   margin-top: auto;
   cursor: pointer;
   color: #00578A;
+  font-weight: 600;
+}
+
+.icon-chevron-right-circle-white {
+  margin-right: 0.6rem;
+}
+
+.icon-chevron-right-circle-white:before {
+  content: "";
 }
 
 .progress-bar {
   position: relative;
   bottom: 0;
-  /*left: 0;*/
   height: 8px;
   width: 0;
   margin-left: -1rem;
   margin-bottom: -1rem;
-  /*background-color: #0271b1;*/
   background-image: linear-gradient(to right, #007cc3, #fff);
   transition: width 0.1s linear;
 }

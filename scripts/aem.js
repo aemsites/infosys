@@ -740,6 +740,30 @@ async function waitForLCP(lcpBlocks) {
   });
 }
 
+function createElement(tagName, attributes, properties, ...children) {
+  const el = document.createElement(tagName);
+  if (attributes) {
+    Object.keys(attributes).forEach((name) => {
+      el.setAttribute(name, attributes[name]);
+    });
+  }
+  if (properties) {
+    Object.keys(properties).forEach((name) => {
+      el[name] = properties[name];
+    });
+  }
+  children.forEach((child) => {
+    if (typeof child === 'string') {
+      el.appendChild(document.createTextNode(child));
+    } else if (Array.isArray(child)) {
+      child.forEach((c) => el.appendChild(c));
+    } else if (child) {
+      el.appendChild(child);
+    }
+  });
+  return el;
+}
+
 init();
 
 export {
@@ -767,4 +791,5 @@ export {
   updateSectionsStatus,
   waitForLCP,
   wrapTextNodes,
+  createElement,
 };
