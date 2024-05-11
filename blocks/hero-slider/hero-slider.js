@@ -22,9 +22,9 @@ function stopProgressBar(block) {
 function scrollCardsListIfCurrentCardIsNotVisible(block, cardsList, cardItem, currentIndex) {
   const progressBars = block.querySelectorAll('.progress-bar');
   const cardItemRect = cardItem.getBoundingClientRect();
-  const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+  const cardsListRect = cardsList.getBoundingClientRect();
 
-  if (cardItemRect.right > viewportWidth) {
+  if (cardItemRect.right > cardsListRect.right) {
     const leftCardItem = block.querySelector(`.card-${(currentIndex - 1) % progressBars.length}`);
     cardsList.scrollLeft = leftCardItem.offsetLeft;
   } else if (cardItemRect.left < cardsList.offsetLeft) {
