@@ -24,11 +24,12 @@ function scrollCardsListIfCurrentCardIsNotVisible(block, cardsList, cardItem, cu
   const cardItemRect = cardItem.getBoundingClientRect();
   const cardsListRect = cardsList.getBoundingClientRect();
 
-  if (cardItemRect.right > cardsListRect.right) {
+  if (cardItemRect.left < cardsList.offsetLeft || cardItemRect.left > cardsListRect.right
+  || (cardItemRect.left < cardsListRect.right && cardItemRect.right > cardsListRect.right)) {
+    cardsList.scrollLeft = cardItem.offsetLeft;
+  } else if (cardItemRect.right > cardsListRect.right && currentIndex > 0) {
     const leftCardItem = block.querySelector(`.card-${(currentIndex - 1) % progressBars.length}`);
     cardsList.scrollLeft = leftCardItem.offsetLeft;
-  } else if (cardItemRect.left < cardsList.offsetLeft) {
-    cardsList.scrollLeft = cardItem.offsetLeft;
   }
 }
 
