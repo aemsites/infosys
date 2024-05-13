@@ -26,10 +26,18 @@ function scrollCardsListIfCurrentCardIsNotVisible(block, cardsList, cardItem, cu
 
   if (cardItemRect.left < cardsList.offsetLeft || cardItemRect.left > cardsListRect.right
   || (cardItemRect.left < cardsListRect.right && cardItemRect.right > cardsListRect.right)) {
-    cardsList.scrollLeft = cardItem.offsetLeft;
+    // cardsList.scrollLeft = cardItem.offsetLeft;
+    cardsList.scrollTo({
+      left: cardItem.offsetLeft,
+      behavior: 'smooth',
+    });
   } else if (cardItemRect.right > cardsListRect.right && currentIndex > 0) {
     const leftCardItem = block.querySelector(`.card-${(currentIndex - 1) % progressBars.length}`);
-    cardsList.scrollLeft = leftCardItem.offsetLeft;
+    // cardsList.scrollLeft = leftCardItem.offsetLeft;
+    cardsList.scrollTo({
+      left: leftCardItem.offsetLeft,
+      behavior: 'smooth',
+    });
   }
 }
 
@@ -65,7 +73,7 @@ function startProgressBar(block, currentIndex) {
     // Infinite loop to start the progress bar
     // 'newIndex' is updated once the current progress bar reaches 100% width
     startProgressBar(block, newIndex);
-  }, 50);
+  }, 35);
 }
 
 function moveNextCard(block) {
