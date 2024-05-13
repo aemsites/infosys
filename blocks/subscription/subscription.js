@@ -65,10 +65,28 @@ function validateikisub() {
 	return e.test(i)
   }
 
-function showInsightsDiv( block){
-    const subscriptionDiv = block.querySelector('#subscribeinsights');
-    subscriptionDiv.opacity ='0';
-    const subscriptionPopUpDiv = block.querySelector('.sub-ins');
+function showInsightsDiv( div){
+    const subscriptionDiv = div.querySelector('.box');
+    subscriptionDiv.style.display = 'none';
+    const subscriptionPopUpDiv = div.querySelector('.tooltip-content');
+    // $('html, body').animate({
+    //     scrollTop: $("#subscribeinsights").offset().top - 100
+    // }, 200);
+    // subscriptionPopUpDiv.animate.scrollTop = subscriptionDiv.offsetTop-100;
+    // window.scrollTo({
+    //     top: subscriptionDiv.offsetTop - 100,
+    //     behavior: 'smooth', // Smooth scrolling behavior
+    //     duration: 200 // Duration in milliseconds (Note: This option is not supported in all browsers)
+    // });
+    subscriptionPopUpDiv.style.display = 'block';
+    subscriptionPopUpDiv.style.transform = 'scale3d(1,1,1)';
+}
+ 
+
+function showPodcastsDiv( block){
+    const subscriptionDiv = block.querySelector('#subscribeinsights a');
+    subscriptionDiv.style.display = 'none';
+    const subscriptionPopUpDiv = block.querySelector('.subscription .tooltip-content');
     // $('html, body').animate({
     //     scrollTop: $("#subscribeinsights").offset().top - 100
     // }, 200);
@@ -78,12 +96,9 @@ function showInsightsDiv( block){
         behavior: 'smooth', // Smooth scrolling behavior
         duration: 200 // Duration in milliseconds (Note: This option is not supported in all browsers)
     });
-    subscriptionPopUpDiv.style.opacity = '1';
+    subscriptionPopUpDiv.style.display = 'block';
     subscriptionPopUpDiv.style.transform = 'scale3d(1,1,1)';
 }
- 
-
-
 
 
   function validateikisubsidebar() {
@@ -277,23 +292,23 @@ function decorateBlock(block) {
     emailContainerDiv.className = 'email-checker';
     emailContainerDiv.setAttribute('aria-hidden', 'true');
   
-    // Create the label for the email input within the emailContainerDiv
-    const emailLabel = document.createElement('label');
-    emailLabel.setAttribute('for', 'email64zxca');
-    emailLabel.textContent = 'Registration Email';
-    emailLabel.style.boxSizing = 'border-box';
+    // // Create the label for the email input within the emailContainerDiv
+    // const emailLabel = document.createElement('label');
+    // emailLabel.setAttribute('for', 'email64zxca');
+    // emailLabel.textContent = 'Registration Email';
+    // emailLabel.style.boxSizing = 'border-box';
   
-    // Create the input for the email within the emailContainerDiv
-    const emailInput = document.createElement('input');
-    emailInput.type = 'text';
-    emailInput.id = 'email64zxca';
-    emailInput.name = 'email64zxc';
-    emailInput.tabIndex = '-1';
-    emailInput.autocomplete = 'backup-email';
+    // // Create the input for the email within the emailContainerDiv
+    // const emailInput = document.createElement('input');
+    // emailInput.type = 'text';
+    // emailInput.id = 'email64zxca';
+    // emailInput.name = 'email64zxc';
+    // emailInput.tabIndex = '-1';
+    // emailInput.autocomplete = 'backup-email';
   
-    // Append the label and input to the emailContainerDiv
-    emailContainerDiv.appendChild(emailLabel);
-    emailContainerDiv.appendChild(emailInput);
+    // // Append the label and input to the emailContainerDiv
+    // emailContainerDiv.appendChild(emailLabel);
+    // emailContainerDiv.appendChild(emailInput);
   
     // Create the email input within the form
     const emailInput2 = document.createElement('input');
@@ -365,6 +380,9 @@ function decorateBlock(block) {
     boxDiv3.appendChild(span6);
     anchor3.appendChild(boxDiv3);
     colDiv3.appendChild(anchor3);
+    colDiv3.onclick = function() {
+        showInsightsDiv(colDiv3);
+    };
   
     // Append the third column to the row
     rowDiv.appendChild(colDiv3);
@@ -373,6 +391,9 @@ function decorateBlock(block) {
     const colDiv4 = document.createElement('div');
     colDiv4.className = 'col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center p0 podcast-box podcast-box-link';
     colDiv4.id = 'sub-podcasts';
+    colDiv4.onclick = function() {
+        showInsightsDiv(colDiv4);
+    };
   
     // Create the tooltip-content span within the fourth column
     const tooltipContentSpan2 = document.createElement('span');
@@ -389,11 +410,14 @@ function decorateBlock(block) {
     anchor4.href = 'https://podcasts.apple.com/in/podcast/knowledge-innovation/id1532523679';
     anchor4.setAttribute('target', '_blank');
     anchor4.textContent = 'Apple Podcasts';
+    anchor4.className = 'icon-apple';
+    // anchor4.appendChild(listItem1icon);
     listItem1.appendChild(anchor4);
   
     const listItem2 = document.createElement('li');
     const anchor5 = document.createElement('a');
     anchor5.title = 'Spotify';
+    anchor5.className = 'icon-spotify';
     anchor5.href = 'https://open.spotify.com/show/0lcZZysYAbSsI2w7LoZ5Ie';
     anchor5.setAttribute('target', '_blank');
     anchor5.textContent = 'Spotify';
@@ -402,15 +426,26 @@ function decorateBlock(block) {
     const listItem3 = document.createElement('li');
     const anchor6 = document.createElement('a');
     anchor6.title = 'Google Podcasts';
+    anchor6.className = 'icon-google';
     anchor6.href = 'https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy8xMDIyZmY2Yy9wb2RjYXN0L3Jzcw==';
     anchor6.setAttribute('target', '_blank');
     anchor6.textContent = 'Google Podcasts';
     listItem3.appendChild(anchor6);
+
+    const listItem4 = document.createElement('li');
+    const anchor8 = document.createElement('a');
+    anchor8.className = 'icon-sound-cloud';
+    anchor8.title = 'Google Podcasts';
+    anchor8.href = 'https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy8xMDIyZmY2Yy9wb2RjYXN0L3Jzcw==';
+    anchor8.setAttribute('target', '_blank');
+    anchor8.textContent = 'Sound Cloud';
+    listItem4.appendChild(anchor8);
   
     // Append the list items to the ul element for the fourth column
     ulElement.appendChild(listItem1);
     ulElement.appendChild(listItem2);
     ulElement.appendChild(listItem3);
+    ulElement.appendChild(listItem4);
   
     // Append the ul element to the tooltip-content span for the fourth column
     tooltipContentSpan2.appendChild(ulElement);
@@ -453,8 +488,8 @@ function decorateBlock(block) {
   
     // Append the article element to the document body or any desired parent element
     block.appendChild(articleElement);
-    const subscriptionDiv = block.querySelector('#subscribeinsights');
-    subscriptionDiv.onclick = showInsightsDiv(block);
+   
+    
   }
   
 

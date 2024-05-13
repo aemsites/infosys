@@ -66,7 +66,7 @@
   padding: 30px;
   justify-content: center;
   text-align: left;
-  opacity: 0;
+  
 }
 
 .subscription .iki-subscribtion-footer .iki-icons {
@@ -75,7 +75,7 @@
   transition: all 0.5s ease;
 }
 
-[class*=" icon-"], [class^="icon-"] {
+[class^="icon-"]:before, [class*=" icon-"], [class^="icon-"] {
   font-family: icomoon !important;
   speak: never;
   font-style: normal;
@@ -100,6 +100,12 @@
 .subscription .bg-topaz-dark {
   background-color: #2f1113 !important;
 }
+.subscription .bg-topaz-dark h4{
+  margin: 10px 0; 
+}
+#errormsgiki {
+  margin: 10px 0;
+}
 
 .subscription .iki-subscribtion-footer .tooltip-content ul li a [class*='icon-'] {
   color: #ffffff;
@@ -107,7 +113,6 @@
 }
 
 .subscription .iki-subscribtion-footer .tooltip-content {
-  opacity: 0;
   display:none;
 }
 
@@ -122,22 +127,79 @@
 }
 .icon-connect:before {
   content: "";
-  color: #fff;
 }
 .icon-request-expert:before {
   content: "";
-  color: #fff;
 }
 .icon-insight:before {
   content: "";
-  color: #fff;
 }
 .icon-podcast:before {
   content: "";
-  color: #fff;
 }
 .iki-subscribtion-footer .iki-icons {
   font-size: 30px !important;
   transform: translateY(0px);
   transition: all 0.5s ease;
+}
+
+.input-txt{
+  width: 100%;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+.iki-subscribtion-footer .tooltip-content ul {
+  height: 100%;
+  padding: 0px 25px;
+  margin: 0;
+  transform: translateY(0);
+}
+
+.iki-subscribtion-footer .tooltip-content ul li {
+  list-style-type: none;
+  padding: 13px 0px;
+  border-top: 1px solid rgba(225, 225, 225, 0.5);
+  transition: all 0.3s ease;
+}
+
+.iki-subscribtion-footer .tooltip-content ul li a {
+  display: flex;
+  align-items: center;
+}
+.iki-subscribtion-footer a {
+  height: 100%;
+}
+
+
+.iki-subscribtion-footer .tooltip-content ul li a  {
+  margin: 0 15px 0 5px;
+  color: #ffffff;
+  font-family: myriad-pro, Arial;
+  font-size: 16px;
+  font-weight: 300;
+  transform: translateX(0px);
+  transition: all 0.5s ease;
+  line-height: 23.2px
+}
+
+.icon-apple::before {
+  content: "";
+}
+.icon-google:before {
+  content: "";
+}
+.icon-spotify:before {
+  content: "";
+  color: #1ed760;
+}
+
+.icon-sound-cloud:before {
+  content: "";
+}
+
+.iki-subscribtion-footer .tooltip-content ul li a [class*='icon-'] {
+  color: #ffffff;
+  font-size: 16px;
 }
