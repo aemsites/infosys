@@ -13,11 +13,19 @@
 :root {
   /* colors */
   --link-color: #035fe6;
+  --link-hover-bg-color: #63b0ff;
   --link-hover-color: #136ff6;
   --background-color: white;
   --light-color: #eee;
   --dark-color: #ccc;
   --text-color: black;
+  --footer-grey-text-color:#3f3f3f;
+  --scrollbar-thumb-color:#ffffff4d;
+  --scrollbar-shadow-color:#0000004D;
+  --scrollbar-thumb-shadow-color:#0000007F;
+  --footer-links-bg-color: #f8f8f8;
+  --footer-links-link-color: #3f3f3f;
+  
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -25,9 +33,38 @@
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
+  --body-font-size-m: 24px;
   --body-font-size-m: 22px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
+  --body-font-size-xss: 14px;
+
+ /* Font Weight */
+ --font-weight-small: 300;
+ --font-weight-regular: 400;
+ --font-weight-medium: 500;
+ --font-weight-semibold: 600;
+ --font-weight-bold: 700;
+ --font-weight-bolder: 800;
+ --font-weight-boldest: 900;
+
+ /* margin and fine spaces */
+ --space-1px: 0.06rem;
+ --space-2px: 0.13rem;
+ --space-3px: 0.19rem;
+ --space-4px: 0.25rem;
+ --space-5px: 0.313rem;
+ --space-6px: 0.375rem;
+ --space-7px: 0.438rem;
+ --space-8px: 0.5rem;
+ --space-9px: 0.563rem;
+ --space-10px: 0.625rem;
+ --space-11px: 0.688rem;
+ --space-12px: 0.75rem;
+ --space-13px: 0.813rem;
+ --space-14px: 0.875rem;
+ --space-15px: 0.938rem;
+
 
   /* heading sizes */
   --heading-font-size-xxl: 48px;
@@ -57,6 +94,11 @@
     --heading-font-size-s: 24px;
     --heading-font-size-xs: 22px;
   }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  outline: none;
 }
 
 body {
@@ -93,6 +135,7 @@ h3 { font-size: var(--heading-font-size-l) }
 h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
 h6 { font-size: var(--heading-font-size-xs) }
+
 
 p, dl, ol, ul, pre, blockquote {
   margin-top: 1em;
