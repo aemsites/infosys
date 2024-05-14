@@ -59,7 +59,7 @@ import { createElement } from '../../scripts/blocks-utils.js';
 //   return e.test(i);
 // }
 export function decorateColumnDiv(colDiv1TitleLink, columnName, href) {
-  const colDiv1 = createElement('div', 'col-lg-3');
+  const colDiv1 = createElement('div', 'columns');
   const anchor1 = createElement('a','');
 
   if (href) {
@@ -70,16 +70,16 @@ export function decorateColumnDiv(colDiv1TitleLink, columnName, href) {
 
   anchor1.setAttribute('title', colDiv1TitleLink.textContent);
   const boxDiv1 = createElement('div', 'box');
-  const boxContentDiv1 = createElement('div', 'box-content');
+  //const boxContentDiv1 = createElement('div', 'box-content');
 
-  const span1 = createElement('span', 'iki-icons');
+  const span1 = createElement('span', 'header-icons');
   span1.classList.add(`icon-${columnName}`);
   const span2 = createElement('span', '');
   span2.textContent = colDiv1TitleLink.textContent;
 
-  boxContentDiv1.appendChild(span1);
-  boxContentDiv1.appendChild(span2);
-  boxDiv1.appendChild(boxContentDiv1);
+  boxDiv1.appendChild(span1);
+  boxDiv1.appendChild(span2);
+  //boxDiv1.appendChild(boxContentDiv1);
   anchor1.appendChild(boxDiv1);
   colDiv1.appendChild(anchor1);
 
@@ -89,7 +89,7 @@ export function decorateColumnDiv(colDiv1TitleLink, columnName, href) {
 function showInsightsDiv(div) {
   const subscriptionDiv = div.querySelector('.box');
   subscriptionDiv.style.display = 'none';
-  const subscriptionPopUpDiv = div.querySelector('.tooltip-content');
+  const subscriptionPopUpDiv = div.querySelector('.popup');
   // $('html, body').animate({
   //   scrollTop: $('#subscribeinsights').offset().top - 100,
   // }, 200);
@@ -108,7 +108,7 @@ function showInsightsDiv(div) {
 function showPodcastsDiv(block) {
   const subscriptionDiv = block.querySelector('#subscribeinsights a');
   subscriptionDiv.style.display = 'none';
-  const subscriptionPopUpDiv = block.querySelector('.subscription .tooltip-content');
+  const subscriptionPopUpDiv = block.querySelector('.subscription .popup');
   // $('html, body').animate({
   //     scrollTop: $("#subscribeinsights").offset().top - 100
   // }, 200);
@@ -170,8 +170,7 @@ function decoratePodcastsDiv(colDiv1TitleLink, columnName, podcastPopupDiv) {
     showInsightsDiv(colDiv4);
   };
 
-  // Create the tooltip-content span within the fourth column
-  const tooltipContentSpan2 = createElement('span', 'tooltip-content');
+  const popupContent = createElement('span', 'popup');
   
   const ulElement = createElement('ul','');
   const podcastChildren = Array.from(podcastPopupDiv.children[0].children);
@@ -193,8 +192,8 @@ function decoratePodcastsDiv(colDiv1TitleLink, columnName, podcastPopupDiv) {
     listItem.appendChild(anchor);
     ulElement.appendChild(listItem);
   });
-  tooltipContentSpan2.appendChild(ulElement);
-  colDiv4.insertBefore(tooltipContentSpan2,colDiv4.firstChild);
+  popupContent.appendChild(ulElement);
+  colDiv4.insertBefore(popupContent,colDiv4.firstChild);
 
   return colDiv4;
 }
@@ -205,7 +204,7 @@ export function decorateInsightsDiv(colDiv1TitleLink, columnName) {
 
  
   const tooltipContentSpan = createElement('span');
-  tooltipContentSpan.className = 'tooltip-content';
+  tooltipContentSpan.className = 'popup';
   const subInsDiv = createElement('div','sub-ins');
 
   const h4Element = createElement('h4','');
@@ -302,8 +301,8 @@ export default async function decorate(block) {
 
   //const articleElement = createElement('article', 'iki-subscribtion-footer');
   const containerDiv = createElement('div','container-fluid');
-  const rowDiv = createElement('div','row');
-  containerDiv.appendChild(rowDiv);
+  // const rowDiv = createElement('div','row');
+  // containerDiv.appendChild(rowDiv);
   //articleElement.appendChild(containerDiv);
   let colDiv;
 
@@ -321,12 +320,12 @@ export default async function decorate(block) {
       const podcastPopupDiv = columnElement.children[2];
       colDiv = decoratePodcastsDiv(titleLinkDiv, columnName, podcastPopupDiv);
     }
-    rowDiv.appendChild(colDiv);
+    containerDiv.appendChild(colDiv);
   });
 
   block.textContent = '';
 
-  containerDiv.appendChild(rowDiv);
+  //  containerDiv.appendChild(rowDiv);
   block.appendChild(containerDiv);
   //block.appendChild(articleElement);
 }
