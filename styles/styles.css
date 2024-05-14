@@ -25,6 +25,7 @@
   --scrollbar-thumb-shadow-color:#0000007F;
   --footer-links-bg-color: #f8f8f8;
   --footer-links-link-color: #3f3f3f;
+  --country-dropdown-grey-color: #7e7e7e;
   
 
   /* fonts */
@@ -49,7 +50,7 @@
  --font-weight-boldest: 900;
 
  /* margin and fine spaces */
- --space-1px: 0.06rem;
+ --space-1px: 0.0625rem;
  --space-2px: 0.13rem;
  --space-3px: 0.19rem;
  --space-4px: 0.25rem;
@@ -105,7 +106,7 @@ body {
   font-size: var(--body-font-size-m);
   margin: 0;
   font-family: var(--body-font-family);
-  line-height: 1.6;
+  line-height: 1.45;
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
@@ -162,6 +163,11 @@ main pre {
   border-radius: .25em;
   overflow-x: auto;
   white-space: pre;
+}
+
+/* section - full-width */
+main .section.full-width > .section-container{
+  max-width: 100%;
 }
 
 /* links */

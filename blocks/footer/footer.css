@@ -2,7 +2,11 @@
   padding: 3.125rem 1.25rem;
 }
 .footer .section .default-content-wrapper {
-  max-width: 75.25rem;
+  max-width: 75.625rem;
+}
+
+.footer .footer-links {
+  background: var(--footer-links-bg-color);
 }
 
 .section.footer-copyright {
@@ -15,14 +19,11 @@
   padding: 0 1.25rem;
 }
 
-.footer .footer-links {
-  background: var(--footer-links-bg-color);
-}
-
 .footer .footer-links .links-column {
   flex: 0 0 100%;
   width: 100%;
   padding: 0 var(--space-15px);
+  position: relative;
 }
 
 .footer .footer-links .links-title {
@@ -34,11 +35,11 @@
 }
 
 .footer .footer-links .row .links-column:last-child .links-title{
-  margin:0; 
+  margin-top:0; 
 }
 
 .footer .footer-links .links-column>a {
-  margin-bottom: 10px;
+  margin-bottom: var(--space-10px);
   color:var(--footer-links-link-color);
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-regular);
@@ -46,6 +47,7 @@
   text-decoration: none;
   display: block;
   overflow-wrap: wrap;
+  line-height: 1.45;
 }
 
 .footer .footer-links .links-column a.icons-link {
@@ -67,7 +69,6 @@
   max-width: 100%;
   margin-bottom: 0;
   margin-top: 0;
-  line-height: 1.45;
   font-weight: var(--font-weight-small);
   padding: 0 var(--space-15px);
 }
@@ -81,16 +82,17 @@
   flex: 0 0 100%;
   width: 100%;
   padding: 0 var(--space-15px);
-  font-weight: 400;
   font-family: var(--body-font-family);
-  color: #7e7e7e;
+  color: var(--country-dropdown-grey-color);
   margin-top: 1.25rem;
 }
 
 .footer .col-country .dropdown-content a {
   padding: var(--space-10px) var(--space-15px);
   display: block;
-  color: #7e7e7e;
+  color:  var(--country-dropdown-grey-color);
+  z-index: 1;
+  position: relative;
 }
 
 .footer .col-country .dropdown {
@@ -99,10 +101,9 @@
 }
 
 .footer .col-country .dropdown-toggle {
-  border: 1px solid #7e7e7e;
+  border: var(--space-1px) solid var(--country-dropdown-grey-color);
   position: relative;
   padding: var(--space-5px) var(--space-15px);
-  line-height: 1.45;
   display: block;
 }
 
@@ -114,13 +115,14 @@
 .footer .down-arrow,
 .up-arrow {
   position: relative;
-  margin-left: 6.25rem;
+  margin-left: 5.5625rem;
   vertical-align: middle;
   transform: rotate(180deg);
   background-size: var(--space-12px) 1.56rem;
-  display: inline-block;
+  display: inline-table;
   height: 1.125rem;
   width: var(--space-12px);
+
 }
 
 .footer .footer-links img {
@@ -143,10 +145,12 @@
   box-shadow: var(--space-2px) var(--space-1px) var(--space-10px) rgb(0 0 0 / 50%);
   width: 100%;
   bottom:100%;
-  position: relative;
+  position: absolute;
   max-height: 12.5rem;
   overflow-y: auto;
   display:none; 
+  top:-190px;
+  z-index: 1;
 }
 
 
@@ -163,7 +167,7 @@
 .footer ::-webkit-scrollbar-thumb {
   border-radius: var(--space-10px);
   background: var(--scrollbar-thumb-color);
-  box-shadow: inset 0 0 6px rgb(0 0 0 / 50%);
+  box-shadow: inset 0 0 var(--space-6px) var(--scrollbar-thumb-shadow-color);
 }
 
 .footer .col-country .dropdown-content a:hover {
@@ -171,7 +175,6 @@
   color: var(--background-color);
   text-decoration: none
 }
-
 
 @media(width >=768px) {
   .footer .footer-links .links-column {
@@ -194,7 +197,8 @@
 
   .footer .col-country .dropdown {
     float: right;
-    font-size: 18px;
+    font-size: var(--body-font-size-s);
+    position: relative;
   }
 
   .footer .footer-links .links-title {
