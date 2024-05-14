@@ -1,6 +1,5 @@
 .subscription *{
   display: block;
-  box-sizing: border-box;
 }
 
 .subscription .container-fluid {
@@ -20,15 +19,24 @@
   margin-right: -15px;
   margin-left: -15px;
 }
+.iki-subscribtion-footer .box:hover .iki-icons {
+  transform: translateY(-15px);
+  transition: all 0.5s ease;
+}
+
+.iki-subscribtion-footer .tooltip-content ul li a:hover {
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
 
 .subscription .subscription .iki-subscribtion-footer .row > [class*='col-'] {
   display: flex;
   flex-direction: column;
 }
 
-.subscription .iki-subscribtion-footer .podcast-box {
-  cursor: pointer;
-  font-weight: 400;
+
+main .section.full-width .subscription-wrapper{
+  max-width: 100%;
 }
 
 .subscription a {
@@ -70,14 +78,13 @@
 }
 
 .subscription .iki-subscribtion-footer .iki-icons {
-  font-size: 30px !important;
+  font-size: 30px;
   transform: translateY(0px);
   transition: all 0.5s ease;
 }
 
 [class^="icon-"]:before, [class*=" icon-"], [class^="icon-"] {
-  font-family: icomoon !important;
-  speak: never;
+  font-family: icomoon;
   font-style: normal;
   font-weight: 400;
   font-variant: normal;
@@ -144,6 +151,7 @@
 }
 
 .input-txt{
+  margin-top: 3px;
   width: 100%;
   font-size: 16px;
   font-family: inherit;
@@ -153,8 +161,9 @@
 .iki-subscribtion-footer .tooltip-content ul {
   height: 100%;
   padding: 0px 25px;
-  margin: 0;
   transform: translateY(0);
+  margin: 0;
+  padding-bottom: 8px;
 }
 
 .iki-subscribtion-footer .tooltip-content ul li {
@@ -181,7 +190,9 @@
   font-weight: 300;
   transform: translateX(0px);
   transition: all 0.5s ease;
-  line-height: 23.2px
+  line-height: 23.2px;
+  transform: translateX(0px);
+    transition: all 0.5s ease;
 }
 
 .icon-apple::before {
@@ -203,3 +214,20 @@
   color: #ffffff;
   font-size: 16px;
 }
+
+.thankyousub{
+  padding:25px;
+  display:none;
+}
+
+.iki-subscribtion-footer .iki-sub-btn {
+  color: #fff;
+  background: transparent !important;
+  font-size: 14px;
+  border: 2px solid #df9926;
+  padding: 5px 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+}
+

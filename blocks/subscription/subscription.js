@@ -1,3 +1,4 @@
+import { createElement } from '../../scripts/blocks-utils.js';
 
 // IKI Footer Subscription Code
 function validateikisub() {
@@ -69,9 +70,9 @@ function showInsightsDiv( div){
     const subscriptionDiv = div.querySelector('.box');
     subscriptionDiv.style.display = 'none';
     const subscriptionPopUpDiv = div.querySelector('.tooltip-content');
-    // $('html, body').animate({
-    //     scrollTop: $("#subscribeinsights").offset().top - 100
-    // }, 200);
+    $('html, body').animate({
+        scrollTop: $("#subscribeinsights").offset().top - 100
+    }, 200);
     // subscriptionPopUpDiv.animate.scrollTop = subscriptionDiv.offsetTop-100;
     // window.scrollTo({
     //     top: subscriptionDiv.offsetTop - 100,
@@ -80,6 +81,9 @@ function showInsightsDiv( div){
     // });
     subscriptionPopUpDiv.style.display = 'block';
     subscriptionPopUpDiv.style.transform = 'scale3d(1,1,1)';
+    subscriptionPopUpDiv.scrollTo
+    subscriptionPopUpDiv.style.top = subscriptionDiv.offsetTop - 100;
+    
 }
  
 
@@ -142,123 +146,125 @@ function showPodcastsDiv( block){
 	return $("#errormsgikisidebar").html("Please enter the valid email id"), $("#emailSidebar").focus(), !1
   }
 
-//   $(document).ready(function () {
-// 	function i() {
-// 	  var i = $(".tooltip-content ul li"),
-// 		e = $.Deferred().resolve();
-// 	  i.get().forEach(function (i) {
-// 		e = e.then(function () {
-// 		  return $(i).animate({
-// 			opacity: "1"
-// 		  }, 300).promise()
-// 		})
-// 	  })
-// 	}
-	
-// 	$("body").on("click", ".podcast-box-link", function () {
-// 	$(this).children().css({
-// 	  opacity: "1",
-// 	  transform: "scale3d(1,1,1)",
-// 	  "-webkit-transform": "scale3d(1,1,1)"
-// 	}), i()
-//   });
-// });
+function decoratePodcastsDiv(block) {
+    
+    // Create the fourth column div
+    const colDiv4 = document.createElement('div');
+    colDiv4.className = 'col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center p0 podcast-box podcast-box-link';
+    colDiv4.id = 'sub-podcasts';
+    colDiv4.onclick = function() {
+        showInsightsDiv(colDiv4);
+    };
+  
+    // Create the tooltip-content span within the fourth column
+    const tooltipContentSpan2 = document.createElement('span');
+    tooltipContentSpan2.className = 'tooltip-content clearfix';
+  
+    // Create the ul element within the tooltip-content span for the fourth column
+    const ulElement = document.createElement('ul');
+    ulElement.className = 'bg-topaz-dark';
+  
+    // Create the list items within the ul element for the fourth column
+    const listItem1 = document.createElement('li');
+    const anchor4 = document.createElement('a');
+    anchor4.title = 'Apple Podcasts';
+    anchor4.href = 'https://podcasts.apple.com/in/podcast/knowledge-innovation/id1532523679';
+    anchor4.setAttribute('target', '_blank');
+    anchor4.textContent = 'Apple Podcasts';
+    anchor4.className = 'icon-apple';
+    listItem1.appendChild(anchor4);
+  
+    const listItem2 = document.createElement('li');
+    const anchor5 = document.createElement('a');
+    anchor5.title = 'Spotify';
+    anchor5.className = 'icon-spotify';
+    anchor5.href = 'https://open.spotify.com/show/0lcZZysYAbSsI2w7LoZ5Ie';
+    anchor5.setAttribute('target', '_blank');
+    anchor5.textContent = 'Spotify';
+    listItem2.appendChild(anchor5);
+  
+    const listItem3 = document.createElement('li');
+    const anchor6 = document.createElement('a');
+    anchor6.title = 'Google Podcasts';
+    anchor6.className = 'icon-google';
+    anchor6.href = 'https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy8xMDIyZmY2Yy9wb2RjYXN0L3Jzcw==';
+    anchor6.setAttribute('target', '_blank');
+    anchor6.textContent = 'Google Podcasts';
+    listItem3.appendChild(anchor6);
 
-function decorateBlock(block) {
-    // Create the article element
-    const articleElement = document.createElement('article');
-    articleElement.className = 'iki-subscribtion-footer';
+    const listItem4 = document.createElement('li');
+    const anchor8 = document.createElement('a');
+    anchor8.className = 'icon-sound-cloud';
+    anchor8.title = 'Google Podcasts';
+    anchor8.href = 'https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy8xMDIyZmY2Yy9wb2RjYXN0L3Jzcw==';
+    anchor8.setAttribute('target', '_blank');
+    anchor8.textContent = 'Sound Cloud';
+    listItem4.appendChild(anchor8);
   
-    // Create the container-fluid div
-    const containerDiv = document.createElement('div');
-    containerDiv.className = 'container-fluid';
+    // Append the list items to the ul element for the fourth column
+    ulElement.appendChild(listItem1);
+    ulElement.appendChild(listItem2);
+    ulElement.appendChild(listItem3);
+    ulElement.appendChild(listItem4);
   
-    // Create the row div
-    const rowDiv = document.createElement('div');
-    rowDiv.className = 'row';
+    // Append the ul element to the tooltip-content span for the fourth column
+    tooltipContentSpan2.appendChild(ulElement);
+    colDiv4.appendChild(tooltipContentSpan2);
   
-    // Create the first column div
-    const colDiv1 = document.createElement('div');
-    colDiv1.className = 'col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center p0 podcast-box';
+    // Create the anchor element for the fourth column
+    const anchor7 = document.createElement('a');
+    anchor7.href = 'javascript:void(0);';
+    anchor7.title = 'Subscribe for Podcasts';
+    anchor7.setAttribute('aria-label', 'Subscribe for Podcasts');
+    anchor7.className = 'box wow fadeInLeft';
+    anchor7.setAttribute('data-wow-delay', '0.9s');
   
-    // Create the anchor element within the first column
-    const anchor1 = document.createElement('a');
-    anchor1.href = '/iki/iki-connect-with-us.html';
-    anchor1.setAttribute('aria-label', 'Go to Connect With IKI Page');
-    anchor1.setAttribute('title', 'Connect With IKI');
+    // Create the box div within the anchor element for the fourth column
+    const boxDiv4 = document.createElement('div');
+    boxDiv4.className = 'box-content';
   
-    // Create the box div within the anchor element
-    const boxDiv1 = document.createElement('div');
-    boxDiv1.className = 'box wow fadeInLeft';
-    boxDiv1.setAttribute('data-wow-delay', '0.3s');
+    // Create the span element within the box div for the fourth column
+    const span7 = document.createElement('span');
+    span7.className = 'iki-icons icon-podcast';
   
-    // Create the box-content div within the box div
-    const boxContentDiv1 = document.createElement('div');
-    boxContentDiv1.className = 'box-content';
+    // Create the second span element within the box div for the fourth column
+    const span8 = document.createElement('span');
+    span8.textContent = 'Subscribe for Podcasts';
   
-    // Create the span element within the box-content div
-    const span1 = document.createElement('span');
-    span1.className = 'iki-icons icon-connect';
+    // Append the elements to each other for the fourth column
+    boxDiv4.appendChild(span7);
+    boxDiv4.appendChild(span8);
+    anchor7.appendChild(boxDiv4);
+    colDiv4.appendChild(anchor7);
   
-    // Create the second span element within the box-content div
-    const span2 = document.createElement('span');
-    span2.textContent = 'Connect with IKI';
-  
-    // Append the elements to each other
-    boxContentDiv1.appendChild(span1);
-    boxContentDiv1.appendChild(span2);
-    boxDiv1.appendChild(boxContentDiv1);
-    anchor1.appendChild(boxDiv1);
-    colDiv1.appendChild(anchor1);
-  
-    // Append the first column to the row
-    rowDiv.appendChild(colDiv1);
-  
-    // Repeat the above process for the other columns
-  
-    // Append the row to the container-fluid div
-    containerDiv.appendChild(rowDiv);
-  
-    // Append the container-fluid div to the article element
-    articleElement.appendChild(containerDiv);
-  
-    // Create the second column div
-    const colDiv2 = document.createElement('div');
-    colDiv2.className = 'col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center p0 podcast-box';
-  
-    // Create the anchor element within the second column
-    const anchor2 = document.createElement('a');
-    anchor2.href = '/iki/about.html#rfs';
-    anchor2.setAttribute('aria-label', 'Go to Request an Expert Form');
-    anchor2.setAttribute('title', 'Request an Expert');
-  
-    // Create the box div within the anchor element for the second column
-    const boxDiv2 = document.createElement('div');
-    boxDiv2.className = 'box wow fadeInLeft';
-    boxDiv2.setAttribute('data-wow-delay', '0.6s');
-  
-    // Create the box-content div within the box div for the second column
-    const boxContentDiv2 = document.createElement('div');
-    boxContentDiv2.className = 'box-content';
-  
-    // Create the span element within the box-content div for the second column
-    const span3 = document.createElement('span');
-    span3.className = 'iki-icons icon-request-expert';
-  
-    // Create the second span element within the box-content div for the second column
-    const span4 = document.createElement('span');
-    span4.textContent = 'Request an Expert';
-  
-    // Append the elements to each other for the second column
-    boxContentDiv2.appendChild(span3);
-    boxContentDiv2.appendChild(span4);
-    boxDiv2.appendChild(boxContentDiv2);
-    anchor2.appendChild(boxDiv2);
-    colDiv2.appendChild(anchor2);
-  
-    // Append the second column to the row
-    rowDiv.appendChild(colDiv2);
-  
+    return colDiv4;
+     
+  }
+
+  export function decorateColumnDiv(colDiv1TitleLink, columnName){
+     
+     const colDiv1 = createElement('div', 'col-lg-3');
+     const anchor1 = createElement('a');
+     anchor1.href = colDiv1TitleLink.href;
+     anchor1.setAttribute('title', colDiv1TitleLink.textContent);
+     const boxDiv1 = createElement('div', 'box');
+     const boxContentDiv1 = createElement('div','box-content');
+     
+     const span1 = createElement('span','iki-icons');
+     span1.classList.add('icon-'+columnName);
+     const span2 = createElement('span','');
+     span2.textContent = colDiv1TitleLink.textContent;
+   
+     boxContentDiv1.appendChild(span1);
+     boxContentDiv1.appendChild(span2);
+     boxDiv1.appendChild(boxContentDiv1);
+     anchor1.appendChild(boxDiv1);
+     colDiv1.appendChild(anchor1);
+    
+     return colDiv1;  
+  }
+
+  export function decorateInsightsDiv(){
     // Create the third column div
     const colDiv3 = document.createElement('div');
     colDiv3.className = 'col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center p0 podcast-box podcast-box-link';
@@ -344,6 +350,11 @@ function decorateBlock(block) {
     // Append the hidden inputs to the form
     formElement.appendChild(hiddenInput1);
     formElement.appendChild(hiddenInput2);
+
+    const thankyoudiv = document.createElement('div');
+    thankyoudiv.className = 'thankyousub';
+    
+
   
     // Append the elements to each other for the third column
     formElement.appendChild(emailContainerDiv);
@@ -352,6 +363,7 @@ function decorateBlock(block) {
     formElement.appendChild(submitBtn);
     subInsDiv.appendChild(h4Element);
     subInsDiv.appendChild(formElement);
+    subInsDiv.appendChild(thankyoudiv); 
     tooltipContentSpan.appendChild(subInsDiv);
     colDiv3.appendChild(tooltipContentSpan);
   
@@ -383,101 +395,59 @@ function decorateBlock(block) {
     colDiv3.onclick = function() {
         showInsightsDiv(colDiv3);
     };
+    return colDiv3;
+  }
   
-    // Append the third column to the row
-    rowDiv.appendChild(colDiv3);
-  
-    // Create the fourth column div
-    const colDiv4 = document.createElement('div');
-    colDiv4.className = 'col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center p0 podcast-box podcast-box-link';
-    colDiv4.id = 'sub-podcasts';
-    colDiv4.onclick = function() {
-        showInsightsDiv(colDiv4);
-    };
-  
-    // Create the tooltip-content span within the fourth column
-    const tooltipContentSpan2 = document.createElement('span');
-    tooltipContentSpan2.className = 'tooltip-content clearfix';
-  
-    // Create the ul element within the tooltip-content span for the fourth column
-    const ulElement = document.createElement('ul');
-    ulElement.className = 'bg-topaz-dark';
-  
-    // Create the list items within the ul element for the fourth column
-    const listItem1 = document.createElement('li');
-    const anchor4 = document.createElement('a');
-    anchor4.title = 'Apple Podcasts';
-    anchor4.href = 'https://podcasts.apple.com/in/podcast/knowledge-innovation/id1532523679';
-    anchor4.setAttribute('target', '_blank');
-    anchor4.textContent = 'Apple Podcasts';
-    anchor4.className = 'icon-apple';
-    // anchor4.appendChild(listItem1icon);
-    listItem1.appendChild(anchor4);
-  
-    const listItem2 = document.createElement('li');
-    const anchor5 = document.createElement('a');
-    anchor5.title = 'Spotify';
-    anchor5.className = 'icon-spotify';
-    anchor5.href = 'https://open.spotify.com/show/0lcZZysYAbSsI2w7LoZ5Ie';
-    anchor5.setAttribute('target', '_blank');
-    anchor5.textContent = 'Spotify';
-    listItem2.appendChild(anchor5);
-  
-    const listItem3 = document.createElement('li');
-    const anchor6 = document.createElement('a');
-    anchor6.title = 'Google Podcasts';
-    anchor6.className = 'icon-google';
-    anchor6.href = 'https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy8xMDIyZmY2Yy9wb2RjYXN0L3Jzcw==';
-    anchor6.setAttribute('target', '_blank');
-    anchor6.textContent = 'Google Podcasts';
-    listItem3.appendChild(anchor6);
+export default async function decorate(block) {
+     
+    
 
-    const listItem4 = document.createElement('li');
-    const anchor8 = document.createElement('a');
-    anchor8.className = 'icon-sound-cloud';
-    anchor8.title = 'Google Podcasts';
-    anchor8.href = 'https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy8xMDIyZmY2Yy9wb2RjYXN0L3Jzcw==';
-    anchor8.setAttribute('target', '_blank');
-    anchor8.textContent = 'Sound Cloud';
-    listItem4.appendChild(anchor8);
+    // Create the article element
+    const articleElement = document.createElement('article');
+    articleElement.className = 'iki-subscribtion-footer';
   
-    // Append the list items to the ul element for the fourth column
-    ulElement.appendChild(listItem1);
-    ulElement.appendChild(listItem2);
-    ulElement.appendChild(listItem3);
-    ulElement.appendChild(listItem4);
+    // Create the container-fluid div
+    const containerDiv = document.createElement('div');
+    containerDiv.className = 'container-fluid';
+    // Append the row to the container-fluid div
+     // Create the row div
+     const rowDiv = document.createElement('div');
+     rowDiv.className = 'row';
+    containerDiv.appendChild(rowDiv);
   
-    // Append the ul element to the tooltip-content span for the fourth column
-    tooltipContentSpan2.appendChild(ulElement);
-    colDiv4.appendChild(tooltipContentSpan2);
+    // Append the container-fluid div to the article element
+    articleElement.appendChild(containerDiv);
+    let colDiv,colDiv3, colDiv4;
+   
+
+      const blockChildren = Array.from(block.children);
   
-    // Create the anchor element for the fourth column
-    const anchor7 = document.createElement('a');
-    anchor7.href = 'javascript:void(0);';
-    anchor7.title = 'Subscribe for Podcasts';
-    anchor7.setAttribute('aria-label', 'Subscribe for Podcasts');
-    anchor7.className = 'box wow fadeInLeft';
-    anchor7.setAttribute('data-wow-delay', '0.9s');
-  
-    // Create the box div within the anchor element for the fourth column
-    const boxDiv4 = document.createElement('div');
-    boxDiv4.className = 'box-content';
-  
-    // Create the span element within the box div for the fourth column
-    const span7 = document.createElement('span');
-    span7.className = 'iki-icons icon-podcast';
-  
-    // Create the second span element within the box div for the fourth column
-    const span8 = document.createElement('span');
-    span8.textContent = 'Subscribe for Podcasts';
-  
-    // Append the elements to each other for the fourth column
-    boxDiv4.appendChild(span7);
-    boxDiv4.appendChild(span8);
-    anchor7.appendChild(boxDiv4);
-    colDiv4.appendChild(anchor7);
-  
-    // Append the fourth column to the row
+      blockChildren.forEach((columnElement) => {
+    const columnNameElement = columnElement.children[0];
+    const columnName = columnNameElement.textContent.trim().toLowerCase();
+    const colDiv1TitleLink = columnElement.children[1];  
+    if (columnName === 'connect' || columnName == 'request-expert') {      
+        colDiv = decorateColumnDiv(colDiv1TitleLink, columnName);
+        rowDiv.appendChild(colDiv);
+       }else if(columnName === 'insight'){
+
+      }else if(columnName === 'podcast'){
+
+      }
+      
+    
+  });
+   
+    block.textContent = '';
+    
+
+     
+     colDiv3=decorateInsightsDiv();
+     colDiv4=decoratePodcastsDiv();
+
+    
+   
+    rowDiv.appendChild(colDiv3);
     rowDiv.appendChild(colDiv4);
   
     // Append the row to the container-fluid div
@@ -488,15 +458,4 @@ function decorateBlock(block) {
   
     // Append the article element to the document body or any desired parent element
     block.appendChild(articleElement);
-   
-    
-  }
-  
-
-
-export default async function decorate(block) {
-     
-    block.textContent = '';
-
-    decorateBlock(block);
   }
