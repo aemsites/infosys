@@ -173,7 +173,7 @@ function decoratePodcastsDiv(colDiv1TitleLink, columnName, podcastPopupDiv) {
   // Create the tooltip-content span within the fourth column
   const tooltipContentSpan2 = createElement('span', 'tooltip-content');
   
-  const ulElement = createElement('ul','bg-topaz-dark');
+  const ulElement = createElement('ul','');
   const podcastChildren = Array.from(podcastPopupDiv.children[0].children);
 
   podcastChildren.forEach((podcastElement) => {
@@ -207,10 +207,8 @@ export function decorateInsightsDiv(colDiv1TitleLink, columnName) {
   const tooltipContentSpan = createElement('span');
   tooltipContentSpan.className = 'tooltip-content';
   const subInsDiv = createElement('div','sub-ins');
-  subInsDiv.classList.add('bg-topaz-dark');
 
-  // Create the h4 element within the sub-ins div
-  const h4Element = createElement('h4','h4-head');
+  const h4Element = createElement('h4','');
   h4Element.textContent = 'Stay connected with our latest Insights';
 
   // Create the form element within the sub-ins div
@@ -302,11 +300,11 @@ export function decorateInsightsDiv(colDiv1TitleLink, columnName) {
 
 export default async function decorate(block) {
 
-  const articleElement = createElement('article', 'iki-subscribtion-footer');
+  //const articleElement = createElement('article', 'iki-subscribtion-footer');
   const containerDiv = createElement('div','container-fluid');
   const rowDiv = createElement('div','row');
   containerDiv.appendChild(rowDiv);
-  articleElement.appendChild(containerDiv);
+  //articleElement.appendChild(containerDiv);
   let colDiv;
 
   const blockChildren = Array.from(block.children);
@@ -329,6 +327,6 @@ export default async function decorate(block) {
   block.textContent = '';
 
   containerDiv.appendChild(rowDiv);
-  articleElement.appendChild(containerDiv);
-  block.appendChild(articleElement);
+  block.appendChild(containerDiv);
+  //block.appendChild(articleElement);
 }
