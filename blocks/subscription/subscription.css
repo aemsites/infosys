@@ -4,8 +4,8 @@
 
 .subscription .container-fluid {
   width: 100%;
-  /* padding-right: 15px;
-  padding-left: 15px;
+  /* padding-right: 0.9375rem;
+  padding-left: 0.9375rem;
   margin-right: auto;
   margin-left: auto; */
   display: flex;
@@ -15,17 +15,17 @@
  /* .block.subscription .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: -0.9375rem;
+  margin-left: -0.9375rem;
 } */
 
 .block.subscription .box:hover .header-icons {
-  transform: translateY(-15px);
+  transform: translateY(-0.9375rem);
   transition: all 0.5s ease;
 }
 
 .block.subscription .popup ul li a:hover p {
-  transform: translateX(10px);
+  transform: translateX(0.625rem);
   transition: all 0.3s ease;
 }
 
@@ -45,7 +45,7 @@ main .section.full-width .subscription-wrapper{
 }  
 
 .block.subscription .box {
-  padding: 60px;
+  padding: 3.75rem;
   color: #fff;
   border-right: 1px solid #fff;
   height: 100%;
@@ -63,8 +63,8 @@ main .section.full-width .subscription-wrapper{
 
 .block.subscription .box span {
   display: block;
-  font-size: 20px;
-  margin: 10px auto;
+  font-size: 1.25rem;
+  margin: 0.625rem auto;
 }
 
 .block.subscription .sub-ins {
@@ -72,7 +72,7 @@ main .section.full-width .subscription-wrapper{
   height: 100%;
   color: #fff;
   flex-direction: column;
-  padding: 30px;
+  padding: 1.875rem;
   justify-content: center;
   text-align: left;
   background-color: #2f1113
@@ -83,29 +83,29 @@ main .section.full-width .subscription-wrapper{
 }
 
 .block.subscription .box span.header-icons {
-  font-size: 30px;
+  font-size: 1.875rem;
   transform: translateY(0);
   transition: all 0.5s ease;
 }
 
 .subscription .bg-topaz-dark h4{
-  margin: 10px 0; 
+  margin: 0.625rem 0; 
 }
 
 #errormsgiki {
-  margin: 10px 0;
+  margin: 0.625rem 0;
 }
 
 .block.subscription .popup ul li a [class*='icon-'] {
   color: #fff;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .block.subscription .popup {
   display:none;
 }
 
-@media(width >=1200px) {
+@media(min-width: 75rem) {
   .subscription .columns {
     flex: 0 0 25%;
     max-width: 25%;
@@ -135,26 +135,26 @@ main .section.full-width .subscription-wrapper{
 
 
 .input-txt{
-  margin-top: 3px;
+  margin-top: 0.1875rem;
   width: 100%;
-  font-size: 16px;
+  font-size: 1rem;
   font-family: inherit;
   line-height: inherit;
 }
 
 .block.subscription .popup ul {
   height: 100%;
-  padding: 0 25px;
+  padding: 0 1.5625rem;
   transform: translateY(0);
   margin: 0;
-  padding-bottom: 8px;
+  padding-bottom: 0.5rem;
   background-color: #2f1113
 }
 
 .block.subscription .popup ul li {
   list-style-type: none;
-  padding: 13px 0;
-  border-top: 1px solid rgb(225 225 225 / 50%);
+  padding: 0.8125rem 0;
+  border-top: 1px solid #fff;
   transition: all 0.3s ease;
 }
 
@@ -168,12 +168,12 @@ main .section.full-width .subscription-wrapper{
 }
 
 .block.subscription .popup ul li a p{
-  margin: 0 15px 0 5px;
+  margin: 0 0.9375rem 0 0.3125rem;
   color: #fff;
   font-family: myriad-pro, Arial;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 300;
-  line-height: 23.2px;
+  line-height: 1.45rem;
   transform: translateX(0);
   transition: all 0.5s ease;
 }
@@ -196,30 +196,21 @@ main .section.full-width .subscription-wrapper{
 
 .block.subscription .popup ul li a [class*='icon-'] {
   color: #fff;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .thankyousub{
-  padding:25px;
+  padding:1.5625rem;
   display:none;
 }
 
 .block.subscription .iki-sub-btn {
   color: #fff;
   background: transparent ;
-  font-size: 14px;
-  border: 2px solid #df9926;
-  padding: 5px 15px;
+  font-size: 0.875rem;
+  border: 0.125rem solid #df9926;
+  padding: 0.3125rem 0.9375rem;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-bottom: 8px;
+  letter-spacing: 0.075rem;
+  margin-bottom: 0.5rem;
 }
-
-/* @media(width >=1200px){
-  .iki-subscribtion-footer .box {
-    border-bottom: 1px solid #fff;
-  }
-  .iki-subscribtion-footer .podcast-box {
-    width: 100% ;
-  }
-} */
