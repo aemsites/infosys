@@ -23,7 +23,7 @@ import { createElement } from '../../scripts/blocks-utils.js';
 //     const y = '';
 //     const g = '';
 //     const v = '';// ,
-//     // k = document.getElementById("sptextiki").value,
+//     // k = getElementById("sptextiki").value,
 //     // x = "https://s672742760.t.eloqua.com/e/f2?elqFormName=connect-iki&elqSiteID=672742760&email=" + $("#email").val() + "&Source=IKI Footer Subscribe&referral_source=" + window.location.search.substring(1) + "&opt-in-comm=Yes&sptext=" + k + "&country=" + a + "&demandbase_sid=" + o + "&industry=" + n + "&sub_industry=" + l + "&company_name=" + d + "&revenue_range=" + c + "&city=" + r + "&state=" + m + "&zip=" + p + "&fortune_1000=" + b + "&forbes_2000=" + u + "&watch_list_account_type=" + f + "&watch_list_account_status=" + y + "&db_country_name_ip=" + g + "&office_phone=" + v;
 
 //     const paramss = `email64zxc=${$('#email64zxca').val()}&camFormName=connect-iki&camId=null&camCustId=null&email=${$('#emailsub').val()}&Source=IKI Footer Subscribe&referral_source=${window.location.search.substring(1)}&opt-in-comm=Yes&country=${a}&demandbase_sid=${o}&industry=${n}&sub_industry=${l}&company_name=${d}&revenue_range=${c}&city=${r}&state=${m}&zip=${p}&fortune_1000=${b}&forbes_2000=${u}&watch_list_account_type=${f}&watch_list_account_status=${y}&db_country_name_ip=${g}&office_phone=${v}`;
@@ -47,7 +47,7 @@ import { createElement } from '../../scripts/blocks-utils.js';
 //         console.error(error);
 //       });
 
-// 	 // return document.getElementById("blindiki").innerHTML = '<img src="' + x + '" id="submit" style="width:1px; height:1px;" />', $("#subscribeEmail, .h4-head").fadeOut(), $("#thankyou").fadeIn(), !1
+// 	 // return getElementById("blindiki").innerHTML = '<img src="' + x + '" id="submit" style="width:1px; height:1px;" />', $("#subscribeEmail, .h4-head").fadeOut(), $("#thankyou").fadeIn(), !1
 
 //     return $('#subscribeEmail, .h4-head').fadeOut(), $('#thankyousub').fadeIn(), !1;
 //   }
@@ -60,7 +60,7 @@ import { createElement } from '../../scripts/blocks-utils.js';
 // }
 export function decorateColumnDiv(colDiv1TitleLink, columnName, href) {
   const colDiv1 = createElement('div', 'col-lg-3');
-  const anchor1 = createElement('a');
+  const anchor1 = createElement('a','');
 
   if (href) {
     anchor1.href = href;
@@ -155,9 +155,9 @@ function showPodcastsDiv(block) {
 //     const y = '';
 //     const g = '';
 //     const v = '';
-//     const k = document.getElementById('sptextikisidebar').value;
+//     const k = getElementById('sptextikisidebar').value;
 //     const x = `https://s672742760.t.eloqua.com/e/f2?elqFormName=connect-iki&elqSiteID=672742760&email=${$('#emailSidebar').val()}&Source=IKI Sidebar Subscribe&referral_source=${window.location.search.substring(1)}&opt-in-comm=Yes&sptext=${k}&country=${a}&demandbase_sid=${o}&industry=${n}&sub_industry=${l}&company_name=${d}&revenue_range=${c}&city=${r}&state=${m}&zip=${p}&fortune_1000=${b}&forbes_2000=${u}&watch_list_account_type=${f}&watch_list_account_status=${y}&db_country_name_ip=${g}&office_phone=${v}`;
-// 	  return document.getElementById('blindikisidebar').innerHTML = `<img src="${x}" id="submit" style="width:1px; height:1px;" />`, $('#subscribeEmailSidebar, .h4-head-sidebar').fadeOut(), $('#thankyousidebar').fadeIn(), !1;
+// 	  return getElementById('blindikisidebar').innerHTML = `<img src="${x}" id="submit" style="width:1px; height:1px;" />`, $('#subscribeEmailSidebar, .h4-head-sidebar').fadeOut(), $('#thankyousidebar').fadeIn(), !1;
 //   }
 //   return $('#errormsgikisidebar').html('Please enter the valid email id'), $('#emailSidebar').focus(), !1;
 // }
@@ -171,18 +171,14 @@ function decoratePodcastsDiv(colDiv1TitleLink, columnName, podcastPopupDiv) {
   };
 
   // Create the tooltip-content span within the fourth column
-  const tooltipContentSpan2 = document.createElement('span');
-  tooltipContentSpan2.className = 'tooltip-content clearfix';
-
-  // Create the ul element within the tooltip-content span for the fourth column
-  const ulElement = document.createElement('ul');
-  ulElement.className = 'bg-topaz-dark';
-
+  const tooltipContentSpan2 = createElement('span', 'tooltip-content');
+  
+  const ulElement = createElement('ul','bg-topaz-dark');
   const podcastChildren = Array.from(podcastPopupDiv.children[0].children);
 
   podcastChildren.forEach((podcastElement) => {
-    const listItem = document.createElement('li');
-    const anchor = document.createElement('a');
+    const listItem = createElement('li','');
+    const anchor = createElement('a','');
     let splitText = podcastElement.textContent.split(':').map(text => text.trim());
 
     anchor.title = splitText[0];
@@ -207,21 +203,18 @@ export function decorateInsightsDiv(colDiv1TitleLink, columnName) {
   const href = 'javascript:void(0);';
   const colDiv3 = decorateColumnDiv(colDiv1TitleLink, columnName, href);
 
-  // Create the tooltip-content span within the third column
-  const tooltipContentSpan = document.createElement('span');
-  tooltipContentSpan.className = 'tooltip-content clearfix';
-
-  // Create the sub-ins div within the tooltip-content span
-  const subInsDiv = document.createElement('div');
-  subInsDiv.className = 'sub-ins bg-topaz-dark';
+ 
+  const tooltipContentSpan = createElement('span');
+  tooltipContentSpan.className = 'tooltip-content';
+  const subInsDiv = createElement('div','sub-ins');
+  subInsDiv.classList.add('bg-topaz-dark');
 
   // Create the h4 element within the sub-ins div
-  const h4Element = document.createElement('h4');
-  h4Element.className = 'h4-head fontweight400';
+  const h4Element = createElement('h4','h4-head');
   h4Element.textContent = 'Stay connected with our latest Insights';
 
   // Create the form element within the sub-ins div
-  const formElement = document.createElement('form');
+  const formElement = createElement('form','');
   formElement.id = 'subscribeEmail';
   formElement.name = 'subscribeEmail';
   formElement.setAttribute('onsubmit', 'return validateikisub(this);');
@@ -229,19 +222,18 @@ export function decorateInsightsDiv(colDiv1TitleLink, columnName) {
   formElement.action = 'https://marcom.infosys.com/services/forms/v1/response';
 
   // Create the div with id email64zxca-container within the form
-  const emailContainerDiv = document.createElement('div');
+  const emailContainerDiv = createElement('div','email-checker');
   emailContainerDiv.id = 'email64zxca-container';
-  emailContainerDiv.className = 'email-checker';
   emailContainerDiv.setAttribute('aria-hidden', 'true');
 
   // // Create the label for the email input within the emailContainerDiv
-  // const emailLabel = document.createElement('label');
+  // const emailLabel = createElement('label');
   // emailLabel.setAttribute('for', 'email64zxca');
   // emailLabel.textContent = 'Registration Email';
   // emailLabel.style.boxSizing = 'border-box';
 
   // // Create the input for the email within the emailContainerDiv
-  // const emailInput = document.createElement('input');
+  // const emailInput = createElement('input');
   // emailInput.type = 'text';
   // emailInput.id = 'email64zxca';
   // emailInput.name = 'email64zxc';
@@ -253,32 +245,31 @@ export function decorateInsightsDiv(colDiv1TitleLink, columnName) {
   // emailContainerDiv.appendChild(emailInput);
 
   // Create the email input within the form
-  const emailInput2 = document.createElement('input');
+  const emailInput2 = createElement('input','input-txt');
   emailInput2.type = 'email';
-  emailInput2.className = 'input-txt';
   emailInput2.id = 'emailsub';
   emailInput2.name = 'email';
   emailInput2.placeholder = 'Your company email';
 
   // Create the error message paragraph within the form
-  const errorMsgP = document.createElement('p');
+  const errorMsgP = createElement('p','');
   errorMsgP.id = 'errormsgiki';
   errorMsgP.style.fontSize = '14px';
 
   // Create the submit button within the form
-  const submitBtn = document.createElement('button');
+  const submitBtn = createElement('button','iki-sub-btn');
   submitBtn.type = 'submit';
-  submitBtn.className = 'iki-sub-btn bg-topaz-medium';
+  submitBtn.classList.add('bg-topaz-medium');
   submitBtn.textContent = 'Subscribe';
 
   // Create the hidden input fields within the form
-  const hiddenInput1 = document.createElement('input');
+  const hiddenInput1 = createElement('input');
   hiddenInput1.type = 'hidden';
   hiddenInput1.value = 'infysp';
   hiddenInput1.id = 'sptextiki';
   hiddenInput1.name = 'sptext';
 
-  const hiddenInput2 = document.createElement('input');
+  const hiddenInput2 = createElement('input');
   hiddenInput2.type = 'hidden';
   hiddenInput2.name = 'camFormName';
   hiddenInput2.value = 'connect-iki';
@@ -287,7 +278,7 @@ export function decorateInsightsDiv(colDiv1TitleLink, columnName) {
   formElement.appendChild(hiddenInput1);
   formElement.appendChild(hiddenInput2);
 
-  const thankyoudiv = document.createElement('div');
+  const thankyoudiv = createElement('div');
   thankyoudiv.className = 'thankyousub';
 
   // Append the elements to each other for the third column
@@ -312,10 +303,8 @@ export function decorateInsightsDiv(colDiv1TitleLink, columnName) {
 export default async function decorate(block) {
 
   const articleElement = createElement('article', 'iki-subscribtion-footer');
-  const containerDiv = document.createElement('div');
-  containerDiv.className = 'container-fluid';
-  const rowDiv = document.createElement('div');
-  rowDiv.className = 'row';
+  const containerDiv = createElement('div','container-fluid');
+  const rowDiv = createElement('div','row');
   containerDiv.appendChild(rowDiv);
   articleElement.appendChild(containerDiv);
   let colDiv;
