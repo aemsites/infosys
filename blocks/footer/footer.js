@@ -67,7 +67,6 @@ function toggleDropdown() {
   }
 }
 
-// Function to create a custom dropdown
 async function createDropdown(div, dropdowntitle, countriesdatapath) {
   const countries = await fetchData(countriesdatapath);
 
@@ -90,7 +89,6 @@ async function createDropdown(div, dropdowntitle, countriesdatapath) {
 
   dropdownContainer.appendChild(dropdownToggle);
   dropdownContainer.appendChild(dropdownContent);
-
   div.appendChild(dropdownContainer);
 }
 
@@ -136,8 +134,7 @@ function decorateFooterBottom(block) {
 export default async function decorate(block) {
   // load footer as fragment
   const footerMeta = getMetadata('footer');
-
-  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/drafts/sneh/footer1';
+  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   block.textContent = '';
   const fragment = await loadFragment(footerPath);
 

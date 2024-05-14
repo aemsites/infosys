@@ -1,9 +1,6 @@
 .footer .section.footer-links .default-content-wrapper {
   padding: 3.125rem 1.25rem;
 }
-.footer .section .default-content-wrapper {
-  max-width: 75.625rem;
-}
 
 .footer .footer-links {
   background: var(--footer-links-bg-color);
@@ -23,7 +20,6 @@
   flex: 0 0 100%;
   width: 100%;
   padding: 0 var(--space-15px);
-  position: relative;
 }
 
 .footer .footer-links .links-title {
@@ -47,7 +43,6 @@
   text-decoration: none;
   display: block;
   overflow-wrap: wrap;
-  line-height: 1.45;
 }
 
 .footer .footer-links .links-column a.icons-link {
@@ -91,18 +86,16 @@
   padding: var(--space-10px) var(--space-15px);
   display: block;
   color:  var(--country-dropdown-grey-color);
-  z-index: 1;
-  position: relative;
 }
 
 .footer .col-country .dropdown {
   float: left;
   font-size: var(--body-font-size-s);
+  position: relative;
 }
 
 .footer .col-country .dropdown-toggle {
   border: var(--space-1px) solid var(--country-dropdown-grey-color);
-  position: relative;
   padding: var(--space-5px) var(--space-15px);
   display: block;
 }
@@ -114,10 +107,7 @@
 
 .footer .down-arrow,
 .up-arrow {
-  position: relative;
   margin-left: 5.5625rem;
-  vertical-align: middle;
-  transform: rotate(180deg);
   background-size: var(--space-12px) 1.56rem;
   display: inline-table;
   height: 1.125rem;
@@ -150,9 +140,9 @@
   overflow-y: auto;
   display:none; 
   top:-190px;
-  z-index: 1;
+  z-index: 1  ;
+  background-color: var(--background-color);
 }
-
 
 .footer ::-webkit-scrollbar {
   width: var(--space-5px);
@@ -198,7 +188,6 @@
   .footer .col-country .dropdown {
     float: right;
     font-size: var(--body-font-size-s);
-    position: relative;
   }
 
   .footer .footer-links .links-title {
