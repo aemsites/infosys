@@ -58,32 +58,29 @@ import { createElement } from '../../scripts/blocks-utils.js';
 //   const e = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 //   return e.test(i);
 // }
-export function decorateColumnDiv(colDiv1TitleLink, columnName, href) {
-  const colDiv1 = createElement('div', 'columns');
-  const anchor1 = createElement('a','');
+export function decorateColumnDiv(titleLinkElement, columnName, href) {
+  const colDiv = createElement('div', 'columns');
+  const anchor = createElement('a','');
 
   if (href) {
-    anchor1.href = href;
+    anchor.href = href;
   } else {
-    anchor1.href = colDiv1TitleLink.href;
+    anchor.href = titleLinkElement.href;
   }
 
-  anchor1.setAttribute('title', colDiv1TitleLink.textContent);
-  const boxDiv1 = createElement('div', 'box');
-  //const boxContentDiv1 = createElement('div', 'box-content');
-
+  anchor.setAttribute('title', titleLinkElement.textContent);
+  const boxDiv = createElement('div', 'box');
   const span1 = createElement('span', 'header-icons');
   span1.classList.add(`icon-${columnName}`);
   const span2 = createElement('span', '');
-  span2.textContent = colDiv1TitleLink.textContent;
+  span2.textContent = titleLinkElement.textContent;
 
-  boxDiv1.appendChild(span1);
-  boxDiv1.appendChild(span2);
-  //boxDiv1.appendChild(boxContentDiv1);
-  anchor1.appendChild(boxDiv1);
-  colDiv1.appendChild(anchor1);
+  boxDiv.appendChild(span1);
+  boxDiv.appendChild(span2);
+  anchor.appendChild(boxDiv);
+  colDiv.appendChild(anchor);
 
-  return colDiv1;
+  return colDiv;
 }
 
 function showInsightsDiv(div) {
