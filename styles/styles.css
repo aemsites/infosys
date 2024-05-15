@@ -97,9 +97,10 @@
   }
 }
 
-*, *::before, *::after {
+html {
+  scroll-behavior: smooth;
   box-sizing: border-box;
-  outline: none;
+  font-size: 10px;
 }
 
 body {
