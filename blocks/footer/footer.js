@@ -9,7 +9,7 @@ function customTrim(str) {
 function traverseAndPrint(element, level, columnDiv) {
   if (element.tagName.toLowerCase() === 'li') {
     if (level === 1) {
-      const title = createCustomElement('p','links-title');
+      const title = createCustomElement('p', 'links-title');
       title.textContent = customTrim(element.childNodes[0].textContent);
       columnDiv.appendChild(title);
     } else if (level === 3) {
@@ -129,12 +129,12 @@ function decorateFooterBottom(block) {
   footerBottom.textContent = '';
   footerBottom.appendChild(containerDiv);
 }
+
 /**
  * loads and decorates the footer
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  // load footer as fragment
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   block.textContent = '';
@@ -142,7 +142,7 @@ export default async function decorate(block) {
 
   decorateFooterLinks(fragment);
   decorateFooterBottom(fragment);
-  const footer = createCustomElement('div','');
+  const footer = createCustomElement('div', '');
   while (fragment.firstElementChild) { footer.append(fragment.firstElementChild); }
   block.append(footer);
 }

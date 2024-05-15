@@ -48,18 +48,6 @@
  --font-weight-bold: 700;
  --font-weight-bolder: 800;
  --font-weight-boldest: 900;
-
- /* margin and fine spaces */
- --space-1px: 0.1rem;
- --space-2px: 0.2rem;
- --space-3px: 0.3rem;
- --space-4px: 0.4rem;
- --space-5px: 0.5rem;
- --space-6px: 0.6rem;
- --space-7px: 0.7rem;
- --space-8px: 0.8rem;
- --space-9px: 0.9rem;
- --space-10px: 1rem;
  
   /* heading sizes */
   --heading-font-size-xxl: 48px;
