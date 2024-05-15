@@ -12,7 +12,7 @@
 
 [class*=" icon-"],
 [class^="icon-"] {
-    font-family: icomoon !important;
+    font-family: icomoon, var(--body-font-family);
 }
 
 .icon.icon-search::before {
