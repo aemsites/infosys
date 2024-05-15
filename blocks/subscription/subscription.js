@@ -58,20 +58,17 @@ import { createElement } from '../../scripts/blocks-utils.js';
 //   const e = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 //   return e.test(i);
 // }
-export function decorateColumnDiv(titleLinkElement, columnName, href) {
+export function decorateColumnDiv(titleLinkElement) {
   const colDiv = createElement('div', 'columns');
   const anchor = createElement('a','');
-
-  if (href) {
-    anchor.href = href;
-  } else {
-    anchor.href = titleLinkElement.href;
+  const link = titleLinkElement.querySelector('a');
+  if(link){
+    anchor.setAttribute('title', titleLinkElement.querySelector('a').textContent);
   }
-
-  anchor.setAttribute('title', titleLinkElement.textContent);
+ 
   const boxDiv = createElement('div', 'box');
   const span1 = createElement('span', 'header-icons');
-  span1.classList.add(`icon-${columnName}`);
+ // span1.classList.add(`icon-${columnName}`);
   const span2 = createElement('span', '');
   span2.textContent = titleLinkElement.textContent;
 
@@ -102,22 +99,15 @@ function showInsightsDiv(div) {
    subscriptionPopUpDiv.style.top = subscriptionDiv.offsetTop - 100;
 }
 
-function showPodcastsDiv(block) {
-  const subscriptionDiv = block.querySelector('#subscribeinsights a');
+
+function showPopupDiv(div) {
+  const subscriptionDiv = div.querySelector('.box');
   subscriptionDiv.style.display = 'none';
-  const subscriptionPopUpDiv = block.querySelector('.subscription .popup');
-  // $('html, body').animate({
-  //     scrollTop: $("#subscribeinsights").offset().top - 100
-  // }, 200);
-  subscriptionPopUpDiv.animate.scrollTop = subscriptionDiv.offsetTop-100;
-  // window.scrollTo({
-  //   top: subscriptionDiv.offsetTop - 100,
-  //   behavior: 'smooth', // Smooth scrolling behavior
-  //   duration: 200, // Duration in milliseconds (Note: This option is not supported in all browsers)
-  // });
+  const subscriptionPopUpDiv = div.querySelector('.popup');
   subscriptionPopUpDiv.style.display = 'block';
-  subscriptionPopUpDiv.style.transform = 'scale3d(1,1,1)';
+  subscriptionPopUpDiv.style.top = subscriptionDiv.offsetTop - 100;
 }
+
 
 // function validateikisubsidebar() {
 //   const i = $('#emailSidebar').val();
@@ -158,6 +148,36 @@ function showPodcastsDiv(block) {
 //   }
 //   return $('#errormsgikisidebar').html('Please enter the valid email id'), $('#emailSidebar').focus(), !1;
 // }
+
+function decoratePopupDiv(popupDiv){
+  popupDiv.className = 'popup';
+  const popupChildren = Array.from(popupDiv.children);
+  popupChildren.forEach((element) => {
+    if (element.tagName.toLowerCase() === 'ul') {
+      const podcastChildren = Array.from(element.children);
+
+    podcastChildren.forEach((podcastElement) => {
+    const anchor = createElement('a','');;
+    let splitText = podcastElement.textContent.split(':').map(text => text.trim());
+
+    anchor.title = splitText[0];
+    anchor.href = podcastElement.href;
+    anchor.setAttribute('target', '_blank');
+    anchor.setAttribute('rel', 'noopener noreferrer');
+    const iconElement = createElement('i',splitText[1]);
+    const text = createElement('p','');
+    text.textContent = splitText[0];
+    anchor.appendChild(iconElement);
+    anchor.appendChild(text);
+
+  });
+    }
+  });
+
+ 
+return popupDiv;
+
+}
 
 function decoratePodcastsDiv(colDiv1TitleLink, columnName, podcastPopupDiv) {
   const href = 'javascript:void(0);';
@@ -296,33 +316,31 @@ export function decorateInsightsDiv(colDiv1TitleLink, columnName) {
 
 export default async function decorate(block) {
 
-  //const articleElement = createElement('article', 'iki-subscribtion-footer');
   const containerDiv = createElement('div','container-fluid');
-  // const rowDiv = createElement('div','row');
-  // containerDiv.appendChild(rowDiv);
-  //articleElement.appendChild(containerDiv);
-  let colDiv;
+  
 
   const blockChildren = Array.from(block.children);
   blockChildren.forEach((columnElement) => {
-    const columnNameElement = columnElement.children[0];
-    const columnName = columnNameElement.textContent.trim().toLowerCase();
-    const titleLinkDiv = columnElement.children[1];
-    if (columnName === 'connect' || columnName === 'request-expert') {
-      colDiv = decorateColumnDiv(titleLinkDiv, columnName);
-    } else if (columnName === 'insight') {
-      const insightsPopupDiv = columnElement.children[2];
-      colDiv = decorateInsightsDiv(titleLinkDiv, columnName,insightsPopupDiv);
-    } else if (columnName === 'podcast') {
-      const podcastPopupDiv = columnElement.children[2];
-      colDiv = decoratePodcastsDiv(titleLinkDiv, columnName, podcastPopupDiv);
-    }
-    containerDiv.appendChild(colDiv);
+    const titleLinkDiv = columnElement.children[0];
+    const popupDiv = columnElement.children[1];
+
+
+    if (titleLinkDiv) {
+      let colDiv = decorateColumnDiv(titleLinkDiv);
+      if(popupDiv.children){
+        const decoratedPopupDiv = decoratePopupDiv(popupDiv);
+        colDiv.insertBefore(decoratedPopupDiv,colDiv.firstChild);
+        colDiv.onclick = function () {
+          showPopupDiv(colDiv);
+        };
+
+      }
+      containerDiv.appendChild(colDiv);
+    } 
+    
   });
 
   block.textContent = '';
 
-  //  containerDiv.appendChild(rowDiv);
   block.appendChild(containerDiv);
-  //block.appendChild(articleElement);
 }
