@@ -13,7 +13,7 @@
   transition: all 0.5s ease;
 }
 
-.block.subscription .popup ul li a:hover p {
+.block.subscription .popup ul li a:hover{
   transform: translateX(0.625rem);
   transition: all 0.3s ease;
 }
@@ -56,7 +56,7 @@ main .section.full-width .subscription-wrapper{
   margin: 0.625rem auto;
 }
 
-.block.subscription .sub-ins {
+.block.subscription .popup p {
   display: flex;
   height: 100%;
   color: #fff;
@@ -77,15 +77,16 @@ main .section.full-width .subscription-wrapper{
   transition: all 0.5s ease;
 }
 
-.subscription .bg-topaz-dark h4{
+.subscription .popup h3{
   margin: 0.625rem 0; 
+  font-size: 24px;
 }
 
 #errormsgiki {
   margin: 0.625rem 0;
 }
 
-.block.subscription .popup ul li a [class*='icon-'] {
+.block.subscription .popup ul li span[class*='icon-'] {
   color: #fff;
   font-size: 1rem;
 }
@@ -108,11 +109,11 @@ main .section.full-width .subscription-wrapper{
   content: "";
 }
 
-.icon-insight::before {
+.icon-insights::before {
   content: "";
 }
 
-.icon-podcast::before {
+.icon-podcasts::before {
   content: "";
 }
 
@@ -139,7 +140,7 @@ main .section.full-width .subscription-wrapper{
   transition: all 0.3s ease;
 }
 
-.block.subscription .popup ul li a {
+.block.subscription .popup ul li{
   display: flex;
   align-items: center;
 }
@@ -148,7 +149,7 @@ main .section.full-width .subscription-wrapper{
   height: 100%;
 }
 
-.block.subscription .popup ul li a p{
+.block.subscription .popup ul li a{
   margin: 0 0.9375rem 0 0.3125rem;
   color: #fff;
   font-family: myriad-pro, Arial;
@@ -185,7 +186,7 @@ main .section.full-width .subscription-wrapper{
   display:none;
 }
 
-.block.subscription .iki-sub-btn {
+.block.subscription .iki-sub-btn button{
   color: #fff;
   background: transparent ;
   font-size: 0.875rem;
