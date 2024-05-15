@@ -31,12 +31,12 @@
 
   /* heading sizes */
   --base-font-size: 8px;
-  --heading-font-size-xxl: calc(4.6 * var(--base-font-size));
-  --heading-font-size-xl: calc(3.6 * var(--base-font-size));
-  --heading-font-size-l: calc(3 * var(--base-font-size));
-  --heading-font-size-m: calc(2.4 * var(--base-font-size));
-  --heading-font-size-s: calc(1.8 * var(--base-font-size));
-  --heading-font-size-xs: calc(1.2 * var(--base-font-size));
+  --heading-font-size-xxl: calc(4.6 * var(--base-font-size)); // 36.8px
+  --heading-font-size-xl: calc(3.6 * var(--base-font-size));  // 28.8px
+  --heading-font-size-l: calc(3 * var(--base-font-size));  // 24px
+  --heading-font-size-m: calc(2.4 * var(--base-font-size)); // 19.2px
+  --heading-font-size-s: calc(1.8 * var(--base-font-size)); // 14.4px
+  --heading-font-size-xs: calc(1.2 * var(--base-font-size)); // 9.6px
 
   /* nav height */
   --nav-height: 64px;
