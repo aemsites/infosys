@@ -49,9 +49,19 @@ function decorateFooterLinks(block) {
 }
 
 // Function to toggle dropdown visibility
-function toggleDropdown() {
+async function toggleDropdown(countriesdatapath) {
   const dropdownContent = document.getElementById('dropdown-content');
   if (dropdownContent.style.display === 'none' || dropdownContent.style.display === '') {
+    if (dropdownContent.children.length === 0) {
+      const countries = await fetchData(countriesdatapath);
+      countries.forEach((option) => {
+        const optionLink = createElement('a', '');
+        optionLink.href = option.url;
+        optionLink.textContent = option.name;
+        dropdownContent.appendChild(optionLink);
+      });
+    }
+
     dropdownContent.style.display = 'block';
   } else {
     dropdownContent.style.display = 'none';
@@ -67,25 +77,26 @@ function toggleDropdown() {
   }
 }
 
-async function createDropdown(div, dropdowntitle, countriesdatapath) {
-  const countries = await fetchData(countriesdatapath);
-
+function createDropdown(div, dropdowntitle, countriesdatapath) {
   const dropdownContainer = createElement('div', 'dropdown');
   const dropdownToggle = createElement('a', 'dropdown-toggle');
   dropdownToggle.textContent = dropdowntitle;
-  dropdownToggle.onclick = toggleDropdown;
+  dropdownToggle.onclick = function () {
+    toggleDropdown(countriesdatapath);
+  };
+
   const spanElement = createElement('span', 'down-arrow');
   dropdownToggle.appendChild(spanElement);
-
   const dropdownContent = createElement('div', 'dropdown-content');
   dropdownContent.classList.add('up');
   dropdownContent.id = 'dropdown-content';
-  countries.forEach((option) => {
-    const optionLink = createElement('a', '');
-    optionLink.href = option.url;
-    optionLink.textContent = option.name;
-    dropdownContent.appendChild(optionLink);
-  });
+
+  // countries.forEach((option) => {
+  //   const optionLink = createElement('a', '');
+  //   optionLink.href = option.url;
+  //   optionLink.textContent = option.name;
+  //   dropdownContent.appendChild(optionLink);
+  // });
 
   dropdownContainer.appendChild(dropdownToggle);
   dropdownContainer.appendChild(dropdownContent);
