@@ -79,7 +79,8 @@ export function decorateColumnDiv(titleLinkElement) {
   const anchor = createCustomElement('a', '');
   const link = titleLinkElement.querySelector('a');
   if (link) {
-    anchor.setAttribute('title', titleLinkElement.querySelector('a').textContent);
+    anchor.setAttribute('title', link.textContent);
+    anchor.href = link.href;
   }
   const boxDiv = createCustomElement('div', 'box');
   const span1 = titleLinkElement.querySelector('span');
