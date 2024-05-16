@@ -227,15 +227,16 @@ main .section {
   padding: 64px 16px;
 }
 
-@media (width >= 600px) {
+@media (width <= 990px) {
   main .section {
-    padding: 64px 32px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
-@media (width >= 900px) {
+@media (width > 900px) {
   .section > div {
-    max-width: 1200px;
+    max-width: 1170px;
     margin: auto;
   }
 }
