@@ -137,7 +137,8 @@ main .section.full-width .subscription-wrapper{
 }
 
 .block.subscription .popup .errorStringDiv h2{
-  margin-top:0px;
+  margin-top:10px;
+  margin-bottom: 10px;
   opacity:  0;
   font-size: 14px;
   font-weight: 400;

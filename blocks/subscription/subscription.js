@@ -57,6 +57,7 @@ function handleSubmit(form) {
       if (e[1].toLowerCase().indexOf(arrvalue) == 0) {
         form.querySelector('.errorStringDiv h2').style.opacity = '1';
         form.querySelector('.errorStringDiv h2').textContent = 'Please enter your business email';
+        return false;
       }
     }
     const params = '';

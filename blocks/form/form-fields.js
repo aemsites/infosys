@@ -60,6 +60,34 @@ const createPlaintext = (fd) => {
   return { field: text, fieldWrapper };
 };
 
+const createInputEmail = (fd) => {
+  const field = document.createElement('input');
+  field.type = fd.Type;
+  setCommonAttributes(field, fd);
+
+  if (fd.Type === 'email') {
+    field.addEventListener('input', function () {
+      if (field.validity.typeMismatch) {
+        if (!field.value.includes('@')) {
+          field.setCustomValidity("Please include an '@' in the email address. '" + field.value + "' is missing an '@'.");
+        } else {
+          field.setCustomValidity("Please enter a part following '@'. '" + field.value + "' is incomplete.");
+        }
+      } else {
+        field.setCustomValidity('');
+      }
+    });
+  }
+
+  const fieldWrapper = createFieldWrapper(fd);
+  const label = createLabel(fd);
+  field.setAttribute('aria-labelledby', label.id);
+  fieldWrapper.append(field);
+  fieldWrapper.append(label);
+
+  return { field, fieldWrapper };
+};
+
 const createSelect = async (fd) => {
   const select = document.createElement('select');
   setCommonAttributes(select, fd);
@@ -224,6 +252,7 @@ const FIELD_CREATOR_FUNCTIONS = {
   fieldset: createFieldset,
   checkbox: createCheckbox,
   radio: createRadio,
+  email: createInputEmail,
 };
 
 export default async function createField(fd, form) {
