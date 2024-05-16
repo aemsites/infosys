@@ -1,25 +1,22 @@
-import { createElement } from '../../scripts/blocks-utils.js';
+import { createCustomElement } from '../../scripts/blocks-utils.js';
 import { buildBlock, decorateBlock, loadBlock } from '../../scripts/aem.js';
 
 export function decorateColumnDiv(titleLinkElement) {
-  const colDiv = createElement('div', 'columns');
-  const anchor = createElement('a', '');
+  const colDiv = createCustomElement('div', 'columns');
+  const anchor = createCustomElement('a', '');
   const link = titleLinkElement.querySelector('a');
   if (link) {
     anchor.setAttribute('title', titleLinkElement.querySelector('a').textContent);
   }
-
-  const boxDiv = createElement('div', 'box');
-
+  const boxDiv = createCustomElement('div', 'box');
   const span1 = titleLinkElement.querySelector('span');
   if (span1) {
     span1.classList.add('header-icons');
     boxDiv.appendChild(span1);
   }
 
-  const span2 = createElement('span', '');
+  const span2 = createCustomElement('span', '');
   span2.textContent = titleLinkElement.textContent;
-
   boxDiv.appendChild(span2);
   anchor.appendChild(boxDiv);
   colDiv.appendChild(anchor);
@@ -37,10 +34,10 @@ function showPopupDiv(div) {
 
 async function loadForm(formLink) {
   const formBlock = buildBlock('form', '');
-  const linkDiv = document.createElement('div');
-  const linkDiv1 = document.createElement('div');
-  const pDiv = document.createElement('p');
-  const anchor = document.createElement('a');
+  const linkDiv = createCustomElement('div','');
+  const linkDiv1 = createCustomElement('div','');
+  const pDiv = createCustomElement('p','');
+  const anchor = createCustomElement('a','');
   anchor.href = formLink.href;
   anchor.textContent = formLink.textContent;
   pDiv.appendChild(anchor);
@@ -48,7 +45,7 @@ async function loadForm(formLink) {
   linkDiv.appendChild(linkDiv1);
   formBlock.innerHTML = linkDiv.innerHTML;
 
-  const formBlockParent = document.createElement('div');
+  const formBlockParent = document.createCustomElement('div');
   formBlockParent.classList.add('form-wrapper');
   formBlockParent.appendChild(formBlock);
 
@@ -71,7 +68,7 @@ async function decoratePopupDiv(popupDiv) {
 }
 
 export default async function decorate(block) {
-  const containerDiv = createElement('div', 'container-fluid');
+  const containerDiv = createCustomElement('div', 'container-fluid');
   const blockChildren = Array.from(block.children);
 
   for (const columnElement of blockChildren) {
@@ -82,7 +79,6 @@ export default async function decorate(block) {
       const colDiv = decorateColumnDiv(titleLinkDiv);
       if (popupDiv.children.length > 0) {
         popupDiv = await decoratePopupDiv(popupDiv);
-
         colDiv.insertBefore(popupDiv, colDiv.firstChild);
         colDiv.onclick = function () {
           showPopupDiv(colDiv);
@@ -93,6 +89,5 @@ export default async function decorate(block) {
   }
 
   block.textContent = '';
-
   block.appendChild(containerDiv);
 }

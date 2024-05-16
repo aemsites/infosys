@@ -1,4 +1,4 @@
-function createElement(tagname, className) {
+function createCustomElement(tagname, className) {
   const element = document.createElement(tagname);
   if (className) {
     element.classList.add(className);
@@ -23,6 +23,6 @@ async function fetchData(url) {
 }
 
 export {
-  createElement,
+  createCustomElement,
   fetchData,
 };
