@@ -9,7 +9,7 @@
 }
 
 .block.subscription .box:hover .header-icons {
-  transform: translateY(-15px);
+  transform: translateY(-1.5px);
   transition: all 0.5s ease;
 }
 

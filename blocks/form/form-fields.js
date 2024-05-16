@@ -22,7 +22,7 @@ function generateFieldId(fd, suffix = '') {
 function createLabel(fd) {
   const label = document.createElement('label');
   label.id = generateFieldId(fd, '-label');
-  label.textContent = fd.Label || fd.Name;
+  label.textContent = fd.Label;
   label.setAttribute('for', fd.Id);
   return label;
 }
@@ -52,7 +52,7 @@ const createPlaintext = (fd) => {
   const fieldWrapper = createFieldWrapper(fd);
 
   const text = document.createElement('p');
-  text.textContent = fd.Value || fd.Label;
+  text.textContent = fd.Value;
   text.id = fd.Id;
 
   fieldWrapper.append(text);
@@ -120,13 +120,13 @@ const createSubmit = (fd) => {
   button.classList.add('button');
   button.type = 'submit';
 
-  button.addEventListener('click', (event) => {
-    event.preventDefault();
-    const validateMethodName = fd.validate;
-    if (typeof fd[validateMethodName] === 'function') {
-      fd[validateMethodName]();
-    }
-  });
+  // button.addEventListener('click', (event) => {
+  //   event.preventDefault();
+  //   const validateMethodName = fd.validate;
+  //   if (typeof fd[validateMethodName] === 'function') {
+  //     fd[validateMethodName]();
+  //   }
+  // });
   const fieldWrapper = createFieldWrapper(fd);
   fieldWrapper.append(button);
   return { field: button, fieldWrapper };
