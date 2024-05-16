@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+:root {
   /* colors */
   --link-color: #035fe6;
   --link-hover-bg-color: #63b0ff;
@@ -48,7 +48,7 @@
  --font-weight-bold: 700;
  --font-weight-bolder: 800;
  --font-weight-boldest: 900;
-
+ 
   /* heading sizes */
   --base-font-size: 8px;
   --heading-font-size-xxl: calc(4.6 * var(--base-font-size)); /* 36.8px */
@@ -135,9 +135,11 @@ header {
 
 h1, h2, h3,
 h4, h5, h6 {
-  margin: 1rem 0;
-  font-weight: 400;
-  line-height: 1;
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 1em;
+  margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
@@ -180,9 +182,6 @@ main pre {
 main .section.full-width > .section-container{
   max-width: 100%;
 }
-main .section.full-width {
-  padding: 0;
-}
 
 /* links */
 a:any-link {
@@ -195,16 +194,6 @@ a:hover {
   color: var(--link-hover-color);
 }
 
-[class^="icon-"]::before, [class*=" icon-"], [class^="icon-"] {
-  font-family: icomoon;
-  font-style: normal;
-  font-weight: 400;
-  text-transform: none;
-  line-height: 1;
-  height: unset;
-  display: block;
-}
-
 /* buttons */
 a.button:any-link, button {
   font-family: var(--body-font-family);
@@ -215,13 +204,15 @@ a.button:any-link, button {
   padding: 5px 30px;
   text-align: center;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   cursor: pointer;
   color: var(--background-color);
   background-color: var(--link-color);
+  margin: 16px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-radius: 30px;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
@@ -252,15 +243,6 @@ main img {
   width: 24px;
 }
 
-[class^="icon-"]::before, [class*=" icon-"], [class^="icon-"] {
-  font-family: icomoon;
-  font-style: normal;
-  font-weight: 400;
-  text-transform: none;
-  line-height: 1;
-  height: unset;
-  display: block;
-}
 .icon img {
   height: 100%;
   width: 100%;
@@ -273,7 +255,7 @@ main .section {
 
 @media (width >= 600px) {
   main .section {
-    padding: 0;
+    padding: 64px 32px;
   }
 }
 
@@ -289,5 +271,3 @@ main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
 }
-
-.
