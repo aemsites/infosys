@@ -33,7 +33,7 @@ main .section.full-width .subscription-wrapper{
 }  
 
 .block.subscription .box {
-  padding: 60px;
+  padding: 60px 20px;
   color: #fff;
   border-right: 1px solid #fff;
   height: 100%;
@@ -79,10 +79,6 @@ main .section.full-width .subscription-wrapper{
 .block.subscription .popup h3{
   margin: 10px 0; 
   font-size: 16px ;
-}
-
-#errormsgiki {
-  margin: 10px 0;
 }
 
 .block.subscription .popup ul li span[class*='icon-'] {
@@ -204,7 +200,7 @@ main .section.full-width .subscription-wrapper{
   display:none;
 }
 
-.block.subscription .iki-sub-btn button{
+.block.subscription .submit-btn button{
   color: #fff;
   background: transparent ;
   font-size: 14px;
@@ -246,7 +242,6 @@ main .section.full-width .subscription-wrapper{
   .block.subscription .popup h3{
     font-size: 18px;
   }
-
 }
 
 @media(min-width: 1025px) {
@@ -256,10 +251,13 @@ main .section.full-width .subscription-wrapper{
   .block.subscription .popup h3{
     font-size: 19.2px;
   }
+  .block.subscription .box{
+    padding: 60px;
+  }
+
 }
 
 @media(min-width: 1600px) {
-  
   .block.subscription .popup h3{
     font-size: 24px;
   }

@@ -52,14 +52,14 @@ function submitForm(form, url, params) {
 
 function handleSubmit(form) {
   const email = form.querySelector('.input-txt input').value;
-  const e = email.split('@');
-  	  const t = ['gmail.', 'yahoo.', 'outlook.', 'rediffmail.', 'hotmail.', 'me.'];
+  const emailDomain = email.split('@');
+  const personalIdArray = ['gmail.', 'yahoo.', 'outlook.', 'rediffmail.', 'hotmail.', 'me.'];
   if (validateEmail(email)) {
     let index;
     let currentValue;
-    for (index = 0; index < t.length; index++) {
-      currentValue = t[index].toString();
-      if (e[1].toLowerCase().indexOf(currentValue) == 0) {
+    for (index = 0; index < personalIdArray.length; index++) {
+      currentValue = personalIdArray[index].toString();
+      if (emailDomain[1].toLowerCase().indexOf(currentValue) === 0) {
         form.querySelector('.errorStringDiv h2').style.opacity = '1';
         form.querySelector('.errorStringDiv h2').textContent = 'Please enter your business email';
         return false;
@@ -72,7 +72,7 @@ function handleSubmit(form) {
     form.querySelector('.errorStringDiv h2').textContent = 'Please enter the valid email id';
   }
 
-  	  // const a = Dmdbase_CDC.CompanyProfile.country_name;
+  // const a = Dmdbase_CDC.CompanyProfile.country_name;
   // const o = Dmdbase_CDC.CompanyProfile.demandbase_sid;
   // const n = Dmdbase_CDC.CompanyProfile.industry;
   // const l = Dmdbase_CDC.CompanyProfile.sub_industry;
@@ -90,7 +90,14 @@ function handleSubmit(form) {
   // k = getElementById("sptextiki").value,
   // x = "https://s672742760.t.eloqua.com/e/f2?elqFormName=connect-iki&elqSiteID=672742760&email=" + $("#email").val() + "&Source=IKI Footer Subscribe&referral_source=" + window.location.search.substring(1) + "&opt-in-comm=Yes&sptext=" + k + "&country=" + a + "&demandbase_sid=" + o + "&industry=" + n + "&sub_industry=" + l + "&company_name=" + d + "&revenue_range=" + c + "&city=" + r + "&state=" + m + "&zip=" + p + "&fortune_1000=" + b + "&forbes_2000=" + u + "&watch_list_account_type=" + f + "&watch_list_account_status=" + y + "&db_country_name_ip=" + g + "&office_phone=" + v;
 
-  // const paramss = `email64zxc=${$('#email64zxca').val()}&camFormName=connect-iki&camId=null&camCustId=null&email=${$('#emailsub').val()}&Source=IKI Footer Subscribe&referral_source=${window.location.search.substring(1)}&opt-in-comm=Yes&country=${a}&demandbase_sid=${o}&industry=${n}&sub_industry=${l}&company_name=${d}&revenue_range=${c}&city=${r}&state=${m}&zip=${p}&fortune_1000=${b}&forbes_2000=${u}&watch_list_account_type=${f}&watch_list_account_status=${y}&db_country_name_ip=${g}&office_phone=${v}`;
+  // const paramss = `email64zxc=${$('#email64zxca').val()}&camFormName=connect-iki&camId=null
+  // &camCustId=null&email=
+  // ${$('#emailsub').val()}&Source=IKI Footer Subscribe&referral_source=
+  // ${window.location.search.substring(1)}&opt-in-comm=Yes&country=
+  // ${a}&demandbase_sid=${o}&industry=${n}&sub_industry=${l}&company_name=${d}
+  // &revenue_range=${c}&city=${r}&state=${m}&zip
+  //= ${p}&fortune_1000=${b}&forbes_2000=${u}&watch_list_account_type=${f}&watch_list_account_status=
+  // ${y}&db_country_name_ip=${g}&office_phone=${v}`;
 
   // let paramss = $('#subscribeEmail').serialize();
 
@@ -109,9 +116,10 @@ function handleSubmit(form) {
   //   })
   //     .catch((error) => {
   //       console.error(error);
-  //     });
+  //   });
 
-  	//  // return getElementById("blindiki").innerHTML = '<img src="' + x + '" id="submit" style="width:1px; height:1px;" />', $("#subscribeEmail, .h4-head").fadeOut(), $("#thankyou").fadeIn(), !1
+  //  // return getElementById("blindiki").innerHTML = '<img src="' + x + '" id="submit" style="width:1px; 
+  //height:1px;" />', $("#subscribeEmail, .h4-head").fadeOut(), $("#thankyou").fadeIn(), !1
 
   //   return $('#subscribeEmail, .h4-head').fadeOut(), $('#thankyousub').fadeIn(), !1;
   // }
@@ -184,7 +192,7 @@ async function decoratePopupDiv(popupDiv) {
         && element.href.endsWith('.json')
         && element.href.includes('form')) {
         loadForm(element).then((loadedForm) => {
-          loadedForm.querySelector('.iki-sub-btn').onclick = function () { // Replace 'submit' with '#submit'
+          loadedForm.querySelector('.submit-btn').onclick = function () { // Replace 'submit' with '#submit'
             handleSubmit(loadedForm);
           };
           element.replaceWith(loadedForm);
