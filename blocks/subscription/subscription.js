@@ -13,7 +13,7 @@ function handleSubmit(form) {
         arrvalue = t[s].toString();
         if (e[1].toLowerCase().indexOf(arrvalue) == 0) {
          form.querySelector('.errorStringDiv').style.opacity = '1';
-         form.querySelector('.input-txt input').validity.valid = false;
+         alert('email invalid');
          //form.querySelector('.errorStringDiv').style.display = 'block'
         }
       }
