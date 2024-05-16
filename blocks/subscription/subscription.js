@@ -1,17 +1,22 @@
 import { createCustomElement } from '../../scripts/blocks-utils.js';
 import { buildBlock, decorateBlock, loadBlock } from '../../scripts/aem.js';
 
+function validateEmail(emailId) {
+  const expression = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return expression.test(emailId);
+}
+
 function submitForm(form, url, params) {
   return fetch(url, {
-      method: 'POST',
-      credentials: 'include',
-      body: params,
-      headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'manual', // Set to 'auto' to follow redirection set in form processing step
+    method: 'POST',
+    credentials: 'include',
+    body: params,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'manual', // Set to 'auto' to follow redirection set in form processing step
   })
-  .then((response) => {
+    .then((response) => {
       // Handle the redirection response
       const h4Head = form.querySelectorAll('.sub-heading');
       const subscribeEmail = form.querySelector('.input-txt input');
@@ -20,41 +25,41 @@ function submitForm(form, url, params) {
 
       // Fade out
       if (subscribeEmail) {
-          subscribeEmail.style.transition = 'opacity 0.5s';
-          subscribeEmail.style.opacity = 0;
+        subscribeEmail.style.transition = 'opacity 0.5s';
+        subscribeEmail.style.opacity = 0;
       }
       if (subscribeButton) {
-          subscribeButton.style.transition = 'opacity 0.5s';
-          subscribeButton.style.opacity = 0;
+        subscribeButton.style.transition = 'opacity 0.5s';
+        subscribeButton.style.opacity = 0;
       }
 
       h4Head.forEach((element) => {
-          element.style.transition = 'opacity 0.5s';
-          element.style.opacity = 0;
+        element.style.transition = 'opacity 0.5s';
+        element.style.opacity = 0;
       });
 
       // Fade in
       if (thankyousub) {
-          thankyousub.style.transition = 'opacity 0.5s';
-          thankyousub.querySelector('h2').textContent = 'Thank you for subscription';
-          thankyousub.style.opacity = 1;
+        thankyousub.style.transition = 'opacity 0.5s';
+        thankyousub.querySelector('h2').textContent = 'Thank you for subscription';
+        thankyousub.style.opacity = 1;
       }
-  })
-  .catch((error) => {
+    })
+    .catch((error) => {
       console.error(error);
-  });
+    });
 }
 
 function handleSubmit(form) {
   const email = form.querySelector('.input-txt input').value;
   const e = email.split('@');
   	  const t = ['gmail.', 'yahoo.', 'outlook.', 'rediffmail.', 'hotmail.', 'me.'];
-  if (validateEmailiki(email)) {
-    let s; let
-      arrvalue;
-    for (s = 0; s < t.length; s++) {
-      arrvalue = t[s].toString();
-      if (e[1].toLowerCase().indexOf(arrvalue) == 0) {
+  if (validateEmail(email)) {
+    let index;
+    let currentValue;
+    for (index = 0; index < t.length; index++) {
+      currentValue = t[index].toString();
+      if (e[1].toLowerCase().indexOf(currentValue) == 0) {
         form.querySelector('.errorStringDiv h2').style.opacity = '1';
         form.querySelector('.errorStringDiv h2').textContent = 'Please enter your business email';
         return false;
@@ -111,11 +116,6 @@ function handleSubmit(form) {
   //   return $('#subscribeEmail, .h4-head').fadeOut(), $('#thankyousub').fadeIn(), !1;
   // }
   // return $('#errormsgiki').html('Please enter the valid email id'), $('#emailsub').focus(), !1;
-}
-
-function validateEmailiki(i) {
-  const e = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return e.test(i);
 }
 
 export function decorateColumnDiv(titleLinkElement) {
@@ -180,9 +180,9 @@ async function decoratePopupDiv(popupDiv) {
   if (popupDiv.children.length > 0) {
     const popupChildren = Array.from(popupDiv.children[0].children);
     for (const element of popupChildren) {
-      if (element.tagName.toLowerCase() === 'a' && 
-        element.href.endsWith('.json') && 
-        element.href.includes('form')){
+      if (element.tagName.toLowerCase() === 'a'
+        && element.href.endsWith('.json')
+        && element.href.includes('form')) {
         loadForm(element).then((loadedForm) => {
           loadedForm.querySelector('.iki-sub-btn').onclick = function () { // Replace 'submit' with '#submit'
             handleSubmit(loadedForm);

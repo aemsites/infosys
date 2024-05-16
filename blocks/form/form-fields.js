@@ -66,12 +66,12 @@ const createInputEmail = (fd) => {
   setCommonAttributes(field, fd);
 
   if (fd.Type === 'email') {
-    field.addEventListener('input', function () {
+    field.addEventListener('input', () => {
       if (field.validity.typeMismatch) {
         if (!field.value.includes('@')) {
-          field.setCustomValidity("Please include an '@' in the email address. '" + field.value + "' is missing an '@'.");
+          field.setCustomValidity(`Please include an '@' in the email address. '${field.value}' is missing an '@'.`);
         } else {
-          field.setCustomValidity("Please enter a part following '@'. '" + field.value + "' is incomplete.");
+          field.setCustomValidity(`Please enter a part following '@'. '${field.value}' is incomplete.`);
         }
       } else {
         field.setCustomValidity('');
