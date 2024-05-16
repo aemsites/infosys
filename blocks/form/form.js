@@ -1,8 +1,6 @@
 import createField from './form-fields.js';
 import { sampleRUM } from '../../scripts/aem.js';
 
-
-
 async function createForm(formHref) {
   const { pathname } = new URL(formHref);
   const resp = await fetch(pathname);
@@ -13,7 +11,7 @@ async function createForm(formHref) {
   form.dataset.action = pathname.split('.json')[0];
 
   const fields = await Promise.all(json.data.map((fd) => {
-    fd.validateEmail = function(event) {
+    fd.validateEmail = function (event) {
       const email = document.getElementById('email64zxca');
     };
     return createField(fd, form);

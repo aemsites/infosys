@@ -9,12 +9,12 @@
 }
 
 .block.subscription .box:hover .header-icons {
-  transform: translateY(-0.9375rem);
+  transform: translateY(-15px);
   transition: all 0.5s ease;
 }
 
 .block.subscription .popup ul li a:hover{
-  transform: translateX(0.625rem);
+  transform: translateX(10px);
   transition: all 0.3s ease;
 }
 
@@ -22,7 +22,6 @@
   display: flex;
   flex-direction: column;
 }
-
 
 main .section.full-width .subscription-wrapper{
   max-width: 100%;
@@ -34,7 +33,7 @@ main .section.full-width .subscription-wrapper{
 }  
 
 .block.subscription .box {
-  padding: 3.75rem;
+  padding: 60px;
   color: #fff;
   border-right: 1px solid #fff;
   height: 100%;
@@ -49,11 +48,10 @@ main .section.full-width .subscription-wrapper{
   text-align: center;
 }
 
-
 .block.subscription .box span {
   display: block;
-  font-size: 1.25rem;
-  margin: 0.625rem auto;
+  font-size: 20px;
+  margin: 10px auto;
 }
 
 .block.subscription .popup p {
@@ -61,7 +59,7 @@ main .section.full-width .subscription-wrapper{
   height: 100%;
   color: #fff;
   flex-direction: column;
-  padding: 1.875rem;
+  padding: 30px;
   justify-content: center;
   text-align: left;
   background-color: #2f1113;
@@ -73,30 +71,28 @@ main .section.full-width .subscription-wrapper{
 }
 
 .block.subscription .box span.header-icons {
-  font-size: 1.875rem;
+  font-size: 30px;
   transform: translateY(0);
   transition: all 0.5s ease;
 }
 
-.subscription .popup h3{
-  margin: 0.625rem 0; 
-  font-size: 24px ;
+.block.subscription .popup h3{
+  margin: 10px 0; 
+  font-size: 16px ;
 }
 
 #errormsgiki {
-  margin: 0.625rem 0;
+  margin: 10px 0;
 }
 
 .block.subscription .popup ul li span[class*='icon-'] {
   color: #fff;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .block.subscription .popup {
   display:none;
 }
-
-
 
 .block.subscription a {
   height: 100%;
@@ -119,13 +115,12 @@ main .section.full-width .subscription-wrapper{
 }
 
 .input-txt input{
-  /* margin-top: 0.1875rem; */
+  /* margin-top: 3px; */
   width: 100%;
-  font-size: 1rem;
+  font-size: 16px;
   font-family: inherit;
   line-height: inherit;
   padding: 1px 2px;
- 
 }
 
 .block.subscription .popup ul {
@@ -134,6 +129,11 @@ main .section.full-width .subscription-wrapper{
   transform: translateY(0);
   margin: 0;
   background-color: #2f1113;
+}
+
+
+.block.subscription .popup {
+  height: 100%;
 }
 
 .block.subscription .popup .errorStringDiv {
@@ -159,15 +159,16 @@ main .section.full-width .subscription-wrapper{
 }
 
 .block.subscription .popup ul li a{
-  margin: 0 0.9375rem 0 0.3125rem;
+  margin: 0 15px 0 5px;
   color: #fff;
   font-family: myriad-pro, Arial;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 300;
-  line-height: 1.45rem;
+  line-height: 23.2px;
   transform: translateX(0);
   transition: all 0.5s ease;
 }
+
 .icon-apple::before {
   content: "";
 }
@@ -187,23 +188,23 @@ main .section.full-width .subscription-wrapper{
 
 .block.subscription .popup ul li a [class*='icon-'] {
   color: #fff;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .thankyousub{
-  padding:1.5625rem;
+  padding:25px;
   display:none;
 }
 
 .block.subscription .iki-sub-btn button{
   color: #fff;
   background: transparent ;
-  font-size: 0.875rem;
-  border: 0.125rem solid #df9926;
-  padding: 0.3125rem 0.9375rem;
+  font-size: 14px;
+  border: 2px solid #df9926;
+  padding: 5px 15px;
   text-transform: uppercase;
-  letter-spacing: 0.075rem;
-  margin-bottom: 0.5rem;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
 }
 
 @media(min-width: 481px) {
@@ -233,7 +234,7 @@ main .section.full-width .subscription-wrapper{
     padding: 10px 0px;
   }
 
-  .block.subscription .popup .h4{
+  .block.subscription .popup .h3{
     font-size: 18px;
   }
 
@@ -243,14 +244,13 @@ main .section.full-width .subscription-wrapper{
   .block.subscription .popup ul {
     padding: 13px 0px;
   }
-  .block.subscription .popup .h4{
+  .block.subscription .popup .h3{
     font-size: 19.2px;
   }
 }
 
 @media(min-width: 1600px) {
-
-  .block.subscription .popup .h4{
+  .block.subscription .popup .h3{
     font-size: 24px;
   }
 }

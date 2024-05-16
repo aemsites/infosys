@@ -112,7 +112,7 @@ const createConfirmation = (fd, form) => {
   form.dataset.confirmation = new URL(fd.Value).pathname;
 
   return {};
-};      
+};
 
 const createSubmit = (fd) => {
   const button = document.createElement('button');
@@ -120,14 +120,13 @@ const createSubmit = (fd) => {
   button.classList.add('button');
   button.type = 'submit';
 
-
   button.addEventListener('click', (event) => {
     event.preventDefault();
     const validateMethodName = fd.validate;
     if (typeof fd[validateMethodName] === 'function') {
-        fd[validateMethodName]();
+      fd[validateMethodName]();
     }
-});
+  });
   const fieldWrapper = createFieldWrapper(fd);
   fieldWrapper.append(button);
   return { field: button, fieldWrapper };
