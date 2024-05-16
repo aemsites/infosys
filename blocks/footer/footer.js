@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { fetchData, createElement } from '../../scripts/blocks-utils.js';
+import { fetchData, createCustomElement } from '../../scripts/blocks-utils.js';
 
 function customTrim(str) {
   return str.replace(/^["'\s]+|["'\s]+$/g, '');
@@ -9,8 +9,7 @@ function customTrim(str) {
 function traverseAndPrint(element, level, columnDiv) {
   if (element.tagName.toLowerCase() === 'li') {
     if (level === 1) {
-      const title = document.createElement('p');
-      title.classList.add('links-title');
+      const title = createCustomElement('p', 'links-title');
       title.textContent = customTrim(element.childNodes[0].textContent);
       columnDiv.appendChild(title);
     } else if (level === 3) {
@@ -35,12 +34,12 @@ function traverseAndPrint(element, level, columnDiv) {
 function decorateFooterLinks(block) {
   const footerTop = block.querySelector('.footer-links');
   const defaultWrapper = footerTop.querySelector('.default-content-wrapper');
-  const row = createElement('div', 'row');
+  const row = createCustomElement('div', 'row');
   const children = defaultWrapper.children[0];
   defaultWrapper.innerHTML = '';
   let index = 0;
   while (index < children.children.length) {
-    const columnDiv = createElement('div', 'links-column');
+    const columnDiv = createCustomElement('div', 'links-column');
     traverseAndPrint(children.children[index], 1, columnDiv);
     index += 1;
     row.appendChild(columnDiv);
@@ -49,9 +48,19 @@ function decorateFooterLinks(block) {
 }
 
 // Function to toggle dropdown visibility
-function toggleDropdown() {
+async function toggleDropdown(countriesdatapath) {
   const dropdownContent = document.getElementById('dropdown-content');
   if (dropdownContent.style.display === 'none' || dropdownContent.style.display === '') {
+    if (dropdownContent.children.length === 0) {
+      const countries = await fetchData(countriesdatapath);
+      countries.forEach((option) => {
+        const optionLink = createCustomElement('a', '');
+        optionLink.href = option.url;
+        optionLink.textContent = option.name;
+        dropdownContent.appendChild(optionLink);
+      });
+    }
+
     dropdownContent.style.display = 'block';
   } else {
     dropdownContent.style.display = 'none';
@@ -67,26 +76,19 @@ function toggleDropdown() {
   }
 }
 
-async function createDropdown(div, dropdowntitle, countriesdatapath) {
-  const countries = await fetchData(countriesdatapath);
-
-  const dropdownContainer = createElement('div', 'dropdown');
-  const dropdownToggle = createElement('a', 'dropdown-toggle');
+function createDropdown(div, dropdowntitle, countriesdatapath) {
+  const dropdownContainer = createCustomElement('div', 'dropdown');
+  const dropdownToggle = createCustomElement('a', 'dropdown-toggle');
   dropdownToggle.textContent = dropdowntitle;
-  dropdownToggle.onclick = toggleDropdown;
-  const spanElement = createElement('span', 'down-arrow');
-  dropdownToggle.appendChild(spanElement);
+  dropdownToggle.onclick = function () {
+    toggleDropdown(countriesdatapath);
+  };
 
-  const dropdownContent = createElement('div', 'dropdown-content');
+  const spanElement = createCustomElement('span', 'down-arrow');
+  dropdownToggle.appendChild(spanElement);
+  const dropdownContent = createCustomElement('div', 'dropdown-content');
   dropdownContent.classList.add('up');
   dropdownContent.id = 'dropdown-content';
-  countries.forEach((option) => {
-    const optionLink = createElement('a', '');
-    optionLink.href = option.url;
-    optionLink.textContent = option.name;
-    dropdownContent.appendChild(optionLink);
-  });
-
   dropdownContainer.appendChild(dropdownToggle);
   dropdownContainer.appendChild(dropdownContent);
   div.appendChild(dropdownContainer);
@@ -110,15 +112,15 @@ function decorateFooterBottom(block) {
       countriesdatapath = configNameElement.nextElementSibling.textContent.toLowerCase();
     }
   });
-  const containerDiv = createElement('div', 'default-content-wrapper');
-  const rowDiv = createElement('div', 'row');
+  const containerDiv = createCustomElement('div', 'default-content-wrapper');
+  const rowDiv = createCustomElement('div', 'row');
 
-  const colDiv1 = createElement('div', 'col-copyright');
-  const paragraph = createElement('p', '');
+  const colDiv1 = createCustomElement('div', 'col-copyright');
+  const paragraph = createCustomElement('p', '');
   paragraph.textContent = copyrightstring;
   colDiv1.appendChild(paragraph);
 
-  const colDiv2 = createElement('div', 'col-country');
+  const colDiv2 = createCustomElement('div', 'col-country');
   createDropdown(colDiv2, dropdowntitle, countriesdatapath);
   rowDiv.appendChild(colDiv1);
   rowDiv.appendChild(colDiv2);
@@ -127,12 +129,12 @@ function decorateFooterBottom(block) {
   footerBottom.textContent = '';
   footerBottom.appendChild(containerDiv);
 }
+
 /**
  * loads and decorates the footer
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  // load footer as fragment
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   block.textContent = '';
@@ -140,7 +142,7 @@ export default async function decorate(block) {
 
   decorateFooterLinks(fragment);
   decorateFooterBottom(fragment);
-  const footer = document.createElement('div');
+  const footer = createCustomElement('div', '');
   while (fragment.firstElementChild) { footer.append(fragment.firstElementChild); }
   block.append(footer);
 }
