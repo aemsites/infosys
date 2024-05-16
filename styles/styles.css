@@ -19,6 +19,8 @@
   --light-color: #eee;
   --dark-color: #ccc;
   --text-color: black;
+  --black-olive: #3f3f3f;
+  --bright-blue: #007cc3;
   --footer-grey-text-color:#3f3f3f;
   --scrollbar-thumb-color:#ffffff4d;
   --scrollbar-shadow-color:#0000004D;
@@ -26,7 +28,9 @@
   --footer-links-bg-color: #f8f8f8;
   --footer-links-link-color: #3f3f3f;
   --country-dropdown-grey-color: #7e7e7e;
-  
+  --body-font-color: var(--black-olive);
+  --button-bg-color: #0271b1;
+  --button-font-color: white;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -48,7 +52,7 @@
  --font-weight-bold: 700;
  --font-weight-bolder: 800;
  --font-weight-boldest: 900;
- 
+
   /* heading sizes */
   --base-font-size: 8px;
   --heading-font-size-xxl: calc(4.6 * var(--base-font-size)); /* 36.8px */
@@ -271,17 +275,4 @@ main .section {
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
-}
-
-[class*=" icon-"],
-[class^="icon-"] {
-  font-family: icomoon, sans-serif;
-  speak: never;
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
