@@ -234,7 +234,7 @@ main .section.full-width .subscription-wrapper{
     padding: 10px 0px;
   }
 
-  .block.subscription .popup .h3{
+  .block.subscription .popup h3{
     font-size: 18px;
   }
 
@@ -244,13 +244,14 @@ main .section.full-width .subscription-wrapper{
   .block.subscription .popup ul {
     padding: 13px 0px;
   }
-  .block.subscription .popup .h3{
+  .block.subscription .popup h3{
     font-size: 19.2px;
   }
 }
 
 @media(min-width: 1600px) {
-  .block.subscription .popup .h3{
+  
+  .block.subscription .popup h3{
     font-size: 24px;
   }
 }
