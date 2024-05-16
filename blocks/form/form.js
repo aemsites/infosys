@@ -56,33 +56,33 @@ async function handleSubmit(form) {
   if (form.getAttribute('data-submitting') === 'true') return;
 
   const submit = form.querySelector('button[type="submit"]');
-  try {
-    form.setAttribute('data-submitting', 'true');
-    submit.disabled = true;
+  // try {
+  //   form.setAttribute('data-submitting', 'true');
+  //   submit.disabled = true;
 
-    // create payload
-    const payload = generatePayload(form);
-    const response = await fetch(form.dataset.action, {
-      method: 'POST',
-      body: JSON.stringify({ data: payload }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    if (response.ok) {
-      sampleRUM('form:submit', { source: '.form', target: form.dataset.action });
-      if (form.dataset.confirmation) {
-        window.location.href = form.dataset.confirmation;
-      }
-    } else {
-      const error = await response.text();
-      throw new Error(error);
-    }
-  } catch (e) {
-    handleSubmitError(form, e);
-  } finally {
-    form.setAttribute('data-submitting', 'false');
-  }
+  //   // create payload
+  //   const payload = generatePayload(form);
+  // const response = await fetch(form.dataset.action, {
+  //   method: 'POST',
+  //   body: JSON.stringify({ data: payload }),
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // });
+  //   if (response.ok) {
+  //     sampleRUM('form:submit', { source: '.form', target: form.dataset.action });
+  //     if (form.dataset.confirmation) {
+  //       window.location.href = form.dataset.confirmation;
+  //     }
+  //   } else {
+  //     const error = await response.text();
+  //     throw new Error(error);
+  //   }
+  // } catch (e) {
+  //   handleSubmitError(form, e);
+  // } finally {
+  //   form.setAttribute('data-submitting', 'false');
+  // }
 }
 
 export default async function decorate(block) {

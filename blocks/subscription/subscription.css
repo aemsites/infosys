@@ -136,10 +136,18 @@ main .section.full-width .subscription-wrapper{
   height: 100%;
 }
 
-.block.subscription .popup .errorStringDiv {
+.block.subscription .popup .errorStringDiv h2{
   margin-top:0px;
   opacity:  0;
-  font-size: 10px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.block.subscription .popup .thankyoudiv h2{
+  margin-top:0px;
+  opacity:  0;
+  font-size: 18px;
+  font-weight: 300;
 }
 
 .block.subscription .popup ul li {
@@ -206,6 +214,7 @@ main .section.full-width .subscription-wrapper{
   letter-spacing: 1.2px;
   margin-bottom: 8px;
 }
+
 
 @media(min-width: 481px) {
   .block.subscription .columns {
