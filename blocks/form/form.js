@@ -10,12 +10,7 @@ async function createForm(formHref) {
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
 
-  const fields = await Promise.all(json.data.map((fd) => {
-    fd.validateEmail = function (event) {
-      const email = document.getElementById('email64zxca');
-    };
-    return createField(fd, form);
-  }));
+  const fields = await Promise.all(json.data.map((fd) => createField(fd, form)));
   fields.forEach((field) => {
     if (field) {
       form.append(field);
