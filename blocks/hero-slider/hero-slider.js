@@ -1,4 +1,4 @@
-import { createElement } from '../../scripts/aem.js';
+import { createElement } from '../../scripts/blocks-utils.js';
 
 const LEFT_ARROW = '../../icons/arrow-left-circle-thin.png';
 const RIGHT_ARROW = '../../icons/arrow-right-circle-thin.png';
