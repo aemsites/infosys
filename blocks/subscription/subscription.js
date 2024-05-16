@@ -35,15 +35,15 @@ function showPopupDiv(div) {
   subscriptionPopUpDiv.style.display = 'block';
   subscriptionPopUpDiv.style.top = subscriptionDiv.offsetTop - 100;
 }
- async function loadForm(div){
+
+ async function loadForm(formLink){
   const formBlock = buildBlock('form', '');
- // formBlock.dataset.block-name = 'form';
   const linkDiv = document.createElement('div');
   const linkDiv1 = document.createElement('div');
   const pDiv = document.createElement('p');
   const anchor = document.createElement('a');
-  anchor.href ="https://main--infosys--aemsites.hlx.page/drafts/sneh/subscribe.json";
-  anchor.textContent = "https://main--infosys--aemsites.hlx.page/drafts/sneh/subscribe.json";
+  anchor.href = formLink.href;
+  anchor.textContent = formLink.textContent;
   pDiv.appendChild(anchor);
   linkDiv1.appendChild(pDiv);
   linkDiv.appendChild(linkDiv1);
@@ -52,8 +52,7 @@ function showPopupDiv(div) {
   const formBlockParent = document.createElement('div');
   formBlockParent.classList.add('form-wrapper');
   formBlockParent.appendChild(formBlock);
-  // block.insertBefore(carouselBlockParent, block.firstChild.nextSibling);
-  // decorateBlock(carouselBlock);
+  
 
   decorateBlock(formBlock);
   return loadBlock(formBlock).then(div => {
@@ -62,7 +61,7 @@ function showPopupDiv(div) {
 }
  async function decoratePopupDiv(popupDiv) {
   popupDiv.className = 'popup';
-  if (popupDiv.children[0]) {
+  if (popupDiv.children.length > 0) {
     const popupChildren = Array.from(popupDiv.children[0].children);
     for (const element of popupChildren) {
       if (element.tagName.toLowerCase() === 'a') {
@@ -183,7 +182,7 @@ export default async function decorate(block) {
     if (titleLinkDiv) {
       const colDiv = decorateColumnDiv(titleLinkDiv);
       if (popupDiv.children.length > 0) {
-        popupDiv.className = 'popup';
+        
         popupDiv = await decoratePopupDiv(popupDiv);
          
         colDiv.insertBefore(popupDiv, colDiv.firstChild);
