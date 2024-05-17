@@ -41,7 +41,7 @@ function submitForm(form, url, params) {
       // Fade in
       if (thankyousub) {
         thankyousub.style.transition = 'opacity 0.5s';
-        thankyousub.querySelector('h2').textContent = 'Thank you for subscription';
+        thankyousub.textContent = 'Thank you for subscription';
         thankyousub.style.opacity = 1;
       }
     })
@@ -107,7 +107,7 @@ function handleSubmit(form) {
   //     body: paramss,
   //     headers: {
   //       'Content-Type': 'application/x-www-form-urlencoded',
-  //     },
+  //     }, 
   //     redirect: 'manual', // Set to 'auto' to follow redirection set in form processing step
   //   }).then((response) => {
   //     // Handle the redirection response
