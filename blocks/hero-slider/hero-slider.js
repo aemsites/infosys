@@ -1,4 +1,4 @@
-import { createElement } from '../../scripts/blocks-utils.js';
+import { createAemElement } from '../../scripts/blocks-utils.js';
 
 const LEFT_ARROW = '../../icons/arrow-left-circle-thin.png';
 const RIGHT_ARROW = '../../icons/arrow-right-circle-thin.png';
@@ -141,7 +141,7 @@ function movePrevCard(block) {
 }
 
 function decorateHeroBanners(block) {
-  const bannerWrapper = createElement('div', { class: 'banner-wrapper' });
+  const bannerWrapper = createAemElement('div', { class: 'banner-wrapper' });
   const banners = [...block.children];
 
   banners.forEach((banner, index) => {
@@ -162,36 +162,36 @@ function decorateHeroBanners(block) {
 function decorateCardFindMoreButton(card) {
   const findMore = card.querySelector('p > a');
   if (!findMore) return;
-  const findMoreLongRightArrowIcon = createElement('span', { class: 'icon-long-right-arrow' });
-  const findMoreIcon = createElement('span', { class: 'icon-chevron-right-circle-white' });
+  const findMoreLongRightArrowIcon = createAemElement('span', { class: 'icon-long-right-arrow' });
+  const findMoreIcon = createAemElement('span', { class: 'icon-chevron-right-circle-white' });
   findMore.prepend(findMoreLongRightArrowIcon);
   findMore.prepend(findMoreIcon);
   findMore.classList.add('find-more');
 }
 
 function decorateArrowControls(block) {
-  const leftControl = createElement(
+  const leftControl = createAemElement(
     'button',
     { class: 'arrow' },
     { innerHTML: `<img src="${LEFT_ARROW}" alt="Left Arrow">` },
   );
   leftControl.addEventListener('click', () => movePrevCard(block));
 
-  const rightControl = createElement(
+  const rightControl = createAemElement(
     'button',
     { class: 'arrow' },
     { innerHTML: `<img src="${RIGHT_ARROW}" alt="Right Arrow">` },
   );
   rightControl.addEventListener('click', () => moveNextCard(block));
-  const arrowControls = createElement('div', { class: 'arrow-controls' }, null, leftControl, rightControl);
+  const arrowControls = createAemElement('div', { class: 'arrow-controls' }, null, leftControl, rightControl);
   block.append(arrowControls);
 }
 
 function decorateTilesControls(block) {
   const banners = block.querySelectorAll('.banner');
-  const tilesBar = createElement('ul', { class: 'tiles-bar' });
+  const tilesBar = createAemElement('ul', { class: 'tiles-bar' });
   for (let i = 0; i < banners.length; i += 1) {
-    const tile = createElement('li', { class: `tile tile-${i}` });
+    const tile = createAemElement('li', { class: `tile tile-${i}` });
     tile.addEventListener('click', () => {
       const currentIndex = getCurrentIndex(block);
       stopProgressBar(block);
@@ -210,15 +210,15 @@ function decorateCardListWithControls(block) {
 }
 
 function decorateHeroSlidingCards(block) {
-  const cardsList = createElement('div', { class: 'cards-list' });
+  const cardsList = createAemElement('div', { class: 'cards-list' });
   const banners = block.querySelectorAll('.banner');
   banners.forEach((banner, index) => {
-    const cardHeading = createElement('h4', null, { innerHTML: banner.querySelector('h2').innerHTML });
+    const cardHeading = createAemElement('h4', null, { innerHTML: banner.querySelector('h2').innerHTML });
     const bannerContent = banner.querySelector('.banner-content');
     const bannerContentChildren = [...bannerContent.children];
-    const progressBar = createElement('div', { class: `progress-bar progress-bar-${index}`, state: 'none' });
-    const card = createElement('div', { class: `card-item card-${index}` }, null, cardHeading, ...bannerContentChildren.slice(1), progressBar);
-    const reportButton = createElement('a', { class: 'report-button' }, { innerHTML: 'Report', href: card.querySelector('a').href });
+    const progressBar = createAemElement('div', { class: `progress-bar progress-bar-${index}`, state: 'none' });
+    const card = createAemElement('div', { class: `card-item card-${index}` }, null, cardHeading, ...bannerContentChildren.slice(1), progressBar);
+    const reportButton = createAemElement('a', { class: 'report-button' }, { innerHTML: 'Report', href: card.querySelector('a').href });
     bannerContent.prepend(reportButton);
     cardsList.appendChild(card);
     card.addEventListener('click', () => {

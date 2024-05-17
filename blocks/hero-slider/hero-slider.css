@@ -17,7 +17,7 @@ div.section.hero-slider-container {
  --card-item-font-family: var(--body-font-family);
  --card-item-font-color: var(--body-font-color);
  --card-item-border-right: 1px solid rgba(169 174 177 / 60%);
- --find-more-link-font-color: #00578A;
+ --find-more-link-font-color: var(--dark-denim);
  --icon-long-right-arrow-font-color: var(--bright-blue);
  --progress-bar-bg-color: var(--bright-blue);
  --tile-active-bg-color: var(--bright-blue);

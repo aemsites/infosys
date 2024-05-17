@@ -1,4 +1,4 @@
-function createElement(tagName, attributes, properties, ...children) {
+function createAemElement(tagName, attributes, properties, ...children) {
   const el = document.createElement(tagName);
   if (attributes) {
     Object.keys(attributes).forEach((name) => {
@@ -47,7 +47,7 @@ async function fetchData(url) {
 }
 
 export {
-  createElement,
+  createAemElement,
   createCustomElement,
   fetchData,
 };
