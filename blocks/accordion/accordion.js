@@ -23,12 +23,29 @@ function toggleActiveItem(block) {
   title.classList.toggle('open');
 }
 
+function decorateContentLink(contentMainDiv) {
+  const link = contentMainDiv.querySelector('a');
+  if (link) {
+    const mainContentText = contentMainDiv.querySelector('p');
+    const arrow = createAemElement('span', { class: 'icon-long-right-arrow' });
+    const p = link.parentElement;
+    p.remove();
+    link.className = 'item-content-link';
+    link.textContent = '';
+    link.title = mainContentText.textContent;
+    link.appendChild(arrow);
+    contentMainDiv.appendChild(link);
+  }
+}
+
 function decorateAccordionContent(block) {
   const contents = block.querySelectorAll('.item-content');
   contents.forEach((content) => {
     const children = [...content.children];
     const imageDiv = children[0];
     const contentMainDiv = children[1];
+
+    content.classList.add('overlay');
     imageDiv.classList.add('item-content-image');
     const img = imageDiv.querySelector('img');
     if (img) {
@@ -39,16 +56,7 @@ function decorateAccordionContent(block) {
     }
 
     contentMainDiv.classList.add('item-content-main');
-    const link = contentMainDiv.querySelector('a');
-    if (link) {
-      const p = link.parentElement;
-      p.remove();
-      link.className = 'item-content-link';
-      link.textContent = '';
-      const arrow = createAemElement('span', { class: 'icon-long-right-arrow' });
-      link.appendChild(arrow);
-      contentMainDiv.appendChild(link);
-    }
+    decorateContentLink(contentMainDiv);
   });
   return contents;
 }
@@ -56,12 +64,12 @@ function decorateAccordionContent(block) {
 function decorateAccordionTitles(block) {
   const titles = block.querySelectorAll(':scope > div:nth-child(odd)');
   titles.forEach((title, index) => {
-    title.classList.add('item-title');
+    title.classList.add('item-title', 'overlay');
     if (index === 0) {
       title.classList.add('open');
       setActiveItemIndex(block, index);
     }
-    title.nextElementSibling.classList.add('item-content', 'home-overlay');
+    title.nextElementSibling.classList.add('item-content');
 
     title.addEventListener('click', () => {
       toggleActiveItem(block);
