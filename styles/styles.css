@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+:root {
   /* colors */
   --link-color: #035fe6;
   --link-hover-bg-color: #63b0ff;
@@ -19,6 +19,9 @@
   --light-color: #eee;
   --dark-color: #ccc;
   --text-color: black;
+  --black-olive: #3f3f3f;
+  --bright-blue: #007cc3;
+  --dark-denim: #00578A;
   --footer-grey-text-color:#3f3f3f;
   --scrollbar-thumb-color:#ffffff4d;
   --scrollbar-shadow-color:#0000004D;
@@ -26,12 +29,9 @@
   --footer-links-bg-color: #f8f8f8;
   --footer-links-link-color: #3f3f3f;
   --country-dropdown-grey-color: #7e7e7e;
-  --grey-color: #e1e1e180;
-  --subscription-bg-brown-color: #ab6604;
-  --subscription-bg-topaz-color: #2f1113;
-  --light-green-color: #1ed760;
-  --btn-border-color: #df9926;
-  
+  --body-font-color: var(--black-olive);
+  --button-bg-color: #0271b1;
+  --button-font-color: white;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -43,7 +43,7 @@
   --body-font-size-m: 22px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
-  --body-font-size-xss: 14px;
+  --body-font-size-xxs: 14px;
 
  /* Font Weight */
  --font-weight-small: 300;
@@ -140,9 +140,11 @@ header {
 
 h1, h2, h3,
 h4, h5, h6 {
-  margin: 1rem 0;
-  font-weight: 400;
-  line-height: 1;
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 1em;
+  margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
@@ -185,9 +187,6 @@ main pre {
 main .section.full-width > .section-container{
   max-width: 100%;
 }
-main .section.full-width {
-  padding: 0;
-}
 
 /* links */
 a:any-link {
@@ -200,16 +199,6 @@ a:hover {
   color: var(--link-hover-color);
 }
 
-[class^="icon-"]::before, [class*=" icon-"], [class^="icon-"] {
-  font-family: icomoon;
-  font-style: normal;
-  font-weight: 400;
-  text-transform: none;
-  line-height: 1;
-  height: unset;
-  display: block;
-}
-
 /* buttons */
 a.button:any-link, button {
   font-family: var(--body-font-family);
@@ -220,13 +209,15 @@ a.button:any-link, button {
   padding: 5px 30px;
   text-align: center;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   cursor: pointer;
   color: var(--background-color);
   background-color: var(--link-color);
+  margin: 16px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-radius: 30px;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
@@ -267,13 +258,14 @@ main .section {
   padding: 64px 16px;
 }
 
-@media (width >= 600px) {
+@media (width <= 990px) {
   main .section {
-    padding: 0;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
-@media (width >= 900px) {
+@media (width > 900px) {
   .section > div {
     max-width: 1210px;
     margin: auto;
@@ -285,5 +277,3 @@ main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
 }
-
-.
