@@ -118,8 +118,8 @@ function handleSubmit(form) {
   //       console.error(error);
   //   });
 
-  //  // return getElementById("blindiki").innerHTML = '<img src="' + x + '" id="submit" style="width:1px; 
-  //height:1px;" />', $("#subscribeEmail, .h4-head").fadeOut(), $("#thankyou").fadeIn(), !1
+  //  // return getElementById("blindiki").innerHTML = '<img src="' + x + '" id="submit" style="width:1px;
+  // height:1px;" />', $("#subscribeEmail, .h4-head").fadeOut(), $("#thankyou").fadeIn(), !1
 
   //   return $('#subscribeEmail, .h4-head').fadeOut(), $('#thankyousub').fadeIn(), !1;
   // }

@@ -9,12 +9,12 @@
 }
 
 .block.subscription .box:hover .header-icons {
-  transform: translateY(-1.5px);
+  transform: translateY(-0.15rem);
   transition: all 0.5s ease;
 }
 
 .block.subscription .popup ul li a:hover{
-  transform: translateX(10px);
+  transform: translateX(1rem);
   transition: all 0.3s ease;
 }
 
@@ -33,12 +33,12 @@ main .section.full-width .subscription-wrapper{
 }  
 
 .block.subscription .box {
-  padding: 60px 20px;
-  color: #fff;
-  border-right: 1px solid #fff;
+  padding: 6rem 2rem;
+  color: var(--background-color);
+  border-right: 0.1rem solid var(--background-color);
   height: 100%;
-  background-color: #ab6604;
-  border-bottom: 1px solid #fff;
+  background-color: var(--subscription-bg-brown-color);
+  border-bottom: 0.1rem solid var(--background-color);
   width: 100%;
 }
 
@@ -50,40 +50,40 @@ main .section.full-width .subscription-wrapper{
 
 .block.subscription .box span {
   display: block;
-  font-size: 20px;
-  margin: 10px auto;
+  font-size: 2rem;
+  margin: 1rem auto;
 }
 
 .block.subscription .popup p {
   display: flex;
   height: 100%;
-  color: #fff;
+  color: var(--background-color);
   flex-direction: column;
-  padding: 30px;
+  padding: 3rem;
   justify-content: center;
   text-align: left;
-  background-color: #2f1113;
+  background-color: var(--subscription-bg-topaz-color);
   margin:0;
 }
 
 .block.subscription .popup ul li:first-child {
-  border-top: 0px solid rgba(225, 225, 225, 0.5);
+  border-top: 0px solid var(--grey-color);
 }
 
 .block.subscription .box span.header-icons {
-  font-size: 30px;
+  font-size: 3rem;
   transform: translateY(0);
   transition: all 0.5s ease;
 }
 
 .block.subscription .popup h3{
-  margin: 10px 0; 
-  font-size: 16px ;
+  margin: 1rem 0; 
+  font-size: var(--body-font-size-xs) ;
 }
 
 .block.subscription .popup ul li span[class*='icon-'] {
-  color: #fff;
-  font-size: 16px;
+  color: var(--background-color);
+  font-size: var(--body-font-size-xs);
 }
 
 .block.subscription .popup {
@@ -112,18 +112,18 @@ main .section.full-width .subscription-wrapper{
 
 .input-txt input{
   width: 100%;
-  font-size: 16px;
+  font-size: var(--body-font-size-xs);
   font-family: inherit;
   line-height: inherit;
-  padding: 1px 2px;
+  padding: 0.1rem 0.2rem;
 }
 
 .block.subscription .popup ul {
   height: 100%;
-  padding: 10px;
+  padding: 1rem;
   transform: translateY(0);
   margin: 0;
-  background-color: #2f1113;
+  background-color: var(--subscription-bg-topaz-color);
 }
 
 
@@ -132,24 +132,24 @@ main .section.full-width .subscription-wrapper{
 }
 
 .block.subscription .popup .errorStringDiv h2{
-  margin-top:10px;
-  margin-bottom: 10px;
+  margin-top:1rem;
+  margin-bottom: 1rem;
   opacity:  0;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: var(--body-font-size-xss);
+  font-weight: var( --font-weight-regular);
 }
 
 .block.subscription .popup .thankyoudiv h2{
-  margin-top:0px;
-  opacity:  0;
-  font-size: 18px;
-  font-weight: 300;
+  margin-top: 0;
+  opacity: 0;
+  font-size: var(--body-font-size-s);
+  font-weight: var(--font-weight-small);
 }
 
 .block.subscription .popup ul li {
   list-style-type: none;
-  padding: 10px 0;
-  border-top: 1px solid #e1e1e180;
+  padding: 1rem 0;
+  border-top: 0.1rem solid var(--grey-color);
   transition: all 0.3s ease;
 }
 
@@ -163,12 +163,12 @@ main .section.full-width .subscription-wrapper{
 }
 
 .block.subscription .popup ul li a{
-  margin: 0 15px 0 5px;
-  color: #fff;
+  margin: 0 1.5rem 0 0.5rem;
+  color: var(--background-color);
   font-family: myriad-pro, Arial;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 23.2px;
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-small);
+  line-height: 2.32rem;
   transform: translateX(0);
   transition: all 0.5s ease;
 }
@@ -183,7 +183,7 @@ main .section.full-width .subscription-wrapper{
 
 .icon-spotify::before {
   content: "";
-  color: #1ed760;
+  color: var(--light-green-color);
 }
 
 .icon-sound-cloud::before {
@@ -192,23 +192,23 @@ main .section.full-width .subscription-wrapper{
 
 .block.subscription .popup ul li a [class*='icon-'] {
   color: #fff;
-  font-size: 16px;
+  font-size: var(--body-font-size-xs);
 }
 
-.thankyousub{
-  padding:25px;
+.block.subscription .thankyousub{
+  padding:2.5rem;
   display:none;
 }
 
 .block.subscription .submit-btn button{
-  color: #fff;
+  color: var(--background-color);
   background: transparent ;
-  font-size: 14px;
-  border: 2px solid #df9926;
-  padding: 5px 15px;
+  font-size: var(--body-font-size-xss);
+  border: 0.2rem solid var(--btn-border-color);
+  padding: 0.5rem 1.5rem;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-bottom: 8px;
+  letter-spacing: 0.12rem;
+  margin-bottom: 0.8rem;
 }
 
 
@@ -226,39 +226,39 @@ main .section.full-width .subscription-wrapper{
   }
 
   .block.subscription .popup ul li {
-    padding: 8px 0;
+    padding: 0.8rem 0;
   }
 
   .block.subscription .popup ul {
-    padding: 25px 10px;
+    padding: 2.5rem 1rem;
   }
 }
 
 @media(min-width: 993px) {
   .block.subscription .popup ul {
-    padding: 10px 0px;
+    padding: 1rem 0;
   }
 
   .block.subscription .popup h3{
-    font-size: 18px;
+    font-size: var(--body-font-size-s);
   }
 }
 
 @media(min-width: 1025px) {
   .block.subscription .popup ul {
-    padding: 13px 0px;
+    padding: 1.3rem 0p;
   }
   .block.subscription .popup h3{
-    font-size: 19.2px;
+    font-size: var(--heading-font-size-m);
   }
   .block.subscription .box{
-    padding: 60px;
+    padding: 6rem;
   }
 
 }
 
 @media(min-width: 1600px) {
   .block.subscription .popup h3{
-    font-size: 24px;
+    font-size: var(--body-font-size-l);
   }
 }
