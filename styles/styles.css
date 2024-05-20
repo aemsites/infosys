@@ -39,8 +39,9 @@
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
-  --body-font-size-l: 24px;
-  --body-font-size-m: 22px;
+  --body-font-size-xl: 24px;
+  --body-font-size-l: 22px;
+  --body-font-size-m: 20px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
   --body-font-size-xxs: 14px;
@@ -258,11 +259,9 @@ main .section {
   padding: 64px 16px;
 }
 
-@media (width <= 990px) {
-  main .section {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+main .section {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 @media (width > 900px) {

@@ -1,5 +1,7 @@
 import { createAemElement } from '../../scripts/blocks-utils.js';
 
+const ACCORDION_TITLE_PSEUDO_BG_IMAGE = '--accordion-pseudo-title-bg-image';
+
 function getActiveItemIndex(block) {
   let activeItemIndex = block.getAttribute('data-active-item');
   if (activeItemIndex) {
@@ -21,6 +23,13 @@ function toggleActiveItem(block) {
   const activeIndex = getActiveItemIndex(block);
   const title = getNthItemTitle(block, activeIndex);
   title.classList.toggle('open');
+}
+
+function handleAccordionSwitchInterval(block) {
+  const titles = block.querySelectorAll('.item-title');
+  const currentIndex = getActiveItemIndex(block);
+  const openIndex = (currentIndex + 1) % titles.length;
+  titles[openIndex].click();
 }
 
 function decorateContentLink(contentMainDiv) {
@@ -52,7 +61,7 @@ function decorateAccordionContent(block) {
       content.style.backgroundImage = `url(${img.src})`;
       content.style.backgroundSize = 'cover';
       const titleDiv = content.previousElementSibling;
-      titleDiv.style.backgroundImage = `url(${img.src})`;
+      titleDiv.style.setProperty(ACCORDION_TITLE_PSEUDO_BG_IMAGE, `url(${img.src})`);
     }
 
     contentMainDiv.classList.add('item-content-main');
@@ -73,22 +82,20 @@ function decorateAccordionTitles(block) {
 
     title.addEventListener('click', () => {
       toggleActiveItem(block);
+      clearInterval(block.intervalId);
+      block.intervalId = setInterval(() => handleAccordionSwitchInterval(block), 5000);
       title.classList.toggle('open');
       setActiveItemIndex(block, index);
     });
   });
+  if (titles.length > 0) titles[0].click();
   return titles;
 }
 
 function decorateAccordion(block) {
-  const titles = decorateAccordionTitles(block);
+  decorateAccordionTitles(block);
   decorateAccordionContent(block);
-
-  setInterval(() => {
-    const currentIndex = getActiveItemIndex(block);
-    const openIndex = (currentIndex + 1) % titles.length;
-    titles[openIndex].click();
-  }, 4000);
+  block.intervalId = setInterval(() => handleAccordionSwitchInterval(block), 5000);
 }
 
 export default function decorate(block) {
