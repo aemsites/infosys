@@ -1,5 +1,6 @@
 .accordion {
   background: black;
+
   --accordion-pseudo-title-bg-image: ''; /* updated via js in desktop mode */
 }
 
@@ -106,8 +107,8 @@
 .accordion .item-title.overlay::after {
   background: linear-gradient(
                 to left,
-                rgba(255, 255, 255, 0),
-                rgba(0, 0, 0, 0.98));
+                rgb(255 255 255 / 0%),
+                rgb(0 0 0 / 98%));
   height: 100%;
 }
 
@@ -120,54 +121,58 @@
 .accordion .item-title.open + .item-content {
   display: block;
   filter: grayscale(0);
-  animation: slideUp 0.5s ease;
+  animation: slide-up 0.5s ease;
 }
 
 .accordion .item-title:first-of-type.open + .item-content {
-  animation: slideDown 0.5s ease;
+  animation: slide-down 0.5s ease;
 }
 
 @media (width > 767px) {
-  .accordion .item-title:first-of-type.open + .item-content {
-    animation: slideRight 0.5s ease;
+  .accordion .item-title.open + .item-content {
+    animation: slide-left 0.5s ease;
   }
 
-  .accordion .item-title.open + .item-content {
-    animation: slideLeft 0.5s ease;
+  .accordion .item-title:first-of-type.open + .item-content {
+    animation: slide-right 0.5s ease;
   }
 }
 
-@keyframes slideLeft {
+@keyframes slide-left {
   from {
     transform: translateX(100%);
   }
+
   to {
     transform: translateX(0);
   }
 }
 
-@keyframes slideRight {
+@keyframes slide-right {
   from {
     transform: translateX(-100%);
   }
+
   to {
     transform: translateX(0);
   }
 }
 
-@keyframes slideDown {
+@keyframes slide-down {
   from {
     transform: translateY(-100%);
   }
+
   to {
     transform: translateY(0);
   }
 }
 
-@keyframes slideUp {
+@keyframes slide-up {
   from {
     transform: translateY(100%);
   }
+
   to {
     transform: translateY(0);
   }
