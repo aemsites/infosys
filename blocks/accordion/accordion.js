@@ -1,6 +1,7 @@
 import { createAemElement } from '../../scripts/blocks-utils.js';
 
 const ACCORDION_TITLE_PSEUDO_BG_IMAGE = '--accordion-pseudo-title-bg-image';
+const ACCORDION_ITEM_SWITCH_INTERVAL = 5000; // milliseconds
 
 function getActiveItemIndex(block) {
   let activeItemIndex = block.getAttribute('data-active-item');
@@ -10,8 +11,13 @@ function getActiveItemIndex(block) {
   return activeItemIndex;
 }
 
-function setActiveItemIndex(block, index) {
+function setActiveItem(block, index) {
+  const itemContents = block.querySelectorAll('.item-content');
   block.setAttribute('data-active-item', index);
+  if (itemContents.length > index && !itemContents[index].style.backgroundImage) {
+    const img = itemContents[index].querySelector('img');
+    itemContents[index].style.backgroundImage = `url(${img.src})`;
+  }
 }
 
 function getNthItemTitle(block, n) {
@@ -25,11 +31,18 @@ function toggleActiveItem(block) {
   title.classList.toggle('open');
 }
 
-function handleAccordionSwitchInterval(block) {
+function handleAccordionSwitch(block) {
   const titles = block.querySelectorAll('.item-title');
   const currentIndex = getActiveItemIndex(block);
   const openIndex = (currentIndex + 1) % titles.length;
   titles[openIndex].click();
+}
+
+function animateContent(block) {
+  const contents = block.querySelectorAll('.item-content');
+  contents.forEach((content) => {
+    content.classList.add('animate');
+  });
 }
 
 function decorateContentLink(contentMainDiv) {
@@ -53,17 +66,8 @@ function decorateAccordionContent(block) {
     const children = [...content.children];
     const imageDiv = children[0];
     const contentMainDiv = children[1];
-
     content.classList.add('overlay');
     imageDiv.classList.add('item-content-image');
-    const img = imageDiv.querySelector('img');
-    if (img) {
-      content.style.backgroundImage = `url(${img.src})`;
-      content.style.backgroundSize = 'cover';
-      const titleDiv = content.previousElementSibling;
-      titleDiv.style.setProperty(ACCORDION_TITLE_PSEUDO_BG_IMAGE, `url(${img.src})`);
-    }
-
     contentMainDiv.classList.add('item-content-main');
     decorateContentLink(contentMainDiv);
   });
@@ -76,16 +80,19 @@ function decorateAccordionTitles(block) {
     title.classList.add('item-title', 'overlay');
     if (index === 0) {
       title.classList.add('open');
-      setActiveItemIndex(block, index);
+      setActiveItem(block, index);
     }
     title.nextElementSibling.classList.add('item-content');
 
     title.addEventListener('click', () => {
       toggleActiveItem(block);
       clearInterval(block.intervalId);
-      block.intervalId = setInterval(() => handleAccordionSwitchInterval(block), 5000);
+      block.intervalId = setInterval(
+        () => handleAccordionSwitch(block),
+        ACCORDION_ITEM_SWITCH_INTERVAL,
+      );
       title.classList.toggle('open');
-      setActiveItemIndex(block, index);
+      setActiveItem(block, index);
     });
   });
   if (titles.length > 0) titles[0].click();
@@ -95,9 +102,31 @@ function decorateAccordionTitles(block) {
 function decorateAccordion(block) {
   decorateAccordionTitles(block);
   decorateAccordionContent(block);
-  block.intervalId = setInterval(() => handleAccordionSwitchInterval(block), 5000);
+  block.intervalId = setInterval(
+    () => handleAccordionSwitch(block),
+    ACCORDION_ITEM_SWITCH_INTERVAL,
+  );
+}
+
+function setTitleBgImg(block) {
+  const contents = block.querySelectorAll('.item-content');
+  setTimeout(() => {
+    contents.forEach((content) => {
+      const img = content.querySelector('.item-content-image img');
+      if (img && img.src) {
+        content.style.backgroundImage = `url(${img.src})`;
+        content.style.backgroundSize = 'cover';
+        const titleDiv = content.previousElementSibling;
+        titleDiv.style.setProperty(ACCORDION_TITLE_PSEUDO_BG_IMAGE, `url(${img.src})`);
+      }
+    });
+  }, 100);
 }
 
 export default function decorate(block) {
   decorateAccordion(block);
+  setTitleBgImg(block);
+  window.addEventListener('DOMContentLoaded', () => {
+    animateContent(block);
+  });
 }
