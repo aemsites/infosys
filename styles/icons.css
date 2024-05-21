@@ -27,30 +27,30 @@
     content: "";
 }
 
-.icon-facebook:before {
+.icon-facebook::before {
     content: "";
 }
 
-.icon-twitter:before {
+.icon-twitter::before {
     content: "";
 }
 
-.icon-linked-in:before {
+.icon-linked-in::before {
     content: "";
 }
 
-.icon-chain:before {
+.icon-chain::before {
     content: "";
 }
 
-.icon-bx-menu-alt-right:before {
+.icon-bx-menu-alt-right::before {
     content: "";
 }
 
-.icon-bx-x:before {
+.icon-bx-x::before {
     content: "";
 }
 
-.icon-popup-cross:before {
+.icon-popup-cross::before {
     content: "";
 }

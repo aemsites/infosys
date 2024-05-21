@@ -2,11 +2,11 @@ main .modal dialog[data-link="/modals/search"] {
     height: 32rem;
 }
 
-main .modal dialog[data-link="/modals/search"] .search.block span.icon-search:before {
+main .modal dialog[data-link="/modals/search"] .search.block span.icon-search::before {
      font-size:5rem;
 }
 
-main .modal dialog[data-link="/modals/search"] .search.block span.icon-popup-cross:before {
+main .modal dialog[data-link="/modals/search"] .search.block span.icon-popup-cross::before {
     font-size:3rem;
 }
 

@@ -20,8 +20,8 @@
 }
 
 header nav .block.social-wrapper .social:hover span.icon {
-    color: var(--ocean-blue);
-    border: 2px solid var(--ocean-blue);
+    color: var(--bright-blue);
+    border: 2px solid var(--bright-blue);
 }
 
 header nav .nav-tools ul li:has(.social) {

@@ -2,10 +2,12 @@ header {
   position: sticky;
   top: 0;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 16%);
+
   --header-font-size-m: 18px;
   --header-font-size-s: 16px;
 }
+
 /* header and nav layout */
 header .nav-wrapper {
   background-color: var(--background-color);
@@ -29,11 +31,9 @@ header nav {
 }
 
 header nav[aria-expanded="true"] {
-  grid-template-rows: var(--nav-height) auto;
-  grid-template-columns: 1fr;
-  grid-template-areas:
+  grid-template:
     'tools hamburger'
-    'sections sections';
+    'sections sections' / 1fr;
   overflow-y: auto;
   min-height: 100vh;
 }
@@ -52,11 +52,6 @@ header nav[aria-expanded="false"] .nav-hamburger span.icon.open {
   header nav {
     display: flex;
     justify-content: space-between;
-  }
-
-  header nav[aria-expanded="true"] {
-    min-height: 0;
-    overflow: visible;
   }
 
   header nav[aria-expanded="true"] {
@@ -229,17 +224,17 @@ header nav .nav-sections ul > li > ul > li {
     cursor: pointer;
   }
 
-  header nav .nav-sections .nav-drop:hover > .icon {
-    position: absolute;
-    transform: rotate(180deg) translate(-20%, -80%);
-  }
-
   header nav .nav-sections .nav-drop > .icon {
     position: absolute;
     transform: rotate(0deg) translate(0, -20%);
     transition: 0.3s all;
     height: 20px;
     width: 20px;
+  }
+
+  header nav .nav-sections .nav-drop:hover > .icon {
+    position: absolute;
+    transform: rotate(180deg) translate(-20%, -80%);
   }
 
   header nav .nav-sections .nav-drop[aria-expanded="true"]::after {
@@ -255,18 +250,26 @@ header nav .nav-sections ul > li > ul > li {
     justify-content: flex-end;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li:hover, header nav .nav-tools .default-content-wrapper > ul > li:hover {
-    color: var(--ocean-blue);
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li[role="button"] {
-    font-weight: 600;
-  }
-
   header nav .nav-sections .default-content-wrapper > ul > li {
     flex: 0 1 auto;
     position: relative;
     font-weight: 500;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
+    padding: 1rem;
+    font-weight: 600;
+    font-size: var(--header-font-size-s);
+    color: var(--dark-gunmetal);
+    border-bottom: 1px solid rgb(112 112 112 / 20%);
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li:hover, header nav .nav-tools .default-content-wrapper > ul > li:hover {
+    color: var(--bright-blue);
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li[role="button"] {
+    font-weight: 600;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul {
@@ -292,20 +295,9 @@ header nav .nav-sections ul > li > ul > li {
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li::after {
     content: '';
     position: absolute;
-    top: -10%;
-    left: -10%;
-    bottom: 0;
-    right: -20%;
+    inset: -10% -20% 0 -10%;
     width: 10%;
     height: 110%;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 1rem;
-    font-weight: 600;
-    font-size: var(--header-font-size-s);
-    color: var(--dark-gunmetal);
-    border-bottom: 1px solid rgba(112, 112, 112, 0.2);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li > a {
@@ -337,6 +329,7 @@ header nav .nav-tools .icon img {
   height: auto;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-tools ul {
   display: flex;
   gap: 1rem;
@@ -344,12 +337,14 @@ header nav .nav-tools ul {
   justify-content: flex-end;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-tools ul li {
   cursor: pointer;
+  display: none;
 }
 
-header nav .nav-tools ul li {
-  display: none;
+header nav .nav-tools ul li:has(span.icon-share), header nav .nav-tools ul li:has(span.icon-search) {
+  transform: translate(0, 3px);
 }
 
 header nav[aria-expanded="true"] .nav-tools ul li:has(span.icon-share) {
@@ -360,12 +355,8 @@ header nav[aria-expanded="false"] .nav-tools ul li:has(span.icon-search) {
   display: block;
 }
 
-header nav .nav-tools ul li:has(span.icon-share), header nav .nav-tools ul li:has(span.icon-search) {
-  transform: translate(0, 3px);
-}
-
 .section.nav-tools ul > li a[title='Sign in'] {
-  color: var(--ocean-blue);
+  color: var(--bright-blue);
   white-space: nowrap;
 }
 
@@ -375,10 +366,6 @@ header nav .nav-container {
 }
 
 @media (width >= 993px) {
-  header nav .nav-tools {
-    right: 0;
-  }
-
     header nav .nav-tools ul li {
         display: block;
     }
@@ -392,6 +379,7 @@ header nav .nav-container {
   }
 
   header nav .nav-tools {
+    right: 0;
     grid-area: tools;
     position: absolute;
     padding-right: 1rem;

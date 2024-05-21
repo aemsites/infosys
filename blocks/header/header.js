@@ -93,11 +93,11 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 function moveShareOptionsToTools(fragment, navTools) {
   const socialLink = navTools.querySelector('span.icon-share');
-    if (socialLink) {
-        const listItemElement = socialLink.closest('li');
-        const socialWrapper = fragment.querySelector('.social-wrapper');
-        listItemElement.appendChild(socialWrapper);
-    }
+  if (socialLink) {
+    const listItemElement = socialLink.closest('li');
+    const socialWrapper = fragment.querySelector('.social-wrapper');
+    listItemElement.appendChild(socialWrapper);
+  }
 }
 
 /**

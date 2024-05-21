@@ -12,6 +12,7 @@ body.modal-open {
 
 .modal dialog:not(.full-width) {
     --dialog-border-radius: 16px;
+
     overscroll-behavior: none;
     border: 1px solid #ccc;
     border-radius: var(--dialog-border-radius);
