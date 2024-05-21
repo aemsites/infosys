@@ -12,12 +12,7 @@ function getActiveItemIndex(block) {
 }
 
 function setActiveItem(block, index) {
-  const itemContents = block.querySelectorAll('.item-content');
   block.setAttribute('data-active-item', index);
-  if (itemContents.length > index && !itemContents[index].style.backgroundImage) {
-    const img = itemContents[index].querySelector('img');
-    itemContents[index].style.backgroundImage = img.currentSrc ? `url(${img.currentSrc})` : `url(${img.src})`;
-  }
 }
 
 function getNthItemTitle(block, n) {
@@ -105,7 +100,6 @@ function decorateAccordionTitles(block) {
       setActiveItem(block, index);
     });
   });
-  if (titles.length > 0) titles[0].click();
   return titles;
 }
 
