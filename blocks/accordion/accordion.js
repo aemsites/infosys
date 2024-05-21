@@ -45,6 +45,14 @@ function animateContent(block) {
   });
 }
 
+function setTitleBgImg(itemContent) {
+  const img = itemContent.querySelector('.item-content-image img');
+  if (img && img.src) {
+    const titleDiv = itemContent.previousElementSibling;
+    titleDiv.style.setProperty(ACCORDION_TITLE_PSEUDO_BG_IMAGE, `url(${img.src})`);
+  }
+}
+
 function decorateContentLink(contentMainDiv) {
   const link = contentMainDiv.querySelector('a');
   if (link) {
@@ -69,6 +77,7 @@ function decorateAccordionContent(block) {
     content.classList.add('overlay');
     imageDiv.classList.add('item-content-image');
     contentMainDiv.classList.add('item-content-main');
+    setTitleBgImg(content);
     decorateContentLink(contentMainDiv);
   });
   return contents;
@@ -108,25 +117,17 @@ function decorateAccordion(block) {
   );
 }
 
-function setTitleBgImg(block) {
-  const contents = block.querySelectorAll('.item-content');
-  setTimeout(() => {
-    contents.forEach((content) => {
-      const img = content.querySelector('.item-content-image img');
-      if (img && img.src) {
-        content.style.backgroundImage = `url(${img.src})`;
-        content.style.backgroundSize = 'cover';
-        const titleDiv = content.previousElementSibling;
-        titleDiv.style.setProperty(ACCORDION_TITLE_PSEUDO_BG_IMAGE, `url(${img.src})`);
-      }
-    });
-  }, 100);
+function onLoadHandler(block) {
+  document.addEventListener('load', () => {
+    const dataLoaded = block.getAttribute('data-loaded');
+    if (dataLoaded === 'true') return;
+    animateContent(block);
+    block.setAttribute('data-loaded', 'true');
+  }, true);
 }
 
 export default function decorate(block) {
+  block.setAttribute('data-loaded', 'false');
   decorateAccordion(block);
-  setTitleBgImg(block);
-  window.addEventListener('DOMContentLoaded', () => {
-    animateContent(block);
-  });
+  onLoadHandler(block);
 }
