@@ -69,17 +69,7 @@ export async function createModal(contentNodes, id) {
   });
 
   block.append(dialog);
-  return {
-    block,
-    showModal: () => {
-      dialog.showModal();
-      // Google Chrome restores the scroll position when the dialog is reopened,
-      // so we need to reset it.
-      setTimeout(() => { dialogContent.scrollTop = 0; }, 0);
-
-      document.body.classList.add('modal-open');
-    },
-  };
+  dialog.showModal();
 }
 
 export async function openModal(fragmentUrl) {
@@ -88,6 +78,5 @@ export async function openModal(fragmentUrl) {
     : fragmentUrl;
 
   const fragment = await loadFragment(path);
-  const { showModal } = await createModal(fragment.childNodes, path);
-  showModal();
+  await createModal(fragment.childNodes, path);
 }
