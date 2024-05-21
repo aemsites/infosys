@@ -25,6 +25,7 @@ header nav {
   align-items: center;
   gap: 0 2em;
   margin: auto;
+  max-width: 1264px;
   height: var(--nav-height);
   padding: 0 1rem;
   font-family: var(--body-font-family);
@@ -389,7 +390,7 @@ header nav .nav-container {
 
 @media (width >= 1401px) {
   header nav .nav-container {
-    width: calc(100% - 30px);
+    width: calc(100% - 50px);
   }
 }
 
@@ -404,7 +405,7 @@ header nav .nav-container {
   }
 
   header nav .nav-tools ul {
-    gap: 4rem;
+    gap: 2rem;
   }
 
   header nav .nav-sections .nav-drop > .icon {
