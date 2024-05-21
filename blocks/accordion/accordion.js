@@ -16,7 +16,7 @@ function setActiveItem(block, index) {
   block.setAttribute('data-active-item', index);
   if (itemContents.length > index && !itemContents[index].style.backgroundImage) {
     const img = itemContents[index].querySelector('img');
-    itemContents[index].style.backgroundImage = `url(${img.src})`;
+    itemContents[index].style.backgroundImage = img.currentSrc ? `url(${img.currentSrc})` : `url(${img.src})`;
   }
 }
 
@@ -47,9 +47,10 @@ function animateContent(block) {
 
 function setTitleBgImg(itemContent) {
   const img = itemContent.querySelector('.item-content-image img');
-  if (img && img.src) {
+  if (img) {
     const titleDiv = itemContent.previousElementSibling;
-    titleDiv.style.setProperty(ACCORDION_TITLE_PSEUDO_BG_IMAGE, `url(${img.src})`);
+    const imgSrc = img.currentSrc || img.src;
+    titleDiv.style.setProperty(ACCORDION_TITLE_PSEUDO_BG_IMAGE, `url(${imgSrc})`);
   }
 }
 
