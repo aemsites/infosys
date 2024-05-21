@@ -18,6 +18,11 @@
   --light-color: #eee;
   --dark-color: #ccc;
   --text-color: black;
+  --ocean-blue: #007cc3;
+  --dark-gunmetal: #212529;
+  --gray: #808080;
+  --charleston-green: #282828;
+  --silver: #a9aeb1;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -39,7 +44,7 @@
   --heading-font-size-xs: calc(1.2 * var(--base-font-size)); /* 9.6px */
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 84px;
 }
 
 @font-face {
@@ -234,7 +239,7 @@ main .section {
 }
 
 @media (width >= 900px) {
-  .section > div {
+  .section > div, .header nav {
     max-width: 1200px;
     margin: auto;
   }
