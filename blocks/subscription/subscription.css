@@ -9,7 +9,7 @@
 }
 
 .block.subscription .box:hover .header-icons {
-  transform: translateY(-0.15rem);
+  transform: translateY(-1.5rem);
   transition: all 0.5s ease;
 }
 
@@ -78,10 +78,13 @@ main .section.full-width .subscription-wrapper{
 
 .block.subscription .popup h3{
   margin: 1rem 0; 
-  font-size: var(--body-font-size-xs) ;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
 }
 
 .block.subscription .popup ul li span[class*='icon-'] {
+  display: flex;  
+  align-items: center;
   color: var(--background-color);
   font-size: var(--body-font-size-xs);
 }
@@ -120,7 +123,7 @@ main .section.full-width .subscription-wrapper{
 
 .block.subscription .popup ul {
   height: 100%;
-  padding: 1rem;
+  padding: 1rem 1rem;
   transform: translateY(0);
   margin: 0;
   background-color: var(--subscription-bg-topaz-color);
@@ -136,24 +139,21 @@ main .section.full-width .subscription-wrapper{
   margin-bottom: 1rem;
   opacity:  0;
   font-size: var(--body-font-size-xss);
-  font-weight: var( --font-weight-regular);
+  font-family: var(--body-font-family);
+  font-weight: var( --font-weight-small);
 }
 
-.block.subscription .popup .thankyoudiv h2{
-  margin-top: 0;
-  opacity: 0;
-  font-size: var(--body-font-size-s);
-  font-weight: var(--font-weight-small);
+.block.subscription .popup .thankyousub h4 {
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--body-font-family);
 }
 
 .block.subscription .popup ul li {
   list-style-type: none;
-  padding: 1rem 0;
+  padding: 1.1rem 0;
   border-top: 0.1rem solid var(--grey-color);
   transition: all 0.3s ease;
-}
-
-.block.subscription .popup ul li{
   display: flex;
   align-items: center;
 }
@@ -163,12 +163,10 @@ main .section.full-width .subscription-wrapper{
 }
 
 .block.subscription .popup ul li a{
-  margin: 0 1.5rem 0 0.5rem;
   color: var(--background-color);
-  font-family: myriad-pro, Arial;
+  font-family: var(--body-font-family);
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-small);
-  line-height: 2.32rem;
   transform: translateX(0);
   transition: all 0.5s ease;
 }
@@ -226,28 +224,21 @@ main .section.full-width .subscription-wrapper{
   }
 
   .block.subscription .popup ul li {
-    padding: 0.8rem 0;
+    padding: 1.3rem 0;
   }
 
   .block.subscription .popup ul {
-    padding: 2.5rem 1rem;
+    padding: 0rem 2.5rem;
   }
 }
 
 @media(min-width: 993px) {
-  .block.subscription .popup ul {
-    padding: 1rem 0;
-  }
-
   .block.subscription .popup h3{
     font-size: var(--body-font-size-s);
   }
 }
 
 @media(min-width: 1025px) {
-  .block.subscription .popup ul {
-    padding: 1.3rem 0p;
-  }
   .block.subscription .popup h3{
     font-size: var(--heading-font-size-m);
   }
