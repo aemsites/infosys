@@ -51,6 +51,7 @@ function twitterShare(url, title) {
       popUp.focus();
     })
     .catch((error) => {
+      // eslint-disable-next-line no-console
       console.error('There was a problem with the fetch operation:', error);
     });
   return false;
@@ -78,6 +79,7 @@ const copyToClipboard = () => {
   const host = window.location.href;
   navigator.clipboard.writeText(host);
   // trigger alert to confirm the link has been copied
+  // eslint-disable-next-line no-alert
   alert(`Link copied to clipboard: ${host}`);
   return false;
 };
