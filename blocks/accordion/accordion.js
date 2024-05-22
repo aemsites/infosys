@@ -40,7 +40,7 @@ function animateContent(block) {
   });
 }
 
-function setTitleBgImg(itemContent) {
+function setTitleBgImg(titleDiv, itemContent) {
   const img = itemContent.querySelector('.item-content-image img');
   if (img) {
     const titleDiv = itemContent.previousElementSibling;
@@ -73,8 +73,16 @@ function decorateAccordionContent(block) {
     content.classList.add('overlay');
     imageDiv.classList.add('item-content-image');
     contentMainDiv.classList.add('item-content-main');
-    setTitleBgImg(content);
+    const contentTitle = contentMainDiv.querySelector('h3');
+    const titleDiv = content.previousElementSibling;
+    const title = titleDiv ? titleDiv.querySelector('h4') : '';
+    if (!contentTitle && title) {
+      const h3 = createAemElement('h3', { class: 'item-content-title' });
+      h3.textContent = title.textContent;
+      contentMainDiv.prepend(h3);
+    }
     decorateContentLink(contentMainDiv);
+    setTitleBgImg(titleDiv, content);
   });
   return contents;
 }
