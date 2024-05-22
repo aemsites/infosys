@@ -22,6 +22,7 @@
   --black-olive: #3f3f3f;
   --bright-blue: #007cc3;
   --dark-denim: #00578A;
+  --chinese-white: #dfe1e2;
   --footer-grey-text-color:#3f3f3f;
   --scrollbar-thumb-color:#ffffff4d;
   --scrollbar-shadow-color:#0000004D;
@@ -142,11 +143,12 @@ header {
 h1, h2, h3,
 h4, h5, h6 {
   font-family: var(--heading-font-family);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.25;
   margin-top: 1em;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
+  color: var(--black-olive);
 }
 
 h1 { font-size: var(--heading-font-size-xxl) }
@@ -254,14 +256,36 @@ main img {
   width: 100%;
 }
 
+main .section.small-header h1 {
+  font-size: var(--body-font-size-xl);
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  color: var(--chinese-white);
+  padding: 1.6rem 0;
+}
+
+main .section.black-background {
+  margin: 0;
+  background-color: black;
+}
+
+main .section.no-margin, main .section.no-margin h1 {
+  margin: 0;
+}
+
 /* sections */
-main .section {
+main .section:not(.no-padding) {
   padding: 64px 20px;
 }
 
 @media (width > 900px) {
-  .section > div {
+  .section > div, .section > div > div {
     max-width: 1210px;
+    margin: auto;
+  }
+
+  .section > div:has(div.full-width-background) {
+    max-width: 100%;
     margin: auto;
   }
 }
