@@ -43,7 +43,6 @@ function animateContent(block) {
 function setTitleBgImg(titleDiv, itemContent) {
   const img = itemContent.querySelector('.item-content-image img');
   if (img) {
-    const titleDiv = itemContent.previousElementSibling;
     const imgSrc = img.currentSrc || img.src;
     titleDiv.style.setProperty(ACCORDION_TITLE_PSEUDO_BG_IMAGE, `url(${imgSrc})`);
   }
