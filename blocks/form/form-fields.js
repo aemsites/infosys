@@ -22,7 +22,7 @@ function generateFieldId(fd, suffix = '') {
 function createLabel(fd) {
   const label = document.createElement('label');
   label.id = generateFieldId(fd, '-label');
-  label.textContent = fd.Label;
+  label.textContent = fd.Label || fd.Name;
   label.setAttribute('for', fd.Id);
   return label;
 }
@@ -52,40 +52,12 @@ const createPlaintext = (fd) => {
   const fieldWrapper = createFieldWrapper(fd);
 
   const text = document.createElement('p');
-  text.textContent = fd.Value;
+  text.textContent = fd.Value || fd.Label;
   text.id = fd.Id;
 
   fieldWrapper.append(text);
 
   return { field: text, fieldWrapper };
-};
-
-const createInputEmail = (fd) => {
-  const field = document.createElement('input');
-  field.type = fd.Type;
-  setCommonAttributes(field, fd);
-
-  if (fd.Type === 'email') {
-    field.addEventListener('input', () => {
-      if (field.validity.typeMismatch) {
-        if (!field.value.includes('@')) {
-          field.setCustomValidity(`Please include an '@' in the email address. '${field.value}' is missing an '@'.`);
-        } else {
-          field.setCustomValidity(`Please enter a part following '@'. '${field.value}' is incomplete.`);
-        }
-      } else {
-        field.setCustomValidity('');
-      }
-    });
-  }
-
-  const fieldWrapper = createFieldWrapper(fd);
-  const label = createLabel(fd);
-  field.setAttribute('aria-labelledby', label.id);
-  fieldWrapper.append(field);
-  fieldWrapper.append(label);
-
-  return { field, fieldWrapper };
 };
 
 const createSelect = async (fd) => {
@@ -148,13 +120,6 @@ const createSubmit = (fd) => {
   button.classList.add('button');
   button.type = 'submit';
 
-  // button.addEventListener('click', (event) => {
-  //   event.preventDefault();
-  //   const validateMethodName = fd.validate;
-  //   if (typeof fd[validateMethodName] === 'function') {
-  //     fd[validateMethodName]();
-  //   }
-  // });
   const fieldWrapper = createFieldWrapper(fd);
   fieldWrapper.append(button);
   return { field: button, fieldWrapper };
@@ -252,7 +217,6 @@ const FIELD_CREATOR_FUNCTIONS = {
   fieldset: createFieldset,
   checkbox: createCheckbox,
   radio: createRadio,
-  email: createInputEmail,
 };
 
 export default async function createField(fd, form) {

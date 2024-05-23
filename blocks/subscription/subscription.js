@@ -19,12 +19,9 @@ const handleSubmitExternal = async (form) => {
       const h4 = document.createElement('h4');
       h4.textContent = 'Thank you for subscription';
       thankyoudiv.appendChild(h4);
-      thankyoudiv.style.display = 'block'
+      thankyoudiv.style.display = 'block';
       form.parentElement.appendChild(thankyoudiv);
     })
-    .catch((error) => {
-      console.error(error);
-    });
 }
 
 const decorateColumnDiv = (titleLinkElement) => {

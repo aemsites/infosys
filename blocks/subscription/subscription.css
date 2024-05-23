@@ -51,6 +51,7 @@ main .section.full-width .subscription-wrapper{
 .block.subscription .box span {
   display: block;
   font-size: 2rem;
+  font-weight: 400;
   margin: 1rem auto;
 }
 
@@ -202,8 +203,10 @@ main .section.full-width .subscription-wrapper{
 .block.subscription .submit-btn button{
   color: var(--background-color);
   background: transparent ;
-  font-size: var(--body-font-size-xss);
+  font-size: var(--body-font-size-xxs);
+  font-weight: 400;
   border: 0.2rem solid var(--btn-border-color);
+  border-radius: 0;
   padding: 0.5rem 1.5rem;
   text-transform: uppercase;
   letter-spacing: 0.12rem;
@@ -251,6 +254,9 @@ main .section.full-width .subscription-wrapper{
 
 @media(min-width: 1600px) {
   .block.subscription .popup h3{
-    font-size: var(--body-font-size-l);
+    font-size: var(--body-font-size-xl);
+  }
+  .block.subscription .popup .thankyousub h4 {
+    font-size: var(--body-font-size-s);
   }
 }
