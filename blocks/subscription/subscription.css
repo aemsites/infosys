@@ -79,6 +79,7 @@ main .section.full-width .subscription-wrapper{
 .block.subscription .popup h3{
   margin: 1rem 0; 
   font-family: var(--body-font-family);
+  font-weight: 400;
   font-size: var(--body-font-size-xs);
 }
 

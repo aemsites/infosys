@@ -147,9 +147,10 @@ header {
 h1, h2, h3,
 h4, h5, h6 {
   font-family: var(--heading-font-family);
-  margin: 1rem 0;
-  font-weight: 400;
-  line-height: 1;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 1em;
+  margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
@@ -188,12 +189,13 @@ main pre {
   white-space: pre;
 }
 
+main .section.full-width {
+  padding: 0;
+}
+
 /* section - full-width */
 main .section.full-width > .section-container{
   max-width: 100%;
-}
-main .section.full-width {
-  padding: 0;
 }
 
 /* links */
@@ -227,13 +229,15 @@ a.button:any-link, button {
   padding: 5px 30px;
   text-align: center;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   cursor: pointer;
   color: var(--background-color);
   background-color: var(--link-color);
+  margin: 16px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-radius: 30px;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
@@ -286,5 +290,3 @@ main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
 }
-
-.
