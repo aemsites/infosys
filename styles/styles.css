@@ -22,7 +22,7 @@
   --black-olive: #3f3f3f;
   --bright-blue: #007cc3;
   --dark-denim: #00578A;
-  --chinese-white: #dfe1e2;
+  --off-white: #dfe1e2;
   --footer-grey-text-color:#3f3f3f;
   --scrollbar-thumb-color:#ffffff4d;
   --scrollbar-shadow-color:#0000004D;
@@ -259,7 +259,7 @@ main .section.small-header h1 {
   font-size: var(--body-font-size-xl);
   font-family: var(--body-font-family);
   font-weight: 400;
-  color: var(--chinese-white);
+  color: var(--off-white);
   padding: 1.6rem 0;
 }
 
