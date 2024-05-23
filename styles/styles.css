@@ -148,7 +148,6 @@ h4, h5, h6 {
   margin-top: 1em;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
-  color: var(--black-olive);
 }
 
 h1 { font-size: var(--heading-font-size-xxl) }
@@ -288,6 +287,10 @@ main .section:not(.no-padding) {
     max-width: 100%;
     margin: auto;
   }
+}
+
+main .section.top-heading-gray > div:first-child > h2:first-of-type {
+  color: var(--black-olive);
 }
 
 /* section metadata */
