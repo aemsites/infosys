@@ -1,3 +1,7 @@
+/*
+* Disclaimer: This block is copied from the AEM Block Collection.
+* https://github.com/adobe/aem-block-collection/tree/main/blocks/modal
+*/
 body.modal-open {
     overflow: hidden;
 }

@@ -1,3 +1,7 @@
+/*
+* Disclaimer: This block is copied from the AEM Block Collection.
+* https://github.com/adobe/aem-block-collection/tree/main/blocks/modal
+*/
 import { loadFragment } from '../fragment/fragment.js';
 import {
   buildBlock, decorateBlock, loadBlock, loadCSS,
@@ -46,7 +50,6 @@ export async function createModal(contentNodes, id) {
     closeButton.innerHTML = '<span class="icon icon-bx-x"></span>';
     closeButton.addEventListener('click', () => dialog.close());
     dialog.append(closeButton);
-    //  decorateIcons(closeButton);
   }
 
   // close dialog on clicks outside the dialog. https://stackoverflow.com/a/70593278/79461
