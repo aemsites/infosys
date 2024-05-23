@@ -30,14 +30,13 @@
   --footer-links-link-color: #3f3f3f;
   --country-dropdown-grey-color: #7e7e7e;
   --grey-color: #e1e1e180;
-  --body-font-color: var(--black-olive);
-  --button-bg-color: #0271b1;
-  --button-font-color: white;
   --subscription-bg-brown-color: #ab6604;
   --subscription-bg-topaz-color: #2f1113;
   --light-green-color: #1ed760;
   --btn-border-color: #df9926;
-  
+  --body-font-color: var(--black-olive);
+  --button-bg-color: #0271b1;
+  --button-font-color: white;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -45,11 +44,12 @@
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
-  --body-font-size-l: 24px;
-  --body-font-size-m: 22px;
+  --body-font-size-xl: 24px;
+  --body-font-size-l: 22px;
+  --body-font-size-m: 20px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
-  --body-font-size-xss: 14px;
+  --body-font-size-xxs: 14px;
 
  /* Font Weight */
  --font-weight-small: 300;
@@ -271,14 +271,7 @@ main img {
 
 /* sections */
 main .section {
-  padding: 64px 16px;
-}
-
-@media (width >= 600px) {
-  main .section {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+  padding: 64px 20px;
 }
 
 @media (width > 900px) {
