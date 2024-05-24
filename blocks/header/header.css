@@ -4,6 +4,7 @@ header {
   background: #fff;
   box-shadow: 0 1px 4px rgb(0 0 0 / 16%);
   z-index: 1000;
+
   --header-font-size-m: 18px;
   --header-font-size-s: 16px;
 }
