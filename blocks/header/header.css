@@ -3,7 +3,7 @@ header {
   top: 0;
   background: #fff;
   box-shadow: 0 1px 4px rgb(0 0 0 / 16%);
-
+  z-index: 1000;
   --header-font-size-m: 18px;
   --header-font-size-s: 16px;
 }
@@ -390,7 +390,7 @@ header nav .nav-container {
 
 @media (width >= 1401px) {
   header nav .nav-container {
-    width: calc(100% - 50px);
+    width: calc(100% - 80px);
   }
 }
 
@@ -401,19 +401,15 @@ header nav .nav-container {
   }
 
   header nav .nav-sections ul {
-    gap: 4rem;
+    gap: 6rem;
   }
 
   header nav .nav-tools ul {
-    gap: 2rem;
+    gap: 4rem;
   }
 
   header nav .nav-sections .nav-drop > .icon {
     height: 24px;
     width: 24px;
-  }
-
-  header nav .nav-container {
-    width: 100%;
   }
 }
