@@ -13,16 +13,16 @@ const handleSubmitExternal = async (form) => {
     },
     redirect: 'manual', // Set to 'auto' to follow redirection set in form processing step
   })
-    .then((response) => {
-      form.style.display = 'none'
+    .then(() => {
+      form.style.display = 'none';
       const thankyoudiv = createCustomElement('div', 'thankyousub');
       const h4 = document.createElement('h4');
       h4.textContent = 'Thank you for subscription';
       thankyoudiv.appendChild(h4);
       thankyoudiv.style.display = 'block';
       form.parentElement.appendChild(thankyoudiv);
-    })
-}
+    });
+};
 
 const decorateColumnDiv = (titleLinkElement) => {
   const colDiv = createCustomElement('div', 'columns');
@@ -46,7 +46,7 @@ const decorateColumnDiv = (titleLinkElement) => {
   colDiv.appendChild(anchor);
 
   return colDiv;
-}
+};
 
 const showPopupDiv = (div) => {
   const subscriptionDiv = div.querySelector('.box');
@@ -54,7 +54,7 @@ const showPopupDiv = (div) => {
   const subscriptionPopUpDiv = div.querySelector('.popup');
   subscriptionPopUpDiv.style.display = 'block';
   subscriptionPopUpDiv.style.top = subscriptionDiv.offsetTop - 100;
-}
+};
 
 const checkEmailDomain = (form) => {
   const email = form.querySelector('.input-txt input').value;
@@ -66,7 +66,7 @@ const checkEmailDomain = (form) => {
     return false;
   }
   return true;
-}
+};
 
 /**
  * Decorates the popup div by adding a class name and replacing anchor elements with loaded forms.
@@ -102,7 +102,7 @@ const decoratePopupDiv = async (popupDiv) => {
     }
   }
   return popupDiv;
-}
+};
 
 export default async function decorate(block) {
   const containerDiv = createCustomElement('div', 'container-fluid');
@@ -117,7 +117,7 @@ export default async function decorate(block) {
       if (popupDiv.children.length > 0) {
         popupDiv = await decoratePopupDiv(popupDiv);
         colDiv.insertBefore(popupDiv, colDiv.firstChild);
-        colDiv.onclick = function () {
+        colDiv.onclick = () => {
           showPopupDiv(colDiv);
         };
       }

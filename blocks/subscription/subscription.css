@@ -99,22 +99,6 @@ main .section.full-width .subscription-wrapper{
   height: 100%;
 }
 
-.icon-connect::before {
-  content: "";
-}
-
-.icon-request-expert::before {
-  content: "";
-}
-
-.icon-insights::before {
-  content: "";
-}
-
-.icon-podcasts::before {
-  content: "";
-}
-
 .input-txt input{
   width: 100%;
   font-size: var(--body-font-size-xs);
@@ -173,23 +157,6 @@ main .section.full-width .subscription-wrapper{
   transition: all 0.5s ease;
 }
 
-.icon-apple::before {
-  content: "";
-}
-
-.icon-google::before {
-  content: "";
-}
-
-.icon-spotify::before {
-  content: "";
-  color: var(--light-green-color);
-}
-
-.icon-sound-cloud::before {
-  content: "";
-}
-
 .block.subscription .popup ul li a [class*='icon-'] {
   color: #fff;
   font-size: var(--body-font-size-xs);
@@ -214,14 +181,14 @@ main .section.full-width .subscription-wrapper{
 }
 
 
-@media(min-width: 481px) {
+@media(width >= 481px) {
   .block.subscription .columns {
     flex: 0 0 50%;
     max-width: 50%; 
   }
 }
 
-@media(min-width: 768px) {
+@media(width >= 768px) {
   .block.subscription .columns {
     flex: 0 0 25%;
     max-width: 25%;
@@ -236,13 +203,13 @@ main .section.full-width .subscription-wrapper{
   }
 }
 
-@media(min-width: 993px) {
+@media(width >= 993px) {
   .block.subscription .popup h3{
     font-size: var(--body-font-size-s);
   }
 }
 
-@media(min-width: 1025px) {
+@media(width >= 1025px) {
   .block.subscription .popup h3{
     font-size: var(--heading-font-size-m);
   }
@@ -252,7 +219,7 @@ main .section.full-width .subscription-wrapper{
 
 }
 
-@media(min-width: 1600px) {
+@media(width >= 1600px) {
   .block.subscription .popup h3{
     font-size: var(--body-font-size-xl);
   }

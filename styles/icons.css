@@ -18,3 +18,36 @@
 .icon.icon-search::before {
     content: "";
 }
+
+.icon-connect::before {
+    content: "";
+}
+  
+.icon-request-expert::before {
+    content: "";
+}
+  
+.icon-insights::before {
+    content: "";
+}
+  
+.icon-podcasts::before {
+    content: "";
+}
+
+.icon-apple::before {
+    content: "";
+}
+  
+.icon-google::before {
+    content: "";
+}
+  
+.icon-spotify::before {
+    content: "";
+    color: var(--light-green-color);
+}
+  
+.icon-sound-cloud::before {
+    content: "";
+}
