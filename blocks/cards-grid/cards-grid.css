@@ -2,7 +2,6 @@
   position: relative;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  /*gap: 1rem;*/
   align-items: start;
 
   --card-background-color: #0c1220;
@@ -13,19 +12,16 @@
 .cards-grid > .row {
   display: grid;
   grid-template-columns: 1fr;
-  /*gap: 1rem;*/
 }
 
 .cards-grid > .row > .row {
   display: grid;
   grid-template-columns: 1fr;
-  /*gap: 1rem;*/
 }
 
 .cards-grid > .row .column {
   display: grid;
   grid-template-rows: 1fr;
-  /*gap: 1rem;*/
 }
 
 @media (width > 767px) {
@@ -85,21 +81,25 @@
 }
 
 @media (width > 767px) {
-  #card-1, #card-4 {
+  #card-1 {
     height: 493px;
   }
 
-  #card-2, #card-3 {
+  #card-4 {
+    height: 100%;
+  }
+
+  .cards-grid .column > .card {
     height: 246px;
   }
 
-  #card-5, #card-6 {
+  .cards-grid > .row:last-of-type .card {
     height: 197px;
   }
 }
 
 @media (width > 990px) {
-  .card {
+  #card-1, #card-4 {
     height: 100%;
   }
 }
@@ -114,9 +114,9 @@
      position: absolute;
      height: 100%;
      background: linear-gradient(
-                    to right, rgba(12, 18, 32, 0),
-                    rgba(12, 18, 32, 0.9),
-                    rgba(12, 18, 32, 0.96),
+                    to right, rgb(12 18 32 / 0%),
+                    rgb(12 18 32 / 90%),
+                    rgb(12 18 32 / 96%),
                     var(--card-background-color));
      width: 80%;
      right: 0;
@@ -179,7 +179,7 @@
 
   .cards-grid .card-data.left-aligned {
     left: 0;
-    padding: 0 2.7rem 3.8rem 2.7rem;
+    padding: 0 2.7rem 3.8rem;
   }
 
   .cards-grid .card:has(div.card-image.right-aligned) .card-data {
@@ -235,7 +235,7 @@
   .cards-grid .card-data.left-sm-center-lg {
     all: unset;
     position: relative;
-    padding: 0 2.7rem 3.8rem 2.7rem;
+    padding: 0 2.7rem 3.8rem;
     z-index: 1;
   }
 
@@ -263,6 +263,7 @@
   .cards-grid .card-data h3 {
     font-size: 2rem;
   }
+
   .card .card-data .find-more-desktop {
     font-size: 1.5rem;
   }
@@ -272,6 +273,7 @@
   .cards-grid .card-data h3 {
     font-size: 2.5rem;
   }
+
   .card .card-data .find-more-desktop {
     font-size: 1.5rem;
   }
@@ -286,6 +288,7 @@
   .cards-grid .card-data h3 {
     font-size: 3rem;
   }
+
   .card .card-data .find-more-desktop {
     font-size: 2rem;
   }
@@ -325,6 +328,10 @@
   margin-left: 0.6rem;
 }
 
+.cards-grid .icon-long-right-arrow.white::before {
+  color: white;
+}
+
 .cards-grid .overlay {
   position: relative;
 }
@@ -357,9 +364,17 @@
   }
 }
 
+/* Hover effect */
+.cards-grid .card:hover img,
+.cards-grid .card:has(+ .find-more-mobile:hover) img {
+  transform: scale(1.02);
+  transition: all 0.5s;
+}
 
-
-
+.cards-grid .card:hover .card-data {
+  transform: translateY(-1rem);
+  transition: all 0.5s;
+}
 
 
 

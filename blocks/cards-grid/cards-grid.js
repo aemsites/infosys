@@ -54,7 +54,7 @@ function decorateCards(block) {
     const cardData = cardItems[1];
 
     card.id = `card-${index + 1}`;
-    card.classList.add('card');
+    card.classList.add('card', 'hover');
     if (CARD_STYLES[index].overlay) {
       card.classList.add('overlay');
     }
@@ -69,6 +69,11 @@ function decorateCards(block) {
     if (cardTitleLink) {
       cardTitleLink.classList.add('card-title-link');
       cardTitleLink.classList.remove('button');
+
+      const findMoreLongRightArrowIcon = createAemElement('span', { class: 'icon-long-right-arrow white' });
+      findMoreLongRightArrowIcon.style.color = 'white';
+      cardTitleLink.append(findMoreLongRightArrowIcon);
+
       const cardTitleParent = cardTitleLink.parentElement;
       if (cardTitleParent.tagName === 'P') cardTitleParent.remove();
       const cardTitle = createAemElement('h3', { class: 'card-title' }, null, cardTitleLink);
