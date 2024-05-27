@@ -194,10 +194,6 @@ main pre {
   white-space: pre;
 }
 
-main .section.full-width {
-  padding: 0;
-}
-
 /* section - full-width */
 main .section.full-width > .section-container{
   max-width: 100%;
@@ -301,7 +297,7 @@ main .section:not(.no-padding) {
 }
 
 @media (width > 900px) {
-  .section > div, .section > div > div {
+  .section > div:not(>div.full-width), .section > div > div:not(.full-width) {
     max-width: 1210px;
     margin: auto;
   }
