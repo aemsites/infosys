@@ -4,8 +4,8 @@
   grid-template-rows: 1fr 1fr;
   align-items: start;
 
-  --card-background-color: #0c1220;
-  --find-more-mobile-background-color: #d5eff9;
+  --card-background-color: var(--navy-blue);
+  --find-more-mobile-background-color: var(--light-sky-blue);
   --icon-long-right-arrow-font-color: var(--bright-blue);
 }
 
