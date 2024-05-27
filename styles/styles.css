@@ -282,7 +282,7 @@ main .section:not(.no-padding) {
 }
 
 @media (width > 900px) {
-  .section > div, .section > div > div {
+  .section > div:not(>div.full-width), .section > div > div:not(.full-width) {
     max-width: 1210px;
     margin: auto;
   }
