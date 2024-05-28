@@ -77,10 +77,13 @@ const decoratePopupDiv = async (popupDiv) => {
   popupDiv.className = 'popup';
   if (popupDiv.children.length > 0) {
     const popupChildren = Array.from(popupDiv.children[0].children);
-    for (const element of popupChildren) {
-      if (element.tagName.toLowerCase() === 'a'
-        && element.href.endsWith('.json')
-        && element.href.includes('forms')) {
+    const formCreationPromises = popupChildren
+      .filter(element =>
+        element.tagName.toLowerCase() === 'a' &&
+        element.href.endsWith('.json') &&
+        element.href.includes('forms')
+      )
+      .map(async (element) => {
         const form = await createForm(element.href);
         form.addEventListener('submit', (e) => {
           e.preventDefault();
@@ -96,10 +99,9 @@ const decoratePopupDiv = async (popupDiv) => {
             }
           }
         });
-
         element.replaceWith(form);
-      }
-    }
+      });
+    await Promise.all(formCreationPromises);
   }
   return popupDiv;
 };

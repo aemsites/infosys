@@ -210,16 +210,6 @@ a:hover {
   color: var(--link-hover-color);
 }
 
-[class^="icon-"]::before, [class*=" icon-"], [class^="icon-"] {
-  font-family: icomoon;
-  font-style: normal;
-  font-weight: 400;
-  text-transform: none;
-  line-height: 1;
-  height: unset;
-  display: block;
-}
-
 /* buttons */
 a.button:any-link, button {
   font-family: var(--body-font-family);
