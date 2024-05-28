@@ -78,10 +78,9 @@ const decoratePopupDiv = async (popupDiv) => {
   if (popupDiv.children.length > 0) {
     const popupChildren = Array.from(popupDiv.children[0].children);
     const formCreationPromises = popupChildren
-      .filter(element =>
-        element.tagName.toLowerCase() === 'a' &&
-        element.href.endsWith('.json') &&
-        element.href.includes('forms')
+      .filter((element) => element.tagName.toLowerCase() === 'a'
+        && element.href.endsWith('.json')
+        && element.href.includes('forms')
       )
       .map(async (element) => {
         const form = await createForm(element.href);
@@ -110,7 +109,7 @@ export default async function decorate(block) {
   const containerDiv = createCustomElement('div', 'container-fluid');
   const blockChildren = Array.from(block.children);
 
-  for (const columnElement of blockChildren) {
+  const decorationPromises = blockChildren.map(async (columnElement) => {
     const titleLinkDiv = columnElement.children[0];
     let popupDiv = columnElement.children[1];
 
@@ -125,7 +124,9 @@ export default async function decorate(block) {
       }
       containerDiv.appendChild(colDiv);
     }
-  }
+  });
+
+  await Promise.all(decorationPromises);
 
   block.textContent = '';
   block.appendChild(containerDiv);
