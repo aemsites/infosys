@@ -94,7 +94,6 @@ div.section.hero-slider-container {
   box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
   width: 100%;
   bottom: -11%;
-  will-change: transform;
   height: 164px;
 }
 
@@ -145,13 +144,11 @@ div.section.hero-slider-container {
 
 .hero-slider .card-item.animate-l2r {
   width: 100%;
-  will-change: transform;
   animation: slide-in-from-left 0.8s forwards;
 }
 
 .hero-slider .card-item.animate-r2l {
   width: 100%;
-  will-change: transform;
   animation: slide-in-from-right 0.8s forwards;
 }
 
@@ -207,7 +204,7 @@ div.section.hero-slider-container {
   .hero-slider .cards-list {
     background-color: white;
     margin-bottom: 10px;
-    bottom: -11%;
+    bottom: -15%;
   }
 
   .hero-slider .card-item::after {
