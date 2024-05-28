@@ -94,6 +94,7 @@ div.section.hero-slider-container {
   box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
   width: 100%;
   bottom: -11%;
+  will-change: transform;
 }
 
 .hero-slider .card-item {
@@ -141,10 +142,12 @@ div.section.hero-slider-container {
 }
 
 .hero-slider .card-item.animate-l2r {
+  will-change: transform;
   animation: slide-in-from-left 0.8s forwards;
 }
 
 .hero-slider .card-item.animate-r2l {
+  will-change: transform;
   animation: slide-in-from-right 0.8s forwards;
 }
 
@@ -211,6 +214,7 @@ div.section.hero-slider-container {
 .hero-slider .find-more .icon-chevron-right-circle-white {
   margin-right: 0.6rem;
   display: none;
+  font-size: unset;
 }
 
 .hero-slider .find-more .icon-chevron-right-circle-white::before {
