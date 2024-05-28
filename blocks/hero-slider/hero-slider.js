@@ -1,7 +1,5 @@
 import { createAemElement } from '../../scripts/blocks-utils.js';
 
-const LEFT_ARROW = '../../icons/arrow-left-circle-thin.png';
-const RIGHT_ARROW = '../../icons/arrow-right-circle-thin.png';
 function getCurrentIndex(block) {
   const currentIndex = block.querySelector('.card-item.active');
   return [...block.querySelectorAll('.card-item')].indexOf(currentIndex);
@@ -172,15 +170,13 @@ function decorateCardFindMoreButton(card) {
 function decorateArrowControls(block) {
   const leftControl = createAemElement(
     'button',
-    { class: 'arrow' },
-    { innerHTML: `<img src="${LEFT_ARROW}" alt="Left Arrow">` },
+    { class: 'arrow left' },
   );
   leftControl.addEventListener('click', () => movePrevCard(block));
 
   const rightControl = createAemElement(
     'button',
-    { class: 'arrow' },
-    { innerHTML: `<img src="${RIGHT_ARROW}" alt="Right Arrow">` },
+    { class: 'arrow right' },
   );
   rightControl.addEventListener('click', () => moveNextCard(block));
   const arrowControls = createAemElement('div', { class: 'arrow-controls' }, null, leftControl, rightControl);

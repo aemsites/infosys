@@ -269,6 +269,23 @@ div.section.hero-slider-container {
   width: 40px;
   height: 40px;
   cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.hero-slider button.arrow.left::before {
+  font-family: icomoon;
+  content: "";
+  transform: rotateZ(180deg);
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.hero-slider button.arrow.right::before {
+  font-family: icomoon;
+  content: "";
+  display: inline-block;
+  margin-left: 1rem;
 }
 
 .hero-slider .tiles-bar {
