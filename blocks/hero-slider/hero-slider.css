@@ -95,6 +95,7 @@ div.section.hero-slider-container {
   width: 100%;
   bottom: -11%;
   will-change: transform;
+  height: 164px;
 }
 
 .hero-slider .card-item {
@@ -109,6 +110,7 @@ div.section.hero-slider-container {
   font-weight: 300;
   line-height: 1.45;
   padding: 2.5rem 1rem 2.5rem 2rem;
+  height: 164px;
 }
 
 .hero-slider .card-item::after {
@@ -142,11 +144,13 @@ div.section.hero-slider-container {
 }
 
 .hero-slider .card-item.animate-l2r {
+  width: 100%;
   will-change: transform;
   animation: slide-in-from-left 0.8s forwards;
 }
 
 .hero-slider .card-item.animate-r2l {
+  width: 100%;
   will-change: transform;
   animation: slide-in-from-right 0.8s forwards;
 }
@@ -187,6 +191,11 @@ div.section.hero-slider-container {
   .hero-slider .cards-list {
     background-color: white;
     bottom: -8%;
+    height: unset;
+  }
+
+  .hero-slider .card-item {
+    height: unset;
   }
 
   .hero-slider .card-item::after {
