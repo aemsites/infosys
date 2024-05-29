@@ -78,8 +78,12 @@ function stopAllActiveItems(block) {
     currentProgressBar.setAttribute('state', 'ended');
   }
 
-  const currentBanner = block.querySelector('.banner.active');
-  if (currentBanner) currentBanner.classList.remove('active');
+  const currentActiveBanners = block.querySelectorAll('.banner.active');
+  if (currentActiveBanners && currentActiveBanners.length > 0) {
+    currentActiveBanners.forEach((banner) => {
+      banner.classList.remove('active');
+    });
+  }
 
   const currentCardItem = block.querySelector('.card-item.active');
   if (currentCardItem) {

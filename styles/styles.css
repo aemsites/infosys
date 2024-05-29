@@ -285,25 +285,30 @@ main .section.no-margin, main .section.no-margin h1 {
 
 /* sections */
 main .section:not(.no-padding) {
-  padding-block: 64px;
+  padding-top: 64px;
 }
 
-main .section:not(.no-inline-padding) {
-  padding-inline: 20px;
-}
-
-main .section > div > div.full-width, main .section > div:has(div.full-width) {
+main .section > div,
+main .section > div > div {
   max-width: 100%;
+  margin: auto;
 }
 
-@media (width > 900px) {
-  .section > div:not(>div.full-width), .section > div > div:not(.full-width) {
-    max-width: 1210px;
-    margin: auto;
-  }
+.section > .default-content-wrapper,
+main .section > div > div:not(.full-width) {
+  max-width: calc(100% - 40px);
+  margin: auto;
+}
 
-  .section > div:has(div.full-width-background) {
-    max-width: 100%;
+main .section > div > h2 {
+  margin: 0;
+  padding-bottom: 2rem;
+}
+
+@media (width > 1210px) {
+  .section > .default-content-wrapper,
+  main .section > div > div:not(.full-width) {
+    max-width: 1170px;
     margin: auto;
   }
 }
