@@ -61,8 +61,8 @@ const checkEmailDomain = (form) => {
   const domain = email.split('@')[1].split('.')[0];
   const invalidDomains = ['gmail', 'yahoo', 'outlook', 'rediffmail', 'hotmail', 'me'];
   if (invalidDomains.includes(domain)) {
-    form.querySelector('.errorStringDiv h2').style.opacity = '1';
-    form.querySelector('.errorStringDiv h2').textContent = 'Please enter Business Email';
+    form.querySelector('.error-msg h2').style.opacity = '1';
+    form.querySelector('.error-msg h2').textContent = 'Please enter Business Email';
     return false;
   }
   return true;
@@ -78,8 +78,7 @@ const decoratePopupDiv = async (popupDiv) => {
     const popupChildren = Array.from(popupDiv.children[0].children);
     const element = popupChildren[0];
     if (element.tagName.toLowerCase() === 'a'
-      && element.href.endsWith('.json')
-      && element.href.includes('forms')) {
+      && element.href.endsWith('.json')) {
       const form = await createForm(element.href);
       form.addEventListener('submit', (e) => {
         e.preventDefault();
