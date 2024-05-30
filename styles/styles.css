@@ -274,47 +274,39 @@ main .section.small-header h1 {
   padding: 1.6rem 0;
 }
 
-/* sections */
 main .section.black-background {
   margin: 0;
   background-color: black;
 }
 
 main .section.no-margin,
-main .section.no-margin h1 {
+main .section.no-margin h1:first-of-type,
+main .section.no-margin h2:first-of-type {
   margin: 0;
 }
 
-main .section:not(.no-padding) {
+/* sections */
+main .section:not(.no-top-padding) {
   padding-top: 64px;
 }
 
-main .section > div,
-main .section > div > div {
+main .section:not(.no-inline-padding) > div:not(:has(.full-width)) {
+  padding-inline: 20px;
+}
+
+main .section > div > div.full-width, main .section > div:has(div.full-width) {
   max-width: 100%;
-  margin: auto;
-}
-
-main .section > div > h1,
-main .section > div > h2,
-footer .default-content-wrapper,
-main .section > div > div:not(.full-width) {
-  max-width: calc(100% - 40px);
-  margin: auto;
-}
-
-main .section > div > h2 {
-  margin-block: 0;
-  padding-bottom: 2rem;
 }
 
 @media (width > 1210px) {
-  main .section > div > h1,
-  main .section > div > h2,
-  footer .default-content-wrapper,
-  main .section > div > div:not(.full-width) {
+  .section > div, .section > div > div {
     max-width: 1170px;
-    margin-inline: auto;
+    margin: auto;
+  }
+
+  .section > div:has(div.full-width-background) {
+    max-width: 100%;
+    margin: auto;
   }
 }
 
