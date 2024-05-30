@@ -1,0 +1,102 @@
+.default-content-wrapper {
+    text-align: center;
+}
+
+.carousel {
+    margin: auto;
+    width: 85%;
+    overflow: hidden;
+}
+
+.inner-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    padding: 1.5rem;
+    min-width: 33.3333%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-item img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.carousel-caption {
+    padding: 10px;
+
+}
+
+.carousel-caption h5 {
+    font-size: var(--heading-font-size-s);
+    font-family: var(--body-font-family);
+    font-weight: var(--font-weight-semibold);
+    color: #3f3f3f;
+}
+
+.carousel-caption a {
+    font-size: var(--body-font-size-m);
+    font-family: var(--body-font-family);
+    font-weight: var(--font-weight-semibold);
+    color: #3f3f3f;
+}
+
+.carousel-caption p {
+    color: #3d4551;
+    font-size: var(--body-font-size-xs);
+    font-family: var(--body-font-family);
+    font-weight: var(--font-weight-small);
+}
+
+.carousel-caption span {
+    color: #3f3f3f;
+    font-size: var(--body-font-size-xs);
+    font-family: var(--body-font-family);
+    font-weight: var(--font-weight-regular);
+}
+
+.prev-btn,
+.next-btn {
+    background-color: white;
+    color: black;
+    border: none;
+    font-size: 2.5rem;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-dots {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.carousel-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.carousel-dot.active {
+    background-color: #333;
+}
