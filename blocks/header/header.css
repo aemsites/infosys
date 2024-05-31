@@ -319,7 +319,7 @@ header nav .nav-sections ul > li > ul > li {
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li:hover .icon-down-arrow {
-    color: #282828;
+    color: var(--charleston-green);
     transform: translate(30%) rotate(-90deg);
     transition: 0.2s all;
   }
