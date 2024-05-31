@@ -1,3 +1,8 @@
+header nav[aria-expanded="true"] .block.social-wrapper {
+    top: 0;
+    transform: translate(-100px, 0);
+}
+
 .block.social-wrapper {
     display: none;
     position: absolute;
