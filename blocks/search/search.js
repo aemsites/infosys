@@ -14,7 +14,7 @@ async function fetchJson(url, params, method) {
 function adjustSearchPopupWidth() {
   const searchBlock = document.querySelector('.search.block');
   const searchPopup = searchBlock.querySelector('.search-popup');
-  if (searchPopup && searchPopup.classList.contains('showSearch')) {
+  if (searchPopup && searchPopup.classList.contains('show-search')) {
     searchPopup.style.width = `${searchBlock.offsetWidth}px`;
   }
 }
@@ -26,7 +26,7 @@ function showSearchPopup() {
   if (searchPopup) {
     searchPopup.style.display = 'block';
     searchPopup.style.width = `${searchBlock.offsetWidth}px`;
-    searchPopup.classList.add('showSearch');
+    searchPopup.classList.add('show-search');
   }
 }
 

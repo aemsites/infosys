@@ -297,12 +297,12 @@ main .section:not(.no-top-padding) {
   padding-top: 64px;
 }
 
-main .section:not(.no-inline-padding) > div:not(:has(.full-width)) {
-  padding-inline: 20px;
-}
-
 main .section > div > div.full-width, main .section > div:has(div.full-width) {
   max-width: 100%;
+}
+
+main .section:not(.no-inline-padding) > div:not(:has(.full-width)) {
+  padding-inline: 20px;
 }
 
 @media (width > 1210px) {

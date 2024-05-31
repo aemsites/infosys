@@ -92,13 +92,13 @@ main .modal dialog[data-link="/modals/search"] .search-wrapper .search form .sea
     transition: height 0.5s ease;
 }
 
-main .modal dialog[data-link="/modals/search"] .search-wrapper .search form .search-popup.showSearch {
+main .modal dialog[data-link="/modals/search"] .search-wrapper .search form .search-popup.show-search {
     z-index: 7;
     height: 41rem;
     background-color: white;
     width: 100%;
     padding: 3.6rem 3rem 3rem;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 8px 16px rgb(0 0 0 / 24%);
     overflow-y: auto;
 }
 
@@ -180,12 +180,12 @@ main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .most-
     -webkit-box-orient: vertical;
 }
 
-main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search:before {
+main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search::before {
     font-size: 2rem;
 }
 
-main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search:before,
-main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-slick-arrow:before {
+main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search::before,
+main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-slick-arrow::before {
     color: var(--grey);
 }
 
