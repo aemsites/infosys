@@ -4,6 +4,7 @@ async function fetchJson(url, params, method) {
     const response = await fetch(`${url}?${new URLSearchParams(params)}`, { method });
     return await response.json();
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     return null;
   }
@@ -127,6 +128,7 @@ async function triggerSearch() {
   const searchText = searchInput.value.trim();
 
   if (!searchText) {
+    // eslint-disable-next-line no-console
     console.log('No Data is Entered');
     return;
   }
