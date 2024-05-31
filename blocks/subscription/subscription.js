@@ -108,22 +108,24 @@ export default async function decorate(block) {
   const containerDiv = createCustomElement('div', 'container-fluid');
   const blockChildren = Array.from(block.children);
 
-  for (const columnElement of blockChildren) {
-    const titleLinkDiv = columnElement.children[0];
-    let popupDiv = columnElement.children[1];
+  await Promise.all(
+    blockChildren.map(async (columnElement) => {
+      const titleLinkDiv = columnElement.children[0];
+      let popupDiv = columnElement.children[1];
 
-    if (titleLinkDiv) {
-      const colDiv = decorateColumnDiv(titleLinkDiv);
-      if (popupDiv.children.length > 0) {
-        popupDiv = await decoratePopupDiv(popupDiv);
-        colDiv.insertBefore(popupDiv, colDiv.firstChild);
-        colDiv.onclick = () => {
-          showPopupDiv(colDiv);
-        };
+      if (titleLinkDiv) {
+        const colDiv = decorateColumnDiv(titleLinkDiv);
+        if (popupDiv.children.length > 0) {
+          popupDiv = await decoratePopupDiv(popupDiv);
+          colDiv.insertBefore(popupDiv, colDiv.firstChild);
+          colDiv.onclick = () => {
+            showPopupDiv(colDiv);
+          };
+        }
+        containerDiv.appendChild(colDiv);
       }
-      containerDiv.appendChild(colDiv);
-    }
-  }
+    }),
+  );
 
   block.textContent = '';
   block.appendChild(containerDiv);
