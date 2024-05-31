@@ -1,0 +1,126 @@
+main .modal dialog[data-link="/modals/explore"] {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  min-height: fit-content;
+  padding: 2rem;
+  margin-block: 2rem;
+  border-radius: 0;
+}
+
+@media (width > 1210px) {
+  main .modal dialog[data-link="/modals/explore"] {
+    max-width: 1170px;
+    padding-inline: 0;
+    margin-inline: auto;
+  }
+}
+
+main .modal dialog[data-link="/modals/explore"] .close-button {
+  margin-top: 5rem;
+  margin-right: 1rem;
+  color: var(--dark-gunmetal);
+}
+
+.filters-grid .row ul {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  gap: 1rem;
+  height: 105px;
+  overflow: hidden;
+}
+
+.filters-grid .row ul.expanded {
+  height: fit-content;
+}
+
+.filters-grid .row ul li {
+  border: 1px solid var(--silver);
+  border-radius: 25px;
+  width: fit-content;
+  white-space: nowrap;
+  padding: 0.6rem 1.5rem 0.7rem;
+  color: var(--bright-blue);
+}
+
+.filters-grid .filters-list li {
+  position: relative;
+}
+
+.filters-grid .filter-input {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: -0.2rem;
+}
+
+.filters-grid .row ul.filters-list li:hover {
+  background-color: var(--black-olive);
+  color: white;
+}
+
+.filters-grid .filters-list li:has(input:checked) {
+  background-color: var(--black-olive);
+  color: white;
+}
+
+.filters-grid .filters-list li:has(input:not(:checked)) {
+  background-color: white;
+  color: var(--bright-blue);
+}
+
+.filters-grid-container h3 {
+  font-family: inherit;
+  color: var(--dark-slate-gray);
+  line-height: 1.5;
+  font-weight: 900;
+  font-size: 3.6rem;
+  margin-bottom: 7rem;
+}
+
+.filters-grid h5 {
+  letter-spacing: 1px;
+  padding-bottom: 0.8rem;
+  text-transform: uppercase;
+  font-family: inherit;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.filters-grid .view-all {
+  text-decoration: none;
+  color: black;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.filters-grid-container .action-button-wrapper {
+  margin-top: 3.5rem;
+}
+
+.filters-grid-container .action-button-wrapper::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--silver);
+}
+
+.filters-grid-container .action-button-wrapper .action-button {
+  border-radius: 0;
+  background-color: var(--black-olive);
+  color: white;
+  padding: 1.9rem 0 1.4rem 0;
+  min-width: 17rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+

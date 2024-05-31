@@ -44,6 +44,7 @@
   --dark-gunmetal: #212529;
   --navy-blue: #0c1220;
   --light-sky-blue: #d5eff9;
+  --dark-slate-gray: #3d4551;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -310,7 +311,7 @@ main .section > div > div.full-width, main .section > div:has(div.full-width) {
   }
 }
 
-main .section.top-heading-gray > div:first-child > h2:first-of-type {
+main .section.top-heading-gray h2:first-of-type {
   color: var(--black-olive);
 }
 
