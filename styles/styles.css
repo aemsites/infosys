@@ -310,7 +310,6 @@ main .scroll-to-top {
     z-index: 1;
     transition: all 0.5s;
     transform: rotate(180deg);
-    font-size: 3rem;
     width: 6.2rem;
     height: 6.2rem;
     background: white;
@@ -324,7 +323,7 @@ main .scroll-to-top {
 
   main .scroll-to-top .icon-right-angle {
     transform: rotate(90deg);
-    font-size: 2.8rem;
+    font-size: var(--heading-font-size-l);
   }
 
  main .scroll-to-top:hover {
@@ -338,6 +337,15 @@ main .scroll-to-top {
 }
 
 @media (width > 1210px) {
+  main .scroll-to-top {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  main .scroll-to-top .icon-right-angle {
+    font-size: var(--heading-font-size-xxl);
+  }
+
   .section > div, .section > div > div {
     max-width: 1170px;
     margin: auto;
