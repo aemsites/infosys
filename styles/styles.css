@@ -298,6 +298,45 @@ main .section > div > div.full-width, main .section > div:has(div.full-width) {
   max-width: 100%;
 }
 
+main .scroll-to-top {
+  display: none;
+}
+
+@media (width >= 992px) {
+  main .scroll-to-top {
+    position: fixed;
+    right: 5%;
+    bottom: 20rem;
+    z-index: 1;
+    transition: all 0.5s;
+    transform: rotate(180deg);
+    font-size: 3rem;
+    width: 6.2rem;
+    height: 6.2rem;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -8px 16px rgb(0 0 0 / 16%);
+    color: #000;
+  }
+
+  main .scroll-to-top .icon-right-angle {
+    transform: rotate(90deg);
+    font-size: 2.8rem;
+  }
+
+ main .scroll-to-top:hover {
+    background: var(--charleston-green);
+    transition: all 0.2s ease;
+  }
+
+  main .scroll-to-top:hover .icon-right-angle {
+    color: white;
+  }
+}
+
 @media (width > 1210px) {
   .section > div, .section > div > div {
     max-width: 1170px;
