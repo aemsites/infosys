@@ -323,7 +323,7 @@ main .scroll-to-top {
 
   main .scroll-to-top .icon-right-angle {
     transform: rotate(90deg);
-    font-size: var(--heading-font-size-l);
+    font-size: 2.4rem;
   }
 
  main .scroll-to-top:hover {
@@ -343,7 +343,7 @@ main .scroll-to-top {
   }
 
   main .scroll-to-top .icon-right-angle {
-    font-size: var(--heading-font-size-xxl);
+    font-size: 3rem;
   }
 
   .section > div, .section > div > div {
