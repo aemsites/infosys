@@ -80,9 +80,9 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   // enable menu collapse on escape keypress
   if (!expanded || isDesktop.matches) {
     // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscapeOrResize);
+    window.addEventListener('keydown', closeOnEscape);
   } else {
-    window.removeEventListener('keydown', closeOnEscapeOrResize);
+    window.removeEventListener('keydown', closeOnEscape);
   }
 }
 
@@ -173,10 +173,10 @@ export default async function decorate(block) {
 }
 
 // ToDo: Remove this code if resizing is not required as it impacts performance
-/* Handle a case when Hamburger menu is opened and screen size is increased*/
+/* Handle a case when Hamburger menu is opened and screen size is increased */
 function debounce(func, wait) {
   let timeout;
-  return function(...args) {
+  return function cleanup(...args) {
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
@@ -193,5 +193,3 @@ function updateAriaExpandedForMobileNav() {
 const debouncedUpdateAriaExpanded = debounce(updateAriaExpandedForMobileNav, 200);
 
 window.addEventListener('resize', debouncedUpdateAriaExpanded);
-
-
