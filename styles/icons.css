@@ -88,6 +88,10 @@
     content: "";
 }
 
+.icon-slick-arrow::before {
+    content: "";
+}
+
 .icon-right-angle::before {
     content: "";
 }
