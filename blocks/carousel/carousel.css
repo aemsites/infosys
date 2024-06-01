@@ -1,8 +1,5 @@
-main .section.gray-background {
-  background: var(--footer-links-bg-color);
-}
-
-main .section.carousel-container {
+.carousel-wrapper {
+  display: none;
   padding: 0 30rem;
 }
 
@@ -107,4 +104,10 @@ main .section.carousel-container {
 
 .carousel-dot.active {
   background-color: #239de0;
+}
+
+@media(width >=768px) {
+  .carousel-wrapper {
+    display: block;
+  }
 }

@@ -26,13 +26,13 @@ export default async function decorate(block) {
     const linkDiv = paras[0].querySelector('a');
 
     link.href = linkDiv.href;
-    link.textContent = paras[1].textContent;
+    link.textContent = linkDiv.textContent;
 
     const description = document.createElement('p');
-    description.textContent = paras[2].textContent;
+    description.textContent = paras[1].textContent;
 
     const date = document.createElement('span');
-    date.textContent = paras[3].textContent;
+    date.textContent = paras[2].textContent;
 
     caption.appendChild(title);
     caption.appendChild(link);
