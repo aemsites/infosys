@@ -97,3 +97,11 @@
 .icon-next:before {
   content: "\e927";
 }
+
+.icon-slick-arrow::before {
+    content: "";
+}
+
+.icon-right-angle::before {
+    content: "";
+}
