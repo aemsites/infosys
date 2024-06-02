@@ -1,49 +1,52 @@
 import { createCustomElement } from '../../scripts/blocks-utils.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
-  const carouselContainer = createCustomElement('div', 'carousel');
   const innerContainer = createCustomElement('div', 'inner-container');
-
   const blockChildren = Array.from(block.children);
   blockChildren.forEach((row) => {
-    const pic = row.children[0].querySelector('picture img');
-    const data = row.children[1];
-
     const carouselItem = createCustomElement('div', 'carousel-item');
 
-    const img = createCustomElement('img');
-    img.src = pic.src;
-    img.alt = row.title;
-
-    const caption = createCustomElement('div', 'carousel-caption');
-
+    const data = row.children[1];
+    const cardHeading = createCustomElement('div', 'card-heading');
     const title = document.createElement('h5');
     title.textContent = data.querySelector('h5').textContent;
 
-    const paras = data.querySelectorAll('p');
-
+    const items = data.querySelectorAll('p');
+    const linkDiv = items[0].querySelector('a');
     const link = document.createElement('a');
-    const linkDiv = paras[0].querySelector('a');
-
     link.href = linkDiv.href;
     link.textContent = linkDiv.textContent;
 
+    cardHeading.appendChild(title);
+    cardHeading.appendChild(link);
+
+    const cardBody = createCustomElement('div', 'card-body');
     const description = document.createElement('p');
-    description.textContent = paras[1].textContent;
-
+    description.textContent = items[1].textContent;
     const date = document.createElement('span');
-    date.textContent = paras[2].textContent;
+    date.textContent = items[2].textContent;
+    cardBody.appendChild(description);
+    cardBody.appendChild(date);
 
-    caption.appendChild(title);
-    caption.appendChild(link);
-    caption.appendChild(description);
-    caption.appendChild(date);
+    const imageDiv = createCustomElement('div', 'card-image');
+    const image = row.children[0].querySelector('picture img');
+    console.log(linkDiv.textContent)
+    const picture = createOptimizedPicture(image.src, linkDiv.textContent, false, [{ width: '750' }]);
 
-    carouselItem.appendChild(img);
-    carouselItem.appendChild(caption);
+    const imageLink = document.createElement('a');
+    imageLink.href = linkDiv.href;
+    imageLink.appendChild(picture);
+    imageDiv.appendChild(imageLink);
+
+    carouselItem.appendChild(imageDiv);
+    carouselItem.appendChild(cardHeading);
+    carouselItem.appendChild(cardBody);
 
     innerContainer.appendChild(carouselItem);
   });
+
+  let currentIndex = 0;
 
   const prevBtn = createCustomElement('span', 'icon');
   prevBtn.classList.add('icon-prev');
@@ -54,8 +57,7 @@ export default async function decorate(block) {
   const dotsContainer = createCustomElement('div', 'carousel-dots');
   dotsContainer.appendChild(prevBtn);
 
-  const len = blockChildren.length;
-  for (let i = 0; i < len - 2; i++) {
+  for (let i = 0; i < blockChildren.length - 2; i++) {
     const dot = createCustomElement('span', 'carousel-dot');
     dot.addEventListener('click', () => {
       currentIndex = i;
@@ -67,19 +69,15 @@ export default async function decorate(block) {
 
   dotsContainer.appendChild(nextBtn);
 
-  carouselContainer.appendChild(innerContainer);
-  carouselContainer.appendChild(dotsContainer);
-
-  let currentIndex = 0; // Declare currentIndex variable
   const totalItems = blockChildren.length;
   const visibleItems = 3;
 
-  function updateCarousel() {
+  const updateCarousel = () => {
     const offset = -currentIndex * (100 / visibleItems);
     innerContainer.style.transform = `translateX(${offset}%)`;
   }
 
-  function updateDots() {
+  const updateDots = () => {
     const dots = document.querySelectorAll('.carousel-dot');
     dots.forEach((dot, index) => {
       if (index === currentIndex) {
@@ -110,5 +108,6 @@ export default async function decorate(block) {
   updateDots();
 
   block.textContent = '';
-  block.appendChild(carouselContainer);
+  block.appendChild(innerContainer);
+  block.appendChild(dotsContainer);
 }
