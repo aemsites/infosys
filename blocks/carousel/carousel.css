@@ -3,11 +3,24 @@
   flex-direction: column;
 }
 
-.carousel-item {
+.default-content-wrapper h2 {
+  margin: 0 0 1.8rem 0;
+  font-weight: 500;
+  font-size: 4.14rem;
+  color: #3f3f3f;
+  border-bottom: 1px solid #a9aeb1;
+}
+
+.inner-container>.carousel-item {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   padding: 1.8rem 0;
   border-bottom: 1px solid #a9aeb1;
+}
+
+.inner-container>.carousel-item:first-child {
+  padding: 0 0 1.89rem 0;
 }
 
 .card-body {
@@ -31,16 +44,24 @@
   font-weight: 600;
   color: #3f3f3f;
   margin: 1.71rem 0 0.99rem 0;
-  line-height: 1;
 }
 
-.carousel-item a {
+.inner-container>.carousel-item:first-child h5 {
+  font-size: 1.62rem;
+}
+
+.carousel-item a:not(:has(img)) {
   font-size: 1.44rem;
   font-family: var(--body-font-family);
   font-weight: 600;
+  overflow-wrap: break-word;
   color: #3f3f3f;
   margin-bottom: 0.9rem;
-  line-height: 1;
+}
+
+.inner-container>.carousel-item:first-child a:not(:has(img)) {
+  font-size: 1.62rem;
+  font-weight: 600;
 }
 
 .carousel-dots {
@@ -70,10 +91,6 @@
 }
 
 @media(width >=376px) {
-  .default-content-wrapper h2 {
-    margin: 0 0 1.8rem 0;
-  }
-
   .inner-container .carousel-item:not(:first-of-type) {
     flex-direction: row;
   }
@@ -82,46 +99,57 @@
     max-width: 16.74rem;
     margin-right: 1.8rem;
   }
+
+  .inner-container>.carousel-item:not(:first-child) h5 {
+    margin: 0.9rem 0 0.45rem 0;
+  }
 }
 
 @media(width >=576px) {
   .carousel-item:nth-child(n+2) .card-image {
     max-width: 27rem;
   }
+
+  .inner-container>.carousel-item:not(:first-child) h5 {
+    margin: 2.61rem 0 1.8rem 0;
+  }
 }
 
 @media(width >=768px) {
-  .carousel-wrapper {
-    padding: 0 30rem;
-  }
-
-  .carousel {
-    margin: auto;
-    overflow: hidden;
+  .default-content-wrapper h2 {
+    font-size: 6.3rem;
+    margin-bottom: 3.87rem;
+    border-bottom: none;
   }
 
   .inner-container {
     display: flex;
     flex-direction: row;
-    transition: transform 0.5s ease-in-out;
-  }
-
-  .carousel {
-    margin: auto;
+    justify-content: space-between;
     overflow: hidden;
+    margin-bottom: 6.87rem;
   }
 
-  .carousel-dots {
-    display: block;
+  .inner-container>.carousel-item {
+    border-bottom: none;
+  }
+
+  .inner-container>.carousel-item:first-child {
+    padding: 0;
+  }
+
+  .inner-container .carousel-item:not(:first-of-type) {
+    flex-direction: column;
   }
 
   .carousel-item {
-    padding-right: 1.5rem;
-    min-width: 50%;
-    box-sizing: border-box;
+    flex: 0 0 calc(50% - 28px);
+    margin: 0 2.7rem 0 0.1rem;
     flex-direction: column;
-    border-bottom: unset;
-    align-items: left;
+  }
+
+  .carousel-item:nth-child(n+2) {
+    padding: 0;
   }
 
   .carousel-item:nth-child(n+2) .card-image {
@@ -129,35 +157,52 @@
     margin-right: 0;
   }
 
-  .carousel-item a {
+  .carousel-item h5 {
+    margin: 2.61rem 0 1.8rem 0;
+  }
+
+  .inner-container>.carousel-item:not(:first-child) h5 {
+    font-size: 1.62rem;
+  }
+
+  .carousel-item a:not(:has(img)) {
+    font-size: 2.16rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .inner-container>.carousel-item:first-child a:not(:has(img)) {
     font-size: 2.16rem;
   }
 
+  .card-body {
+    display: block;
+  }
+
   .carousel-item p {
-    color: #3d4551;
-    font-size: var(--body-font-size-xs);
     font-family: var(--body-font-family);
-    font-weight: var(--font-weight-small);
+    font-size: 1.62rem;
+    font-weight: 300;
+    margin: 0 0 3.6rem 0;
+    overflow-wrap: break-word;
+    color: #3d4551;
   }
 
   .carousel-item span {
-    color: #3f3f3f;
-    font-size: var(--body-font-size-xs);
     font-family: var(--body-font-family);
-    font-weight: var(--font-weight-regular);
+    font-weight: 400;
+    font-size: 1.62rem;
+    color: #3f3f3f;
+    padding-left: 0.9rem;
   }
 
-  .inner-container .carousel-item:not(:first-of-type) {
-    flex-direction: column;
-  }
-
-  .card-body {
+  .carousel-dots {
     display: block;
   }
 }
 
 @media (width >=1200px) {
   .carousel-item {
-    min-width: 33.33%;
+    margin: 0 2.4rem 0 0.1rem;
+    flex: 0 0 calc(33.33% - 25px);
   }
 }
