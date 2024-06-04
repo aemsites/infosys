@@ -15,7 +15,6 @@ function handleSecondaryViewsForMobile(row, openView = true) {
   if (openView) {
     const rect = section.getBoundingClientRect();
     mobileSecondaryView.style.minHeight = `${rect.height}px`;
-    section.classList.add('expanded');
     primaryViewItems.forEach((item) => {
       item.style.display = 'none';
     });
@@ -24,7 +23,6 @@ function handleSecondaryViewsForMobile(row, openView = true) {
     const mobRow = mobileSecondaryView.querySelector(`#${row.id}`);
     mobRow.classList.add('show');
   } else {
-    section.classList.remove('expanded');
     row.classList.remove('show');
     mobileSecondaryView.style.display = 'none';
     primaryViewItems.forEach((item) => {
@@ -161,17 +159,13 @@ function decorateBlockByView(block) {
   const mobileView = window.matchMedia('(max-width: 767px)');
   if (!mobileView.matches) {
     const section = block.closest('.section');
-    section.classList.remove('expanded');
-
     const primaryViewItems = section.querySelectorAll('.filters-grid-wrapper, .default-content-wrapper');
+    const mobileSecondaryView = section.querySelector('.mob-secondary-view');
+    const rows = block.querySelectorAll('.row');
     primaryViewItems.forEach((item) => {
       item.style.display = 'block';
     });
-
-    const mobileSecondaryView = section.querySelector('.mob-secondary-view');
     mobileSecondaryView.style.display = 'none';
-
-    const rows = block.querySelectorAll('.row');
     rows.forEach((row) => {
       row.style.display = 'block';
     });

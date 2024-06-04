@@ -4,8 +4,13 @@ main .modal dialog[data-link="/modals/explore"] {
   margin-top: 25%;
   padding: 1rem 0 0 0;
   border-radius: 0.3rem 0.3rem 0 0;
-  background-color: #00b28f;
+  background-color: var(--spring-green);
   color: white;
+}
+
+main .modal dialog[data-link="/modals/explore"] .modal-content {
+  padding: 0;
+  overflow-y: unset;
 }
 
 @media (width > 767px) {
@@ -87,8 +92,14 @@ main .modal dialog[data-link="/modals/explore"] .close-button .icon::before {
   list-style: none;
   padding: 0;
   gap: 1rem;
-  height: 105px;
+  height: 9rem;
   overflow: hidden;
+}
+
+@media (width > 1600px) {
+  .filters-grid .row ul {
+    height: 10rem;
+  }
 }
 
 @media (width > 767px) {
@@ -116,6 +127,14 @@ main .modal dialog[data-link="/modals/explore"] .close-button .icon::before {
   white-space: nowrap;
   padding: 0.6rem 1.5rem 0.7rem;
   color: var(--bright-blue);
+  font-size: 1.4rem;
+  height: fit-content;
+}
+
+@media (width > 1600px) {
+  .filters-grid .row ul li {
+    font-size: 1.8rem;
+  }
 }
 
 .filters-grid .filters-list li {
@@ -153,7 +172,7 @@ main .modal dialog[data-link="/modals/explore"] .close-button .icon::before {
   color: white;
   line-height: 1.5;
   font-weight: 900;
-  font-size: 3.6rem;
+  font-size: 2.8rem;
   margin-top: 0;
   margin-bottom: 3rem;
 }
@@ -167,10 +186,16 @@ main .modal dialog[data-link="/modals/explore"] .close-button .icon::before {
   }
 }
 
+@media (width > 1600px) {
+  .filters-grid-container h3 {
+    font-size: 3.6rem;
+  }
+}
+
 .filters-grid h5 {
   padding-bottom: 0.8rem;
   font-family: inherit;
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: initial;
   padding-bottom: 0.6rem;
@@ -190,17 +215,22 @@ main .modal dialog[data-link="/modals/explore"] .close-button .icon::before {
   .filters-grid h5 {
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-size: 1.8rem;
   }
   .filters-grid .row-heading-wrapper::after {
     display: none;
   }
 }
 
+@media (width > 1600px) {
+  .filters-grid h5 {
+    font-size: 1.8rem;
+  }
+}
+
 .filters-grid .view-all {
   text-decoration: none;
   color: black;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   cursor: pointer;
   display: none;
 }
@@ -208,6 +238,12 @@ main .modal dialog[data-link="/modals/explore"] .close-button .icon::before {
 @media (width > 767px) {
   .filters-grid .view-all {
     display: block;
+  }
+}
+
+@media (width > 1600px) {
+  .filters-grid .view-all {
+    font-size: 1.4rem;
   }
 }
 
@@ -270,6 +306,7 @@ main .modal dialog[data-link="/modals/explore"] .close-button .icon::before {
 .mob-secondary-view .icon.rotate-left {
   transform: rotate(180deg);
   display: inline-block;
+  cursor: pointer;
 }
 
 .mob-secondary-view .icon::before {
@@ -327,7 +364,7 @@ main .modal dialog[data-link="/modals/explore"] .close-button .icon::before {
 }
 
 .mob-secondary-view .filters-list li:has(input:not(:checked)) {
-  background-color: #00b28f;
+  background-color: var(--spring-green);
   color: white;
 }
 

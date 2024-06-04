@@ -49,6 +49,7 @@
   --orange: #f16c51;
   --grey-lighter: #707070;
   --dark-slate-gray: #3d4551;
+  --spring-green: #00b28f;
 
   /* fonts */
   --body-font-family: myriad-pro, arial;
@@ -344,7 +345,7 @@ main .scroll-to-top {
   }
 }
 
-@media (width > 1210px) {  
+@media (width > 1210px) {
   main .scroll-to-top {
     width: 7rem;
     height: 7rem;
@@ -353,7 +354,7 @@ main .scroll-to-top {
   main .scroll-to-top .icon-right-angle {
     font-size: 3rem;
   }
-  
+
   .section > div, .section > div > div {
     max-width: var(--content-width);
     margin: auto;
