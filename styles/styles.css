@@ -323,7 +323,6 @@ main .scroll-to-top {
     height: 6.2rem;
     background: white;
     border-radius: 50%;
-    display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 -8px 16px rgb(0 0 0 / 16%);
