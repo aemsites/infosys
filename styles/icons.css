@@ -90,8 +90,8 @@
 
 .icon-prev:before {
   content: "\e927";
-  transform: rotateZ(180deg);
   display: inline-block;
+  transform: rotateZ(180deg);
 }
 
 .icon-next:before {
@@ -99,9 +99,9 @@
 }
 
 .icon-slick-arrow::before {
-    content: "";
+  content: "";
 }
 
 .icon-right-angle::before {
-    content: "";
+  content: "";
 }

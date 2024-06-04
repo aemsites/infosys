@@ -36,6 +36,15 @@
 .carousel-item .card-image {
   max-width: 100%;
   margin-right: 0;
+  overflow: hidden;
+}
+
+.carousel-item .card-image img {
+  transition: .5s ease-in-out;
+}
+
+.carousel-item .card-image:hover img {
+  transform: scale(1.05);
 }
 
 .carousel-item h5 {
@@ -66,28 +75,6 @@
 
 .carousel-dots {
   display: none;
-  text-align: center;
-  padding: 20px 0;
-}
-
-.carousel-dots span[class*='icon-'] {
-  font-size: 2.2rem;
-  opacity: 0.75;
-  padding: 0 4rem;
-}
-
-.carousel-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 5px;
-  background-color: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.carousel-dot.active {
-  background-color: #239de0;
 }
 
 @media(width >=376px) {
@@ -120,14 +107,19 @@
     font-size: 6.3rem;
     margin-bottom: 3.87rem;
     border-bottom: none;
+    line-height: 1;
+  }
+
+  .sliding-container {
+    overflow: hidden;
+    margin-bottom: 6.87rem;
   }
 
   .inner-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    overflow: hidden;
-    margin-bottom: 6.87rem;
+    transition: transform 0.5s ease-in-out;
   }
 
   .inner-container>.carousel-item {
@@ -159,6 +151,7 @@
 
   .carousel-item h5 {
     margin: 2.61rem 0 1.8rem 0;
+    line-height: 1;
   }
 
   .inner-container>.carousel-item:not(:first-child) h5 {
@@ -168,6 +161,7 @@
   .carousel-item a:not(:has(img)) {
     font-size: 2.16rem;
     margin-bottom: 1.8rem;
+    line-height: 1;
   }
 
   .inner-container>.carousel-item:first-child a:not(:has(img)) {
@@ -193,10 +187,81 @@
     font-size: 1.62rem;
     color: #3f3f3f;
     padding-left: 0.9rem;
+    line-height: 1;
   }
 
   .carousel-dots {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    padding: 0 0 3.87rem 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-dots span[class*='icon-'] {
+    font-size: 1.98rem;
+    opacity: 0.25;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .carousel-dots span[class*='icon-prev'] {
+    margin-right: 4rem;
+  }
+
+  .carousel-dots span[class*='icon-next'] {
+    margin-left: 4rem;
+  }
+
+  .carousel-dot {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin: 0 1rem;
+    background-color: #dfe1e2;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .carousel-dot.active {
+    background-color: #239de0;
+  }
+}
+
+@media (width >=992px) {
+  .default-content-wrapper h2 {
+    font-size: 5.6rem;
+    margin-bottom: 3.44rem;
+  }
+
+  .inner-container>.carousel-item:first-child h5 {
+    font-size: 1.44rem;
+    margin: 2.32rem 0 1.6rem 0;
+  }
+
+  .inner-container>.carousel-item:not(:first-child) h5 {
+    font-size: 1.44rem;
+    margin: 2.32rem 0 1.6rem 0;
+  }
+
+  .carousel-item a:not(:has(img)) {
+    font-size: 1.92rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .inner-container>.carousel-item:first-child a:not(:has(img)) {
+    font-size: 1.92rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .carousel-item p {
+    font-size: 1.44rem;
+    margin: 0 0 3.2rem 0;
+  }
+
+  .carousel-item span {
+    font-size: 1.44rem;
+    padding-left: 0.8rem;
   }
 }
 
@@ -204,5 +269,42 @@
   .carousel-item {
     margin: 0 2.4rem 0 0.1rem;
     flex: 0 0 calc(33.33% - 25px);
+  }
+}
+
+@media (width >=1601px) {
+  .default-content-wrapper h2 {
+    font-size: 7rem;
+    margin-bottom: 4.3rem;
+  }
+
+  .inner-container>.carousel-item:first-child h5 {
+    font-size: 1.8rem;
+    margin: 2.9rem 0 2rem 0;
+  }
+
+  .inner-container>.carousel-item:not(:first-child) h5 {
+    font-size: 1.8rem;
+    margin: 2.9rem 0 2rem 0;
+  }
+
+  .carousel-item a:not(:has(img)) {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .inner-container>.carousel-item:first-child a:not(:has(img)) {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .carousel-item p {
+    font-size: 1.8rem;
+    margin: 0 0 4rem 0;
+  }
+
+  .carousel-item span {
+    font-size: 1.8rem;
+    padding-left: 1rem;
   }
 }

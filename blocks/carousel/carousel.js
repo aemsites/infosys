@@ -2,6 +2,7 @@ import { createCustomElement } from '../../scripts/blocks-utils.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
+  const slidingContainer = createCustomElement('div', 'sliding-container');
   const innerContainer = createCustomElement('div', 'inner-container');
   const blockChildren = Array.from(block.children);
   blockChildren.forEach((row) => {
@@ -69,11 +70,18 @@ export default async function decorate(block) {
 
   dotsContainer.appendChild(nextBtn);
 
+  const getVisibleItems = () => {
+    if (window.innerWidth >= 1200) {
+      return 3;
+    } else {
+      return 2;
+    }
+  };
+
   const totalItems = blockChildren.length;
-  const visibleItems = 3;
 
   const updateCarousel = () => {
-    const offset = -currentIndex * (100 / visibleItems);
+    const offset = -currentIndex * (100 / getVisibleItems());
     innerContainer.style.transform = `translateX(${offset}%)`;
   }
 
@@ -97,7 +105,7 @@ export default async function decorate(block) {
   });
 
   nextBtn.addEventListener('click', () => {
-    if (currentIndex < totalItems - visibleItems) {
+    if (currentIndex < totalItems - getVisibleItems()) {
       currentIndex++;
     }
     updateCarousel();
@@ -108,6 +116,7 @@ export default async function decorate(block) {
   updateDots();
 
   block.textContent = '';
-  block.appendChild(innerContainer);
+  slidingContainer.appendChild(innerContainer);
+  block.appendChild(slidingContainer);
   block.appendChild(dotsContainer);
 }
