@@ -80,7 +80,6 @@ div.section.hero-slider-container {
   font-size: var(--banner-title-font-size);
   font-weight: 300;
   line-height: 7.5rem;
-  /*margin-top: 2rem;*/
 }
 
 .hero-slider .banner-content a.report-button {
