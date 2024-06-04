@@ -36,7 +36,7 @@ function buildHeroBlock(main) {
  * with the classes 'advanced-heading' and 'heading-button'.
  *
  * Note: This function currently only targets H2 headings.
- * However, it can be enhanced to also target and decorate H1 headings if required.
+ * However, it can be enhanced to decorate H1 and other headings if required.
  *
  * @param {HTMLElement} main - The main element to decorate.
  */

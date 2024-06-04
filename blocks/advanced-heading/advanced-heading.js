@@ -1,3 +1,3 @@
 export default function decorate(block) {
-  console.log('Decorating heading custom block', block.outerHTML);
+  console.log('Decorating advanced heading block...');
 }

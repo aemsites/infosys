@@ -86,7 +86,6 @@
 
 .icon-popup-cross::before {
     content: "";
-    font-size: 1.5rem;
 }
 
 .icon-slick-arrow::before {
@@ -95,4 +94,12 @@
 
 .icon-right-angle::before {
     content: "";
+}
+
+.icon-long-right-arrow::before {
+  content: "";
+}
+
+.icon-long-left-arrow::before {
+  content: "";
 }
