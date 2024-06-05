@@ -415,8 +415,8 @@ main .scroll-to-top {
     font-size: 3rem;
   }
 
-  main .section > div,
-  main .section > div > div {
+  .section > div,
+  .section > div > div {
     max-width: var(--content-width);
     margin: auto;
   }
