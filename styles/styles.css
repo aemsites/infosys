@@ -241,7 +241,7 @@ main pre {
 }
 
 /* section - full-width */
-main .section.full-width>.section-container {
+main .section.full-width > .section-container {
   max-width: 100%;
 }
 
@@ -344,7 +344,8 @@ main .section:not(.no-top-padding) {
   padding-top: 64px;
 }
 
-main .section > div > div.full-width, main .section > div:has(div.full-width) {
+main .section > div > div.full-width,
+main .section > div:has(div.full-width) {
   max-width: 100%;
 }
 
@@ -356,7 +357,7 @@ main .scroll-to-top {
   display: none;
 }
 
-@media (width >= 992px) {
+@media (width >=992px) {
   main .scroll-to-top {
     position: fixed;
     right: 5%;
@@ -380,7 +381,7 @@ main .scroll-to-top {
     font-size: 2.4rem;
   }
 
- main .scroll-to-top:hover {
+  main .scroll-to-top:hover {
     background: var(--charleston-green);
     transition: all 0.2s ease;
   }
@@ -390,7 +391,7 @@ main .scroll-to-top {
   }
 }
 
-@media (width > 1210px) {  
+@media (width > 1210px) {
   main .scroll-to-top {
     width: 7rem;
     height: 7rem;
@@ -399,19 +400,20 @@ main .scroll-to-top {
   main .scroll-to-top .icon-right-angle {
     font-size: 3rem;
   }
-  
-  .section > div, .section > div > div {
+
+  .section > div,
+  .section > div > div {
     max-width: var(--content-width);
     margin: auto;
   }
 
-  .section>div:has(div.full-width-background) {
+  .section > div:has(div.full-width-background) {
     max-width: 100%;
     margin: auto;
   }
 }
 
-main .section.top-heading-gray>div:first-child>h2:first-of-type {
+main .section.top-heading-gray > div:first-child > h2:first-of-type {
   color: var(--black-olive);
 }
 
