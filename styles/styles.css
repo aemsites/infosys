@@ -99,6 +99,8 @@
 
   /* content width */
   --content-width: 1210px;
+
+  --padding-inline: 20px;
 }
 
 @font-face {
@@ -346,7 +348,6 @@ main .section h2:first-of-type {
   margin: 0;
 }
 
-/* sections */
 main .section.separator-top {
   padding-top: 64px;
 }
@@ -427,7 +428,7 @@ main .scroll-to-top {
   }
 
   main .section:not(.no-inline-padding) > div > div.full-width-background {
-    padding-inline: 20px;
+    padding-inline: var(--padding-inline);
   }
 }
 
@@ -435,7 +436,6 @@ main .section.top-heading-gray h2:first-of-type {
   color: var(--black-olive);
 }
 
-/* section metadata */
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
