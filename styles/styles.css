@@ -353,11 +353,11 @@ main .section.separator-top {
 }
 
 main .section.separator-bottom {
-  padding-bottom: 64px;
+  padding-bottom: 128px;
 }
 
 main .section .block:not(.no-block-separator) {
-  padding-top: 32px;
+  padding-top: 48px;
 }
 
 main .section > div > div.full-width,
