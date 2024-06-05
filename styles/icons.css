@@ -88,11 +88,11 @@
   content: "";
 }
 
-.icon-prev:before {
+.icon-prev::before {
   content: "\e927";
 }
 
-.icon-next:before {
+.icon-next::before {
   content: "\e927";
 }
 
