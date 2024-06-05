@@ -209,6 +209,11 @@
     margin-right: 4rem;
   }
 
+  .carousel-dots .icon-prev::before {
+    display: inline-block;
+    transform: rotateZ(180deg);
+  }
+
   .carousel-dots span[class*='icon-next'] {
     margin-left: 4rem;
   }

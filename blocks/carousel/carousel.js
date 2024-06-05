@@ -32,7 +32,6 @@ export default async function decorate(block) {
 
     const imageDiv = createCustomElement('div', 'card-image');
     const image = row.children[0].querySelector('picture img');
-    console.log(linkDiv.textContent)
     const picture = createOptimizedPicture(image.src, linkDiv.textContent, false, [{ width: '750' }]);
 
     const imageLink = document.createElement('a');
@@ -49,41 +48,17 @@ export default async function decorate(block) {
 
   let currentIndex = 0;
 
-  const prevBtn = createCustomElement('span', 'icon');
-  prevBtn.classList.add('icon-prev');
-
-  const nextBtn = createCustomElement('span', 'icon');
-  nextBtn.classList.add('icon-next');
-
-  const dotsContainer = createCustomElement('div', 'carousel-dots');
-  dotsContainer.appendChild(prevBtn);
-
-  for (let i = 0; i < blockChildren.length - 2; i++) {
-    const dot = createCustomElement('span', 'carousel-dot');
-    dot.addEventListener('click', () => {
-      currentIndex = i;
-      updateCarousel();
-      updateDots();
-    });
-    dotsContainer.appendChild(dot);
-  }
-
-  dotsContainer.appendChild(nextBtn);
-
   const getVisibleItems = () => {
     if (window.innerWidth >= 1200) {
       return 3;
-    } else {
-      return 2;
     }
+    return 2;
   };
-
-  const totalItems = blockChildren.length;
 
   const updateCarousel = () => {
     const offset = -currentIndex * (100 / getVisibleItems());
     innerContainer.style.transform = `translateX(${offset}%)`;
-  }
+  };
 
   const updateDots = () => {
     const dots = document.querySelectorAll('.carousel-dot');
@@ -94,11 +69,33 @@ export default async function decorate(block) {
         dot.classList.remove('active');
       }
     });
+  };
+
+  const prevBtn = createCustomElement('span', 'icon');
+  prevBtn.classList.add('icon-prev');
+
+  const nextBtn = createCustomElement('span', 'icon');
+  nextBtn.classList.add('icon-next');
+
+  const dotsContainer = createCustomElement('div', 'carousel-dots');
+  dotsContainer.appendChild(prevBtn);
+
+  for (let i = 0; i < blockChildren.length - 2; i += 1) {
+    const dot = createCustomElement('span', 'carousel-dot');
+    dot.addEventListener('click', () => {
+      currentIndex = i;
+      updateCarousel();
+      updateDots();
+    });
+    dotsContainer.appendChild(dot);
   }
+
+  dotsContainer.appendChild(nextBtn);
+  const totalItems = blockChildren.length;
 
   prevBtn.addEventListener('click', () => {
     if (currentIndex > 0) {
-      currentIndex--;
+      currentIndex -= 1;
     }
     updateCarousel();
     updateDots();
@@ -106,7 +103,7 @@ export default async function decorate(block) {
 
   nextBtn.addEventListener('click', () => {
     if (currentIndex < totalItems - getVisibleItems()) {
-      currentIndex++;
+      currentIndex += 1;
     }
     updateCarousel();
     updateDots();

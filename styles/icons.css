@@ -90,8 +90,6 @@
 
 .icon-prev:before {
   content: "\e927";
-  display: inline-block;
-  transform: rotateZ(180deg);
 }
 
 .icon-next:before {
