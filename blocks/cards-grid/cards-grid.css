@@ -77,7 +77,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 274px;
+  height: 27.4rem;
 }
 
 @media (width > 767px) {
