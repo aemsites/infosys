@@ -1,6 +1,8 @@
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM, loadScript } from './aem.js';
 
+const LAUNCH_SCRIPT = '//assets.adobedtm.com/launch-EN2b18572e35f846d5bd3e0f28964ee7c7.min.js';
+
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 
@@ -28,3 +30,6 @@ async function loadOneTrustScripts() {
 }
 
 loadOneTrustScripts();
+
+// Loading launch script for Adobe Analytics and Target
+loadScript(LAUNCH_SCRIPT);
