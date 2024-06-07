@@ -30,6 +30,8 @@ async function loadOneTrustScripts() {
 }
 
 loadOneTrustScripts();
-
-// Loading launch script for Adobe Analytics and Target
-loadScript(LAUNCH_SCRIPT);
+loadScript('/scripts/vendor/jquery.min.js', { type: 'text/javascript', charset: 'UTF-8' })
+  .then(() => {
+    // these scripts depend on jquery:
+    loadScript(LAUNCH_SCRIPT, { type: 'text/javascript', charset: 'UTF-8' });
+  });
