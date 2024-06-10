@@ -49,18 +49,22 @@ async function fetchData(url) {
 function getOptimalImageFromPictureTag(picture) {
   if (!picture) return '';
 
-  const sources = picture.querySelectorAll('source');
+  let sources = picture.querySelectorAll('source');
   let selectedSrc = '';
 
   if (sources && sources.length > 0) {
-    // Loop through source elements to find the first matching media query
-    for (const source of sources) {
-      if (source.media && window.matchMedia(source.media).matches) {
-        selectedSrc = source.srcset;
-        break;
-      } else if (!source.media) {
-        // If no media attribute is present, it's the default source
-        selectedSrc = source.srcset;
+    sources = Array.from(sources);
+    // Find the first source element that matches the media query
+    const matchingSource = sources
+      .find((source) => source.media && window.matchMedia(source.media).matches);
+
+    if (matchingSource) {
+      selectedSrc = matchingSource.srcset;
+    } else {
+      // Find the default source if no media attribute is present
+      const defaultSource = sources.find((source) => !source.media);
+      if (defaultSource) {
+        selectedSrc = defaultSource.srcset;
       }
     }
   }
