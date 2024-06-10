@@ -1,4 +1,4 @@
-import { createAemElement, getOptimalImageFromPictureTag } from '../../scripts/blocks-utils.js';
+import { createAemElement } from '../../scripts/blocks-utils.js';
 
 function getCurrentIndex(block) {
   const currentIndex = block.querySelector('.card-item.active');
@@ -42,22 +42,11 @@ function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
 
 function setBannerImage(banner, block) {
   const blockParentElement = block.parentElement;
-  // banner img id is same as banner id
-  // find banner id and search the same banner img id
   const bannerNumber = banner.id.split('-')[1];
-  const banners = blockParentElement.querySelectorAll('.banner-img');
-  if (banners && banners.length > 0) {
-    const activeBannerImg = banners[bannerNumber];
+  const activeBannerImg = blockParentElement.querySelector(`#banner-img-${bannerNumber}`);
+  if (activeBannerImg) {
     activeBannerImg.classList.add('active');
   }
-
-  // const bannerImg = banner.querySelector('.banner-img picture');
-  // const imgSrc = getOptimalImageFromPictureTag(bannerImg);
-  // Object.assign(blockParentElement.style, {
-  //   backgroundImage: `url(${imgSrc})`,
-  //   backgroundSize: 'cover',
-  //   backgroundRepeat: 'no-repeat',
-  // });
 }
 
 function stopAllActiveItems(block) {
@@ -177,9 +166,6 @@ function movePrevCard(block) {
 function decorateHeroBanners(block) {
   const bannerWrapper = createAemElement('div', { class: 'banner-wrapper' });
   const banners = [...block.children];
-  const heroSliderBlockWrapper = block.parentElement;
-  const heroSliderBackgroundDiv = createAemElement('div', { class: 'hero-slider-background' });
-  heroSliderBlockWrapper.prepend(heroSliderBackgroundDiv);
 
   banners.forEach((banner, index) => {
     banner.id = `banner-${index}`;
@@ -187,8 +173,8 @@ function decorateHeroBanners(block) {
 
     const bannerChildren = banner.children;
     const bannerImg = bannerChildren[0];
+    bannerImg.id = `banner-img-${index}`;
     bannerImg.classList.add('banner-img');
-    heroSliderBackgroundDiv.append(bannerImg.cloneNode(true));
 
     const bannerContent = bannerChildren[1];
     bannerContent.classList.add('banner-content');
@@ -196,6 +182,16 @@ function decorateHeroBanners(block) {
     bannerWrapper.appendChild(banner);
   });
   block.appendChild(bannerWrapper);
+
+  // decorate hero slider wrapper with background div
+  // move banner images to background div
+  const heroSliderBlockWrapper = block.parentElement;
+  const heroSliderBackgroundDiv = createAemElement('div', { class: 'hero-slider-background' });
+  heroSliderBlockWrapper.prepend(heroSliderBackgroundDiv);
+  const bannerImgs = block.querySelectorAll('.banner-img');
+  bannerImgs.forEach((bannerImg) => {
+    heroSliderBackgroundDiv.appendChild(bannerImg);
+  });
 }
 
 function decorateCardFindMoreButton(card) {
