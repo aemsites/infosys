@@ -81,11 +81,8 @@ function getOptimalImageFromPictureTag(picture) {
 }
 
 function preloadImage(picture) {
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'image';
-  link.href = getOptimalImageFromPictureTag(picture);
-  document.head.appendChild(link);
+  const img = new Image();
+  img.src = getOptimalImageFromPictureTag(picture);
 }
 
 export {
