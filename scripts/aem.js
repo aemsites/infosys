@@ -276,7 +276,7 @@ async function loadCSS(href) {
  * @param {string} src URL to the JS file
  * @param {Object} parameters additional optional attributes
  */
-async function loadScript(src, parameters = null) {
+async function loadScript(src, parameters) {
   return new Promise((resolve, reject) => {
     if (!document.querySelector(`head > script[src="${src}"]`)) {
       const script = document.createElement('script');
