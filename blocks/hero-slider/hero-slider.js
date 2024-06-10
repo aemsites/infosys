@@ -41,14 +41,14 @@ function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
 }
 
 function setBannerImage(banner, block) {
-  const blockParentElement = block.parentElement;
-  const bannerImg = banner.querySelector('.banner-img picture');
-  const imgSrc = getOptimalImageFromPictureTag(bannerImg);
-  Object.assign(blockParentElement.style, {
-    backgroundImage: `url(${imgSrc})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  });
+  // const blockParentElement = block.parentElement;
+  // const bannerImg = banner.querySelector('.banner-img picture');
+  // const imgSrc = getOptimalImageFromPictureTag(bannerImg);
+  // Object.assign(blockParentElement.style, {
+  //   backgroundImage: `url(${imgSrc})`,
+  //   backgroundSize: 'cover',
+  //   backgroundRepeat: 'no-repeat',
+  // });
 }
 
 function stopAllActiveItems(block) {
@@ -246,13 +246,13 @@ function decorateHeroSlidingCards(block) {
 }
 
 const setProgressBarPosition = (block) => {
-  // const cardsList = block.querySelector('.cards-list');
-	//
-  // if (cardsList.getAttribute('progress-bar') !== 'initialised') {
-  //   cardsList.setAttribute('progress-bar', 'initialised');
-  //   setActiveItemsByIndex(block, 0, 0);
-  //   startProgressBar(block, 0);
-  // }
+  const cardsList = block.querySelector('.cards-list');
+
+  if (cardsList.getAttribute('progress-bar') !== 'initialised') {
+    cardsList.setAttribute('progress-bar', 'initialised');
+    setActiveItemsByIndex(block, 0, 0);
+    startProgressBar(block, 0);
+  }
 };
 
 function onLoadSetItemsPosition(block) {
