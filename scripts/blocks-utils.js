@@ -80,9 +80,9 @@ function getOptimalImageFromPictureTag(picture) {
   return selectedSrc;
 }
 
-function preloadImage(picture) {
+function preloadImage(imgElement) {
   const img = new Image();
-  img.src = getOptimalImageFromPictureTag(picture);
+  img.src = imgElement.src;
 }
 
 export {

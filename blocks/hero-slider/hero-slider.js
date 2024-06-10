@@ -177,7 +177,7 @@ function decorateHeroBanners(block) {
     bannerImg.id = `banner-img-${index}`;
     bannerImg.classList.add('banner-img');
     // as these images are part of LCP, preloading them
-    preloadImage(picture);
+    preloadImage(bannerImg.querySelector('img'));
 
     const bannerContent = bannerChildren[1];
     bannerContent.classList.add('banner-content');
