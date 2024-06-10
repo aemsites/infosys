@@ -80,15 +80,9 @@ function getOptimalImageFromPictureTag(picture) {
   return selectedSrc;
 }
 
-function preloadImage(imgElement) {
-  const img = new Image();
-  img.src = imgElement.src;
-}
-
 export {
   createAemElement,
   createCustomElement,
   fetchData,
   getOptimalImageFromPictureTag,
-  preloadImage,
 };
