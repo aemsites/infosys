@@ -1,4 +1,4 @@
-import { createAemElement } from '../../scripts/blocks-utils.js';
+import { createAemElement, preloadImage } from '../../scripts/blocks-utils.js';
 
 function getCurrentIndex(block) {
   const currentIndex = block.querySelector('.card-item.active');
@@ -173,8 +173,11 @@ function decorateHeroBanners(block) {
 
     const bannerChildren = banner.children;
     const bannerImg = bannerChildren[0];
+    const picture = bannerImg.querySelector('picture');
     bannerImg.id = `banner-img-${index}`;
     bannerImg.classList.add('banner-img');
+    // as these images are part of LCP, preloading them
+    preloadImage(picture);
 
     const bannerContent = bannerChildren[1];
     bannerContent.classList.add('banner-content');

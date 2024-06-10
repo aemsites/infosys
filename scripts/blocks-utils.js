@@ -80,9 +80,18 @@ function getOptimalImageFromPictureTag(picture) {
   return selectedSrc;
 }
 
+function preloadImage(picture) {
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = getOptimalImageFromPictureTag(picture);
+  document.head.appendChild(link);
+}
+
 export {
   createAemElement,
   createCustomElement,
   fetchData,
   getOptimalImageFromPictureTag,
+  preloadImage,
 };
