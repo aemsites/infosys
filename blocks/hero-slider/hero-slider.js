@@ -1,4 +1,4 @@
-import { createAemElement } from '../../scripts/blocks-utils.js';
+import { createAemElement, getOptimalImageFromPictureTag } from '../../scripts/blocks-utils.js';
 
 function getCurrentIndex(block) {
   const currentIndex = block.querySelector('.card-item.active');
@@ -42,8 +42,8 @@ function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
 
 function setBannerImage(banner, block) {
   const blockParentElement = block.parentElement;
-  const bannerImg = banner.querySelector('.banner-img img');
-  const imgSrc = bannerImg.currentSrc ? bannerImg.currentSrc : bannerImg.src;
+  const bannerImg = banner.querySelector('.banner-img picture');
+  const imgSrc = getOptimalImageFromPictureTag(bannerImg);
   Object.assign(blockParentElement.style, {
     backgroundImage: `url(${imgSrc})`,
     backgroundSize: 'cover',
