@@ -246,13 +246,13 @@ function decorateHeroSlidingCards(block) {
 }
 
 const setProgressBarPosition = (block) => {
-  const cardsList = block.querySelector('.cards-list');
-
-  if (cardsList.getAttribute('progress-bar') !== 'initialised') {
-    cardsList.setAttribute('progress-bar', 'initialised');
-    setActiveItemsByIndex(block, 0, 0);
-    startProgressBar(block, 0);
-  }
+  // const cardsList = block.querySelector('.cards-list');
+	//
+  // if (cardsList.getAttribute('progress-bar') !== 'initialised') {
+  //   cardsList.setAttribute('progress-bar', 'initialised');
+  //   setActiveItemsByIndex(block, 0, 0);
+  //   startProgressBar(block, 0);
+  // }
 };
 
 function onLoadSetItemsPosition(block) {
