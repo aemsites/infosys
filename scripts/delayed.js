@@ -9,7 +9,9 @@ function getEnvType(hostname = window.location.hostname) {
     'www.infosys.com': 'prod',
     'infosys.com': 'prod',
     'main--infosys--aemsites.hlx.page': 'preview',
+    'main--infosyseds--infosys-is.hlx.page': 'preview',
     'main--infosys--aemsites.hlx.live': 'live',
+    'main--infosyseds--infosys-is.hlx.live': 'live',
   };
   return fqdnToEnvType[hostname] || 'dev';
 }
