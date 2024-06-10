@@ -41,14 +41,14 @@ function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
 }
 
 function setBannerImage(banner, block) {
-  // const blockParentElement = block.parentElement;
-  // const bannerImg = banner.querySelector('.banner-img picture');
-  // const imgSrc = getOptimalImageFromPictureTag(bannerImg);
-  // Object.assign(blockParentElement.style, {
-  //   backgroundImage: `url(${imgSrc})`,
-  //   backgroundSize: 'cover',
-  //   backgroundRepeat: 'no-repeat',
-  // });
+  const blockParentElement = block.parentElement;
+  const bannerImg = banner.querySelector('.banner-img picture');
+  const imgSrc = getOptimalImageFromPictureTag(bannerImg);
+  Object.assign(blockParentElement.style, {
+    backgroundImage: `url(${imgSrc})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  });
 }
 
 function stopAllActiveItems(block) {
@@ -90,7 +90,7 @@ function setActiveItemsByIndex(block, prevIndex, newIndex) {
   newBanner.classList.add('active');
   newCardItem.classList.add('active');
   newTile.classList.add('active');
-  setBannerImage(newBanner, block);
+  // setBannerImage(newBanner, block);
   updateVisibleCardItems(cardsList, prevIndex, newIndex);
 }
 
