@@ -42,13 +42,22 @@ function updateVisibleCardItems(cardsList, prevIndex, newIndex) {
 
 function setBannerImage(banner, block) {
   const blockParentElement = block.parentElement;
-  const bannerImg = banner.querySelector('.banner-img picture');
-  const imgSrc = getOptimalImageFromPictureTag(bannerImg);
-  Object.assign(blockParentElement.style, {
-    backgroundImage: `url(${imgSrc})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  });
+  // banner img id is same as banner id
+  // find banner id and search the same banner img id
+  const bannerNumber = banner.id.split('-')[1];
+  const banners = blockParentElement.querySelectorAll('.banner-img');
+  if (banners && banners.length > 0) {
+    const activeBannerImg = banners[bannerNumber];
+    activeBannerImg.classList.add('active');
+  }
+
+  // const bannerImg = banner.querySelector('.banner-img picture');
+  // const imgSrc = getOptimalImageFromPictureTag(bannerImg);
+  // Object.assign(blockParentElement.style, {
+  //   backgroundImage: `url(${imgSrc})`,
+  //   backgroundSize: 'cover',
+  //   backgroundRepeat: 'no-repeat',
+  // });
 }
 
 function stopAllActiveItems(block) {
@@ -62,6 +71,13 @@ function stopAllActiveItems(block) {
   if (currentActiveBanners && currentActiveBanners.length > 0) {
     currentActiveBanners.forEach((banner) => {
       banner.classList.remove('active');
+    });
+  }
+
+  const currentActiveBannerImgs = block.parentElement.querySelectorAll('.banner-img.active');
+  if (currentActiveBannerImgs && currentActiveBannerImgs.length > 0) {
+    currentActiveBannerImgs.forEach((bannerImg) => {
+      bannerImg.classList.remove('active');
     });
   }
 
@@ -80,7 +96,7 @@ function stopAllActiveItems(block) {
 
 function setActiveItemsByIndex(block, prevIndex, newIndex) {
   const cardsList = block.querySelector('.cards-list');
-  const newBanner = block.querySelector(`.banner-${newIndex}`);
+  const newBanner = block.querySelector(`#banner-${newIndex}`);
   const newCardItem = block.querySelector(`.card-${newIndex}`);
   const newTile = block.querySelector(`.tile-${newIndex}`);
   // make sure all active items are stopped before setting new active items
@@ -90,7 +106,7 @@ function setActiveItemsByIndex(block, prevIndex, newIndex) {
   newBanner.classList.add('active');
   newCardItem.classList.add('active');
   newTile.classList.add('active');
-  // setBannerImage(newBanner, block);
+  setBannerImage(newBanner, block);
   updateVisibleCardItems(cardsList, prevIndex, newIndex);
 }
 
@@ -161,13 +177,18 @@ function movePrevCard(block) {
 function decorateHeroBanners(block) {
   const bannerWrapper = createAemElement('div', { class: 'banner-wrapper' });
   const banners = [...block.children];
+  const heroSliderBlockWrapper = block.parentElement;
+  const heroSliderBackgroundDiv = createAemElement('div', { class: 'hero-slider-background' });
+  heroSliderBlockWrapper.prepend(heroSliderBackgroundDiv);
 
   banners.forEach((banner, index) => {
-    banner.classList.add('banner', `banner-${index}`);
+    banner.id = `banner-${index}`;
+    banner.classList.add('banner');
 
     const bannerChildren = banner.children;
     const bannerImg = bannerChildren[0];
     bannerImg.classList.add('banner-img');
+    heroSliderBackgroundDiv.append(bannerImg.cloneNode(true));
 
     const bannerContent = bannerChildren[1];
     bannerContent.classList.add('banner-content');
