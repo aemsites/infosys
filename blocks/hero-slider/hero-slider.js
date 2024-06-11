@@ -207,13 +207,13 @@ function decorateCardFindMoreButton(card) {
 function decorateArrowControls(block) {
   const leftControl = createAemElement(
     'button',
-    { class: 'arrow left', 'area-label': 'previous' },
+    { class: 'arrow left', 'aria-label': 'previous' },
   );
   leftControl.addEventListener('click', () => movePrevCard(block));
 
   const rightControl = createAemElement(
     'button',
-    { class: 'arrow right', 'area-label': 'next' },
+    { class: 'arrow right', 'aria-label': 'next' },
   );
   rightControl.addEventListener('click', () => moveNextCard(block));
   const arrowControls = createAemElement('div', { class: 'arrow-controls' }, null, leftControl, rightControl);
