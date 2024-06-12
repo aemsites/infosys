@@ -206,6 +206,12 @@ function decorateCardFindMoreButton(card) {
   findMore.prepend(findMoreLongRightArrowIcon);
   findMore.prepend(findMoreIcon);
   findMore.classList.add('find-more');
+
+  // adding more context to the title
+  const cardHeading = card.querySelector('h4');
+  if (cardHeading) {
+    findMore.title = `${findMore.textContent}: ${cardHeading.textContent}`;
+  }
 }
 
 function decorateArrowControls(block) {
