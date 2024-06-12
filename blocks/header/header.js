@@ -157,7 +157,9 @@ export default async function decorate(block) {
 
   // making search icon accessible
   const searchLink = nav.querySelector('a:has(.icon-search)');
-  searchLink.setAttribute('aria-label', 'Search');
+  if (searchLink) {
+    searchLink.setAttribute('aria-label', 'Search');
+  }
 
   // hamburger for mobile
   const hamburger = document.createElement('div');
