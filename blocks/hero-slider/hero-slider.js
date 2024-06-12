@@ -207,10 +207,10 @@ function decorateCardFindMoreButton(card) {
   findMore.prepend(findMoreIcon);
   findMore.classList.add('find-more');
 
-  // adding more context to the title
+  // seo: making link descriptive
   const cardHeading = card.querySelector('h4');
   if (cardHeading) {
-    findMore.title = `${findMore.textContent}: ${cardHeading.textContent}`;
+    findMore.title = cardHeading.textContent;
   }
 }
 
