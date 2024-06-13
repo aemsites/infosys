@@ -55,7 +55,7 @@ const showPopupDiv = (div) => {
   const subscriptionDiv = div.querySelector('.box');
   subscriptionDiv.style.display = 'none';
   const subscriptionPopUpDiv = div.querySelector('.popup');
-  subscriptionPopUpDiv.style.display = 'block';
+  subscriptionPopUpDiv.classList.add('show');
   subscriptionPopUpDiv.style.top = subscriptionDiv.offsetTop - 100;
 };
 
