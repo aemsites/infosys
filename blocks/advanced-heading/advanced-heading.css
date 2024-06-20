@@ -6,6 +6,7 @@
 
 .advanced-heading.heading-button p {
  all: unset;
+ padding-top: 1rem;
 }
 
 .advanced-heading.heading-button a {
