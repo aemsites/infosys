@@ -108,7 +108,6 @@ const decoratePopupDiv = async (popupDiv) => {
         e.preventDefault();
         const valid = form.checkValidity() && checkEmailDomain(form);
         if (valid) {
-          handleSubmit(form);
           handleSubmitExternal(form);
         } else {
           const firstInvalidEl = form.querySelector(':invalid:not(fieldset)');
