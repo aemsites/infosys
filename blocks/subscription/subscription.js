@@ -7,18 +7,19 @@ const handleSubmitExternal = async (form) => {
   let params = `camFormName=connect-iki&camId=null&camCustId=null&email=${email}`
     + `&Source=${source}&referral_source=${window.location.search.substring(1)}`;
 
-  if (window.Dmdbase_CDC) {
-    params += `&opt-in-comm=Yes&country=${Dmdbase_CDC.CompanyProfile.country_name}`
-      + `&demandbase_sid=${Dmdbase_CDC.CompanyProfile.demandbase_sid}`
-      + `&industry=${Dmdbase_CDC.CompanyProfile.industry}`
-      + `&sub_industry=${Dmdbase_CDC.CompanyProfile.sub_industry}`
-      + `&company_name=${Dmdbase_CDC.CompanyProfile.company_name}`
-      + `&revenue_range=${Dmdbase_CDC.CompanyProfile.revenue_range}`
-      + `&city=${Dmdbase_CDC.CompanyProfile.city}`
-      + `&state=${Dmdbase_CDC.CompanyProfile.state}`
-      + `&zip=${Dmdbase_CDC.CompanyProfile.registry_zip_code} `
-      + `&fortune_1000=${Dmdbase_CDC.CompanyProfile.fortune_1000} `
-      + `&forbes_2000=${Dmdbase_CDC.CompanyProfile.forbes_2000} `
+  const dmdBaseCDC = window.Dmdbase_CDC;
+  if (dmdBaseCDC) {
+    params += `&opt-in-comm=Yes&country=${dmdBaseCDC.CompanyProfile.country_name}`
+      + `&demandbase_sid=${dmdBaseCDC.CompanyProfile.demandbase_sid}`
+      + `&industry=${dmdBaseCDC.CompanyProfile.industry}`
+      + `&sub_industry=${dmdBaseCDC.CompanyProfile.sub_industry}`
+      + `&company_name=${dmdBaseCDC.CompanyProfile.company_name}`
+      + `&revenue_range=${dmdBaseCDC.CompanyProfile.revenue_range}`
+      + `&city=${dmdBaseCDC.CompanyProfile.city}`
+      + `&state=${dmdBaseCDC.CompanyProfile.state}`
+      + `&zip=${dmdBaseCDC.CompanyProfile.registry_zip_code} `
+      + `&fortune_1000=${dmdBaseCDC.CompanyProfile.fortune_1000} `
+      + `&forbes_2000=${dmdBaseCDC.CompanyProfile.forbes_2000} `
       + '&watch_list_account_type='
       + '&watch_list_account_status='
       + '&db_country_name_ip='
