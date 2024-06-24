@@ -22,6 +22,10 @@
   padding: 0 1.5rem;
 }
 
+.footer .footer-links .row .links-column .link-container {
+    display: flex;
+}
+
 .footer .footer-links .links-title {
   color: var(--text-color);
   font-size: var(--body-font-size-m);

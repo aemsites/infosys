@@ -14,11 +14,18 @@ function traverseAndPrint(element, level, columnDiv) {
       columnDiv.appendChild(title);
     } else if (level === 3) {
       if (element.children.length > 1) {
+        let linkContainer;
+        if (columnDiv.querySelector('.link-container') === null) {
+          linkContainer = createCustomElement('div', 'link-container');
+          columnDiv.appendChild(linkContainer);
+        } else {
+          linkContainer = columnDiv.querySelector('.link-container');
+        }
         const link = element.children[0];
         link.classList.add('icons-link');
         const icon = element.children[1].querySelector('img');
         link.appendChild(icon);
-        columnDiv.appendChild(link);
+        linkContainer.appendChild(link);
       } else {
         columnDiv.appendChild(element.children[0]);
       }
