@@ -22,6 +22,7 @@ function traverseAndPrint(element, level, columnDiv) {
           linkContainer = columnDiv.querySelector('.link-container');
         }
         const link = element.children[0];
+        link.setAttribute('target', '_blank');
         link.classList.add('icons-link');
         const icon = element.children[1].querySelector('img');
         link.appendChild(icon);
