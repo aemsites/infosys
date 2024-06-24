@@ -47,8 +47,8 @@
 
 .footer .footer-links .links-column a.icons-link {
   display: inline-block;
+  vertical-align: top;
   padding: 0 0.5rem;
-  font-size: 0;
 }
 
 .footer .row {
