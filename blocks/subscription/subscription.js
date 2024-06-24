@@ -4,7 +4,7 @@ import { createForm } from '../form/form.js';
 const handleSubmitExternal = async (form) => {
   const email = form.querySelector('.input-txt input').value;
   const source = 'IKI Footer Subscribe';
-  const params = `camFormName=connect-iki&camId=null&camCustId=null&email=${email}`
+  let params = `camFormName=connect-iki&camId=null&camCustId=null&email=${email}`
     + `&Source=${source}&referral_source=${window.location.search.substring(1)}`;
 
   if (window.Dmdbase_CDC) {
@@ -43,9 +43,6 @@ const handleSubmitExternal = async (form) => {
       thankyoudiv.appendChild(h4);
       thankyoudiv.style.display = 'block';
       form.parentElement.appendChild(thankyoudiv);
-    })
-    .catch((error) => {
-      console.error(error);
     });
 };
 
