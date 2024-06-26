@@ -5,8 +5,8 @@ header {
   box-shadow: 0 1px 4px rgb(0 0 0 / 16%);
   z-index: 1000;
 
-  --header-font-size-m: 18px;
-  --header-font-size-s: 16px;
+  --header-font-size-m: 20px;
+  --header-font-size-s: 18px;
 }
 
 /* header and nav layout */
@@ -28,7 +28,7 @@ header nav {
   margin: auto;
   max-width: var(--content-width);
   height: var(--nav-height);
-  padding: 0 1rem;
+  padding-inline: var(--padding-inline);
   font-family: var(--body-font-family);
 }
 
@@ -80,7 +80,7 @@ header nav[aria-expanded="true"] .nav-container .nav-sections .icon-down-arrow {
   display: none;
 }
 
-header nav[aria-expanded="true"] .nav-sections ul > li {
+header nav[aria-expanded="true"] .nav-sections > div > ul > li:not(:hover) {
   border-bottom: 1px solid rgb(112 112 112 / 20%);
   color: var(--black-olive);
 }
@@ -96,7 +96,7 @@ header nav[aria-expanded="true"] .nav-sections p {
   display: inline-block;
 }
 
-header nav[aria-expanded="true"] .nav-sections ul > li.nav-drop:hover {
+header nav .nav-sections ul > li:hover {
   color: var(--bright-blue)
 }
 
@@ -260,7 +260,7 @@ header nav .nav-sections ul, header nav .nav-tools ul  {
 
 /* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-sections ul > li {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -270,7 +270,8 @@ header nav .nav-sections ul > li > ul {
 
 /* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-sections ul > li > ul > li {
-  font-weight: 500;
+  font-weight: 300;
+  padding: 1rem;
 }
 
 @media (width >= 993px) {
@@ -314,6 +315,10 @@ header nav .nav-sections ul > li > ul > li {
     gap: 2rem;
     margin: 0;
     justify-content: flex-end;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li:first-child {
+    font-weight: 600;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
@@ -458,19 +463,19 @@ header nav .nav-container {
     padding-right: 1rem;
     font-size: var(--header-font-size-s);
   }
+
+  header nav .nav-sections ul > li {
+    font-weight: 700;
+  }
 }
 
-@media (width >= 1401px) {
+@media (width >= 1451px) {
   header nav .nav-container {
-    width: calc(100% - 80px);
+    width: 100%;
   }
 }
 
 @media (width >= 1601px) {
-  header {
-    --header-font-size-m: 22px;
-    --header-font-size-s: 20px;
-  }
 
   header nav .nav-sections ul {
     gap: 6rem;
