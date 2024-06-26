@@ -321,7 +321,7 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .default-content-wrapper > ul > li:first-child {
     font-weight: 600;
-    color: #3f3f3f;
+    color: var(--black-olive);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
