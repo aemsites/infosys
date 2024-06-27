@@ -80,13 +80,18 @@ header nav[aria-expanded="true"] .nav-container .nav-sections .icon-down-arrow {
   display: none;
 }
 
-header nav[aria-expanded="true"] .nav-sections > div > ul > li:not(:hover) {
-  border-bottom: 1px solid rgb(112 112 112 / 20%);
-  color: var(--black-olive);
+
+header nav .nav-sections ul > li:hover, header nav .nav-sections ul li:not(.nav-drop):hover a:any-link {
+  color: var(--bright-blue)
 }
 
 header nav[aria-expanded="false"] .nav-sections ul > li:last-child, header nav[aria-expanded="false"] .nav-sections p {
   display: none;
+}
+
+header nav[aria-expanded="true"] .nav-sections > div > ul > li:not(:hover) {
+  border-bottom: 1px solid rgb(112 112 112 / 20%);
+  color: var(--black-olive);
 }
 
 header nav[aria-expanded="true"] .nav-sections p {
@@ -94,10 +99,6 @@ header nav[aria-expanded="true"] .nav-sections p {
   color: var(--gray);
   font-size: 1.6rem;
   display: inline-block;
-}
-
-header nav .nav-sections ul > li:hover, header nav .nav-sections ul li:not(.nav-drop):hover a:any-link {
-  color: var(--bright-blue)
 }
 
 header nav .nav-sections .default-content-wrapper > ul > li > ul {
@@ -132,6 +133,7 @@ header nav p {
   line-height: 1;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav a:any-link {
   color: var(--black-olive);
   text-decoration: none;
@@ -319,11 +321,6 @@ header nav .nav-sections ul > li > ul > li {
     justify-content: flex-end;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li:first-child {
-    font-weight: 600;
-    color: var(--black-olive);
-  }
-
   header nav .nav-sections .default-content-wrapper > ul > li {
     flex: 0 1 auto;
     position: relative;
@@ -336,6 +333,11 @@ header nav .nav-sections ul > li > ul > li {
     font-size: var(--header-font-size-s);
     color: var(--dark-gunmetal);
     border-bottom: 1px solid rgb(112 112 112 / 20%);
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li:first-child {
+    font-weight: 600;
+    color: var(--black-olive);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li:hover, header nav .nav-tools .default-content-wrapper > ul > li:hover {
@@ -474,7 +476,6 @@ header nav .nav-container {
 }
 
 @media (width >= 1601px) {
-
   header nav .nav-sections ul {
     gap: 6rem;
   }
