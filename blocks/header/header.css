@@ -54,7 +54,7 @@ header nav[aria-expanded="false"] .nav-hamburger span.icon.open {
 header nav[aria-expanded="true"] .nav-container {
  align-self: flex-start;
  grid-column: 1 / span 2;
- border-top: 2px solid rgb(112 112 112 / 50%);
+ border-top: 3px solid rgb(112 112 112 / 50%);
 }
 
 header nav[aria-expanded="true"] .nav-container .nav-brand {
@@ -96,7 +96,7 @@ header nav[aria-expanded="true"] .nav-sections p {
   display: inline-block;
 }
 
-header nav .nav-sections ul > li:hover {
+header nav .nav-sections ul > li:hover, header nav .nav-sections ul li:not(.nav-drop):hover a:any-link {
   color: var(--bright-blue)
 }
 
