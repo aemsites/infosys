@@ -119,17 +119,6 @@ function decorateAccordion(block) {
   );
 }
 
-function onLoadHandler(block) {
-  document.addEventListener('load', () => {
-    const dataLoaded = block.getAttribute('data-loaded');
-    if (dataLoaded === 'true') return;
-    animateContent(block);
-    block.setAttribute('data-loaded', 'true');
-  }, true);
-}
-
 export default function decorate(block) {
-  block.setAttribute('data-loaded', 'false');
   decorateAccordion(block);
-  onLoadHandler(block);
 }
