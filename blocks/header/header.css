@@ -80,7 +80,6 @@ header nav[aria-expanded="true"] .nav-container .nav-sections .icon-down-arrow {
   display: none;
 }
 
-
 header nav .nav-sections ul > li:hover, header nav[aria-expanded="true"] .nav-sections ul li:not(.nav-drop):hover a:any-link {
   color: var(--bright-blue)
 }
@@ -340,7 +339,7 @@ header nav .nav-sections ul > li > ul > li {
     color: var(--black-olive);
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li:hover, header nav .nav-tools .default-content-wrapper > ul > li:hover {
+  header nav .nav-sections .default-content-wrapper > ul li:hover, header nav .nav-tools .default-content-wrapper > ul > li:hover {
     color: var(--bright-blue);
   }
 
