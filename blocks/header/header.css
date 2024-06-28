@@ -81,11 +81,11 @@ header nav[aria-expanded="true"] .nav-container .nav-sections .icon-down-arrow {
 }
 
 
-header nav .nav-sections ul > li:hover, header nav .nav-sections ul li:not(.nav-drop):hover a:any-link {
+header nav .nav-sections ul > li:hover, header nav[aria-expanded="true"] .nav-sections ul li:not(.nav-drop):hover a:any-link {
   color: var(--bright-blue)
 }
 
-header nav[aria-expanded="false"] .nav-sections ul > li:last-child, header nav[aria-expanded="false"] .nav-sections p {
+header nav[aria-expanded="false"] .nav-sections p {
   display: none;
 }
 
