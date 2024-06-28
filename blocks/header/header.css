@@ -85,7 +85,7 @@ header nav .nav-sections ul > li:hover, header nav[aria-expanded="true"] .nav-se
   color: var(--bright-blue)
 }
 
-header nav[aria-expanded="false"] .nav-sections p {
+header nav[aria-expanded="false"] .nav-sections ul:first-child > li:last-child, header nav[aria-expanded="false"] .nav-sections p {
   display: none;
 }
 
