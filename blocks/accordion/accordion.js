@@ -33,13 +33,6 @@ function handleAccordionSwitch(block) {
   titles[openIndex].click();
 }
 
-function animateContent(block) {
-  const contents = block.querySelectorAll('.item-content');
-  contents.forEach((content) => {
-    content.classList.add('animate');
-  });
-}
-
 function setTitleBgImg(titleDiv, itemContent) {
   const picture = itemContent.querySelector('.item-content-image picture');
   if (picture) {
