@@ -84,13 +84,13 @@ header nav .nav-sections ul > li:hover, header nav[aria-expanded="true"] .nav-se
   color: var(--bright-blue)
 }
 
-header nav[aria-expanded="false"] .nav-sections ul:first-child > li:last-child, header nav[aria-expanded="false"] .nav-sections p {
-  display: none;
-}
-
 header nav[aria-expanded="true"] .nav-sections > div > ul > li:not(:hover) {
   border-bottom: 1px solid rgb(112 112 112 / 20%);
   color: var(--black-olive);
+}
+
+header nav[aria-expanded="false"] .nav-sections ul:first-child > li:last-child, header nav[aria-expanded="false"] .nav-sections p {
+  display: none;
 }
 
 header nav[aria-expanded="true"] .nav-sections p {
@@ -423,10 +423,12 @@ header nav .nav-tools ul li:has(span.icon-share) {
   transform: translate(0, 3px);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav[aria-expanded="true"] .nav-tools ul li:has(span.icon-share) {
   display: block;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav[aria-expanded="false"] .nav-tools ul li:has(span.icon-search) {
   display: block;
 }
