@@ -140,6 +140,7 @@ header nav a:any-link {
   text-decoration: none;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav a:any-link:hover {
   color: unset;
 }
