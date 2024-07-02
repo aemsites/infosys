@@ -14,7 +14,6 @@ header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
   z-index: 2;
-  position: fixed;
 }
 
 header nav {
@@ -84,8 +83,11 @@ header nav .nav-sections ul > li:hover, header nav[aria-expanded="true"] .nav-se
   color: var(--bright-blue)
 }
 
-header nav[aria-expanded="true"] .nav-sections > div > ul > li:not(:hover) {
+header nav[aria-expanded="true"] .nav-sections > div > ul > li {
   border-bottom: 1px solid rgb(112 112 112 / 20%);
+}
+
+header nav[aria-expanded="true"] .nav-sections > div > ul > li:not(:hover) {
   color: var(--black-olive);
 }
 
@@ -136,6 +138,10 @@ header nav p {
 header nav a:any-link {
   color: var(--black-olive);
   text-decoration: none;
+}
+
+header nav a:any-link:hover {
+  color: unset;
 }
 
 /* hamburger */
@@ -243,8 +249,7 @@ header nav .nav-sections {
   flex: 1 1 auto;
   display: none;
   visibility: hidden;
-  background-color: var(--overlay-color);
-  font-size: var(--header-font-size-m);
+  font-size: var(--header-font-size-s);
 }
 
 header nav[aria-expanded="true"] .nav-sections {
@@ -263,6 +268,7 @@ header nav .nav-sections ul, header nav .nav-tools ul  {
 /* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-sections ul > li {
   font-weight: 600;
+  padding-block: 1rem;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
