@@ -129,6 +129,10 @@ export default async function decorate(block) {
   [...block.children].forEach((row) => {
     const titleLinkDiv = row.children[0];
     const popupDiv = row.children[1];
+    const links = row.querySelectorAll('a');
+    links.forEach((link) => {
+      link.setAttribute('target', '_blank');
+    });
 
     if (titleLinkDiv) {
       const colDiv = decorateColumnDiv(titleLinkDiv);
