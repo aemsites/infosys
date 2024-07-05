@@ -425,7 +425,7 @@ function wrapTextNodes(block) {
  * @returns {string} alt text
  */
 function generateAltText(iconName) {
-    return iconName.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (str) => str.toUpperCase());
+  return iconName.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (str) => str.toUpperCase());
 }
 
 /**
