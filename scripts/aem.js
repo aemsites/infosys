@@ -420,7 +420,8 @@ function wrapTextNodes(block) {
   });
 }
 
-/** Generate Alt Text from an Icon Name
+/**
+ * Generate Alt Text from an Icon Name
  * @param {string} iconName
  * @returns {string} alt text
  */
