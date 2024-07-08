@@ -421,6 +421,15 @@ function wrapTextNodes(block) {
 }
 
 /**
+ * Generate Alt Text from an Icon Name
+ * @param {string} iconName
+ * @returns {string} alt text
+ */
+function generateAltText(iconName) {
+  return iconName.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (str) => str.toUpperCase());
+}
+
+/**
  * Decorates paragraphs containing a single link as buttons.
  * @param {Element} element container element
  */
@@ -479,7 +488,7 @@ function decorateIcon(span, prefix = '', alt = '') {
     const img = document.createElement('img');
     img.dataset.iconName = fullIconName;
     img.src = `${window.hlx.codeBasePath}${prefix}/icons/${fullIconName}.svg`;
-    img.alt = alt;
+    img.alt = alt || generateAltText(fullIconName);
     img.loading = 'lazy';
     span.append(img);
   }
