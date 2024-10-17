@@ -86,9 +86,9 @@ const copyToClipboard = () => {
 
 export default async function decorate(block) {
   const socialLinks = Array.from(block.children).map((socialItem) => {
-    const iconClass = socialItem?.children[0]?.querySelector('.icon').className;
+    const iconSpan = socialItem?.children[0]?.querySelector('.icon');
     const text = socialItem?.children[1]?.querySelector('p').textContent.trim();
-    return { iconClass, text };
+    return { iconSpan, text };
   });
 
   // Clear the original content
@@ -110,17 +110,14 @@ export default async function decorate(block) {
   };
 
   // Create new structure
-  socialLinks.forEach(({ iconClass, text }) => {
+  socialLinks.forEach(({ iconSpan, text }) => {
+    const iconClass = iconSpan.className;
     const platform = iconClass.substring(iconClass.indexOf('icon-') + 5);
     const a = document.createElement('a');
     a.href = '#';
     a.onclick = generateOnClick(platform);
     a.className = 'social';
     a.title = text;
-
-    const iconSpan = document.createElement('span');
-    iconSpan.className = iconClass;
-
     a.appendChild(iconSpan);
     block.appendChild(a);
   });
