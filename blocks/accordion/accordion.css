@@ -6,6 +6,36 @@
   all: unset;
 }
 
+.accordion li.active .item-title::after {
+  transform: rotate(-135deg) translateX(50%);
+}
+
+.accordion ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+  min-height: 60rem;
+  overflow: hidden;
+}
+
+.accordion li {
+  flex: 0;
+  display: flex;
+  align-items: stretch;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  filter: grayscale(100%);
+  position: relative;
+}
+
+.accordion li.active {
+  flex: 5;
+  cursor: default;
+  filter: grayscale(0);
+}
+
 .accordion .item-title::before {
   content: "";
   position: absolute;
@@ -19,12 +49,6 @@
   z-index: -1;
 }
 
-@media (width > 990px) {
-  .accordion .item-title::before {
-    transform: rotate(180deg);
-  }
-}
-
 .accordion .item-title {
   cursor: pointer;
   display: flex;
@@ -32,11 +56,12 @@
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(
-                rgb(255 255 255 / 0%),
-                rgb(0 0 0 / 80%));
+    rgb(255 255 255 / 0%),
+    rgb(0 0 0 / 80%));
   color: white;
   filter: grayscale(100%);
   z-index: 1;
+  width: 100%;
 }
 
 .accordion .item-title h4 {
@@ -49,33 +74,6 @@
   z-index: 1;
 }
 
-@media (width > 767px) {
-  .accordion {
-    display: flex;
-    flex-direction: row;
-    min-height: 60rem;
-    max-height: 60rem;
-  }
-
-  .accordion .item-title {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    width: 8rem;
-  }
-
-  .accordion .item-title h4 {
-    padding: 0;
-  }
-}
-
-.accordion .item-title.open {
-  display: none;
-}
-
-.accordion .item-title.open::after {
-    transform: rotate(-135deg) translateX(50%);
-}
-
 .accordion .item-content {
   display: none;
   position: relative;
@@ -83,13 +81,21 @@
   background: none no-repeat center;
   background-size: cover;
   width: 100%;
-  height: 31.2rem;
+  flex: 0;
+  opacity: 0;
+  transition: all 2s ease;
 }
 
-@media (width > 767px) {
-  .accordion .item-content {
-    height: unset;
-  }
+.accordion li.active .item-title {
+  display: none;
+}
+
+.accordion li.active .item-content {
+  flex: 4;
+  opacity: 1;
+  display: flex;
+  transform: scaleX(1);
+  z-index: 1;
 }
 
 .accordion .overlay {
@@ -119,23 +125,6 @@
   height: 100%;
 }
 
-@media (width > 767px) {
-  .accordion .item-content.overlay::after {
-    height: 40rem;
-  }
-}
-
-@media (width > 767px) {
-  .accordion .item-title.overlay::after {
-    display: none;
-  }
-}
-
-.accordion .item-title.open + .item-content {
-  display: block;
-  filter: grayscale(0);
-}
-
 .accordion .item-content-image {
   position: absolute;
   left: 0;
@@ -163,12 +152,6 @@
   bottom: 2rem;
 }
 
-@media (width > 767px) {
-  .accordion .item-content-main {
-    bottom: 3rem;
-  }
-}
-
 .accordion .item-content-main h3 {
   font-family: inherit;
   font-size: var(--heading-font-size-l);
@@ -184,13 +167,6 @@
   line-height: 1.45;
 }
 
-@media (width > 767px) {
-  .accordion .item-content-main p {
-    font-size: var(--body-font-size-m);
-    margin-top: 1rem;
-  }
-}
-
 .accordion .icon-long-right-arrow {
   display: inline-block;
   cursor: pointer;
@@ -200,4 +176,57 @@
   content: "";
   color: white;
   font-size: 2rem;
+}
+
+@media (width > 767px) {
+  .accordion {
+    display: flex;
+    min-height: 60rem;
+    max-height: 60rem;
+  }
+
+  .accordion ul {
+    flex-direction: row;
+  }
+
+  .accordion li.active {
+    height: unset;
+  }
+
+  .accordion .item-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    width: 8rem;
+  }
+
+  .accordion .item-title h4 {
+    padding: 0;
+  }
+
+  .accordion .item-title.overlay::after {
+    display: none;
+  }
+
+  .accordion .item-content {
+    transition: all 0.25s 0.1s ease-out;
+  }
+
+  .accordion .item-content.overlay::after {
+    height: 40rem;
+  }
+
+  .accordion .item-content-main {
+    bottom: 3rem;
+  }
+
+  .accordion .item-content-main p {
+    font-size: var(--body-font-size-m);
+    margin-top: 1rem;
+  }
+}
+
+@media (width > 990px) {
+  .accordion .item-title::before {
+    transform: rotate(180deg);
+  }
 }
