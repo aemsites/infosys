@@ -33,6 +33,13 @@ function handleAccordionSwitch(block) {
   titles[openIndex].click();
 }
 
+function animateContent(block) {
+  const contents = block.querySelectorAll('.item-content');
+  contents.forEach((content) => {
+    content.classList.add('animate');
+  });
+}
+
 function setTitleBgImg(titleDiv, itemContent) {
   const picture = itemContent.querySelector('.item-content-image picture');
   if (picture) {
@@ -112,6 +119,17 @@ function decorateAccordion(block) {
   );
 }
 
+function onLoadHandler(block) {
+  document.addEventListener('load', () => {
+    const dataLoaded = block.getAttribute('data-loaded');
+    if (dataLoaded === 'true') return;
+    animateContent(block);
+    block.setAttribute('data-loaded', 'true');
+  }, true);
+}
+
 export default function decorate(block) {
+  block.setAttribute('data-loaded', 'false');
   decorateAccordion(block);
+  onLoadHandler(block);
 }
