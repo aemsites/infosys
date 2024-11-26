@@ -112,14 +112,14 @@
 @media (width >= 376px) {
   :root {
     --heading-font-size-xxl: calc(5.6 * var(--base-font-size));
-    --heading-font-size-xl: calc(4.6 * var(--base-font-size));
+    --heading-font-size-xl: 4.14rem;
   }
 }
 
 @media (width >= 768px) {
   :root {
     --heading-font-size-xxl: calc(8 * var(--base-font-size));
-    --heading-font-size-xl: calc(7 * var(--base-font-size));
+    --heading-font-size-xl: 6.3rem;
   }
 }
 
