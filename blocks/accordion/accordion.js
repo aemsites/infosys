@@ -55,13 +55,14 @@ function decorateContentLink(contentMainDiv) {
   }
 }
 
-function decorateContent(block, content) {
+function decorateContent(block, li, content) {
   if (!content) return;
   const children = [...content.children];
   const imageDiv = children[0];
   const contentMainDiv = children[1];
   content.classList.add('item-content', 'overlay');
   imageDiv.classList.add('item-content-image');
+  li.prepend(imageDiv);
   contentMainDiv.classList.add('item-content-main');
   const contentTitle = contentMainDiv.querySelector('h3');
   const titleDiv = content.previousElementSibling;
@@ -83,7 +84,7 @@ function createAccordionList(block) {
     const li = createAemElement('li', { class: 'item' });
     title.classList.add('item-title', 'overlay');
     const content = title.nextElementSibling;
-    decorateContent(block, content);
+    decorateContent(block, li, content);
     li.append(title, content);
     if (index === 0) {
       li.classList.add('active');

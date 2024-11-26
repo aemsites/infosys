@@ -112,20 +112,20 @@
 @media (width >= 376px) {
   :root {
     --heading-font-size-xxl: calc(5.6 * var(--base-font-size));
-    --heading-font-size-xl: calc(4.6 * var(--base-font-size));
+    --heading-font-size-xl: 4.14rem;
   }
 }
 
 @media (width >= 768px) {
   :root {
     --heading-font-size-xxl: calc(8 * var(--base-font-size));
-    --heading-font-size-xl: calc(7 * var(--base-font-size));
+    --heading-font-size-xl: 6.3rem;
   }
 }
 
 @media (width >= 992px) {
   :root {
-    --base-font-size: 9px;
+    --base-font-size: 8px;
     --heading-font-size-xxl: calc(8 * var(--base-font-size));
     --heading-font-size-xl: calc(7 * var(--base-font-size));
     --heading-font-size-l: calc(3 * var(--base-font-size));
@@ -347,17 +347,37 @@ main .section h2:first-of-type {
   margin: 0;
 }
 
-main .section.separator-top {
-  padding-top: 64px;
+main .section {
+  padding-block: 0;
 }
 
-main .section.separator-bottom {
-  padding-bottom: 128px;
+main .section.separator-top {
+  padding-top: 4.8rem;
 }
 
 main .section .block:not(.no-block-separator) {
-  padding-top: 48px;
+  padding-top: 1.6rem;
 }
+
+@media (width >= 768px) {
+  main .section.separator-top {
+    padding-top: 8.2rem;
+  }
+
+  main .section.separator-bottom-tablet-plus {
+    padding-bottom: 16.8rem;
+  }
+
+  main .section.gray-background-tablet-plus {
+    background: var(--footer-links-bg-color);
+  }
+
+  main .section .block:not(.no-block-separator) {
+    padding-top: 3.4rem;
+  }
+}
+
+
 
 main .section > div > div.full-width,
 main .section > div:has(div.full-width) {
