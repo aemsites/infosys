@@ -1,5 +1,6 @@
 div.section.hero-slider-container {
   --hero-slider-block-height: 43.4rem;
+
   margin-bottom: 15rem;
 }
 
@@ -19,7 +20,8 @@ div.section.hero-slider-container {
   display: flex;
   flex-direction: column;
   position: relative;
-   height: var(--hero-slider-block-height);
+  height: var(--hero-slider-block-height);
+
   --banner-title-font-color: white;
   --banner-title-font-family: var(--heading-font-family);
   --banner-title-font-size: var(--heading-font-size-xxl);
@@ -227,6 +229,7 @@ div.section.hero-slider-container {
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }

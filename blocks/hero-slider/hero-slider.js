@@ -45,16 +45,17 @@ function setActiveItems(index, block) {
   const adjustedIndex = (index + totalSlides) % totalSlides; // Ensure cyclic behavior
 
   const nextBannerImg = block.parentElement.querySelector(
-    `.banner-image-wrapper .banner:nth-child(${adjustedIndex + 1})`
+    `.banner-image-wrapper .banner:nth-child(${adjustedIndex + 1})`,
   );
   const nextBannerContent = block.querySelector(
-    `.banner-content-wrapper .banner:nth-child(${adjustedIndex + 1})`
+    `.banner-content-wrapper .banner:nth-child(${adjustedIndex + 1})`,
   );
   const nextActiveSlide = items[adjustedIndex]; // Select from non-cloned items only
 
   const nextActiveTile = block.querySelector(`.tiles-bar .tile:nth-child(${adjustedIndex + 1})`);
 
   if (!nextBannerImg || !nextBannerContent || !nextActiveSlide) {
+    // eslint-disable-next-line no-console
     console.error('Failed to find elements for the next active slide.');
     return;
   }
@@ -170,7 +171,7 @@ function decorateTilesControls(block) {
   const totalSlides = Number(block.getAttribute('data-total-slides'));
   const tilesBar = createAemElement('ul', { class: 'tiles-bar' });
   for (let i = 0; i < totalSlides; i += 1) {
-    const tile = createAemElement('li', { class: `tile` });
+    const tile = createAemElement('li', { class: 'tile' });
     if (i === 0) tile.classList.add('active');
     tile.addEventListener('click', () => {
       switchToSlide(i, block);
@@ -217,6 +218,5 @@ export default async function decorate(block) {
     if (div.innerHTML.trim() === '') {
       div.parentElement.remove();
     }
-
   });
 }
