@@ -1,229 +1,154 @@
 import { createAemElement, getPlaceHolders } from '../../scripts/blocks-utils.js';
 
-const PROGRESS_BAR_TIMEOUT = 35;
 const PLACEHOLDERS = {
   report: 'Report',
 };
 
-function getCurrentIndex(block) {
-  const currentIndex = block.querySelector('.card-item.active');
-  return [...block.querySelectorAll('.card-item')].indexOf(currentIndex);
+function decorateBanner(item, index, bannerImgWrapper, bannerContentWrapper) {
+  const bannerPicture = item.querySelector('picture');
+  bannerPicture.classList.add('banner');
+  bannerImgWrapper.append(bannerPicture);
+
+  const bannerContent = createAemElement('div', { class: 'banner' });
+  const content = item.nextElementSibling;
+  const reportContent = content.querySelector('p.button-container a');
+  if (reportContent) {
+    const report = reportContent.cloneNode(true);
+    report.textContent = PLACEHOLDERS.report;
+    bannerContent.append(report);
+  }
+  const headingContent = content.querySelector('h2');
+  if (headingContent) {
+    const heading = createAemElement('h1', { class: 'heading' });
+    heading.textContent = headingContent.textContent;
+    bannerContent.append(heading);
+  }
+  bannerContentWrapper.append(bannerContent);
 }
 
-function getCardItemWidthByIndex(block, index) {
-  const cardItems = block.querySelectorAll('.card-item') || [];
-  const cardItemRect = index < cardItems.length
-    ? cardItems[index].getBoundingClientRect() : { width: 0 };
-  let { width } = cardItemRect;
-  if (width === 0) {
-    const cardsList = block.querySelector('.cards-list');
-    const cardsListRect = cardsList.getBoundingClientRect();
-    width = cardItems.length > 0 ? cardsListRect.width / cardItems.length : cardsListRect.width;
-  }
-  return width;
+function hideActiveItems(block) {
+  const activeBannerImg = block.parentElement.querySelector('.banner-image-wrapper .banner.active');
+  const activeBannerContent = block.querySelector('.banner-content-wrapper .banner.active');
+  const activeSlide = block.querySelector('.slider .item.active');
+  const activeTile = block.querySelector('.tiles-bar .tile.active');
+  activeBannerImg?.classList.remove('active');
+  activeBannerContent?.classList.remove('active');
+  activeSlide?.classList.remove('active');
+  activeTile?.classList.remove('active');
 }
 
-function updateVisibleCardItems(cardsList, prevIndex, newIndex, animateClass = 'animate-r2l') {
-  const cardItems = Array.from(cardsList.querySelectorAll('.card-item'));
-  const visibleItemsCount = parseInt(cardsList.getAttribute('data-visible-items'), 10);
-  const newCardItem = cardItems[newIndex];
-  if (prevIndex !== newIndex && newCardItem.classList.contains('visible')) return;
+function setActiveItems(index, block) {
+  const slider = block.querySelector('.slider');
+  const totalSlides = Number(block.getAttribute('data-total-slides'));
 
-  cardItems.forEach((cardItem) => {
-    cardItem.classList.remove('visible');
-  });
+  const items = [...slider.querySelectorAll('.item')];
+  const adjustedIndex = (index + totalSlides) % totalSlides; // Ensure cyclic behavior
 
-  let startIndex = visibleItemsCount === cardItems.length ? 0 : newIndex;
-  if (visibleItemsCount === 2 && newIndex % 2 === 1) startIndex = newIndex - 1;
+  const nextBannerImg = block.parentElement.querySelector(
+    `.banner-image-wrapper .banner:nth-child(${adjustedIndex + 1})`,
+  );
+  const nextBannerContent = block.querySelector(
+    `.banner-content-wrapper .banner:nth-child(${adjustedIndex + 1})`,
+  );
+  const nextActiveSlide = items[adjustedIndex]; // Select from non-cloned items only
 
-  // eslint-disable-next-line max-len
-  for (let i = startIndex; i < Math.min(startIndex + visibleItemsCount, cardItems.length); i += 1) {
-    cardItems[i].classList.add('visible');
-    if (prevIndex !== newIndex) cardItems[i].classList.add(animateClass);
+  const nextActiveTile = block.querySelector(`.tiles-bar .tile:nth-child(${adjustedIndex + 1})`);
+
+  if (!nextBannerImg || !nextBannerContent || !nextActiveSlide) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to find elements for the next active slide.');
+    return;
   }
 
-  cardItems.findLast((cardItem) => cardItem.classList.contains('visible'))
-    .classList.add('last-visible');
-}
+  nextBannerImg.classList.add('active');
+  nextBannerContent.classList.add('active');
+  nextActiveSlide.classList.add('active');
+  nextActiveTile.classList.add('active');
 
-function setBannerImage(banner, block) {
-  const blockParentElement = block.parentElement;
-  const bannerNumber = banner.id.split('-')[1];
-  const activeBannerImg = blockParentElement.querySelector(`#banner-img-${bannerNumber}`);
-  if (activeBannerImg) {
-    activeBannerImg.classList.add('active');
-  }
-}
+  // Scroll the slider to make the active slide visible
+  const sliderRect = slider.getBoundingClientRect();
+  const activeSlideRect = nextActiveSlide.getBoundingClientRect();
+  const offset = activeSlideRect.left - sliderRect.left + slider.scrollLeft;
 
-function stopAllActiveItems(block) {
-  const currentProgressBar = block.querySelector('.progress-bar[state="started"]');
-  if (currentProgressBar) {
-    currentProgressBar.style.width = '0px';
-    currentProgressBar.setAttribute('state', 'ended');
-  }
-
-  const currentActiveBanners = block.querySelectorAll('.banner.active');
-  if (currentActiveBanners && currentActiveBanners.length > 0) {
-    currentActiveBanners.forEach((banner) => {
-      banner.classList.remove('active');
+  if (activeSlideRect.left < sliderRect.left || activeSlideRect.right > sliderRect.right) {
+    slider.scrollTo({
+      left: offset,
+      behavior: 'smooth',
     });
   }
-
-  const currentActiveBannerImgs = block.parentElement.querySelectorAll('.banner-img.active');
-  if (currentActiveBannerImgs && currentActiveBannerImgs.length > 0) {
-    currentActiveBannerImgs.forEach((bannerImg) => {
-      bannerImg.classList.remove('active');
-    });
-  }
-
-  const currentCardItem = block.querySelector('.card-item.active');
-  if (currentCardItem) {
-    currentCardItem.classList.remove('active', 'animate-l2r', 'animate-r2l');
-  }
-
-  const visibleCardItems = block.querySelectorAll('.card-item.visible');
-  if (visibleCardItems) {
-    visibleCardItems.forEach((cardItem) => {
-      cardItem.classList.remove('visible', 'animate-l2r', 'animate-r2l');
-    });
-  }
-
-  const currentLastVisibleCardItem = block.querySelector('.card-item.last-visible');
-  if (currentLastVisibleCardItem) {
-    currentLastVisibleCardItem.classList.remove('last-visible');
-  }
-
-  const tile = block.querySelector('li.tile.active');
-  if (tile) tile.classList.remove('active');
-
-  clearTimeout(block.timeoutId);
 }
 
-function setActiveItemsByIndex(block, prevIndex, newIndex, animateClass = 'animate-r2l') {
-  const cardsList = block.querySelector('.cards-list');
-  const newBanner = block.querySelector(`#banner-${newIndex}`);
-  const newCardItem = block.querySelector(`.card-${newIndex}`);
-  const newTile = block.querySelector(`.tile-${newIndex}`);
-  // make sure all active items are stopped before setting new active items
-  stopAllActiveItems(block);
-
-  // update active items
-  newBanner.classList.add('active');
-  newCardItem.classList.add('active');
-  newTile.classList.add('active');
-  setBannerImage(newBanner, block);
-  updateVisibleCardItems(cardsList, prevIndex, newIndex, animateClass);
+function switchToSlide(index, block) {
+  hideActiveItems(block);
+  setActiveItems(index, block);
+  block.setAttribute('data-active-slide', index);
 }
 
-const setCardsListVisibleItems = (block) => {
-  const desktopView = window.matchMedia('(min-width: 991px)');
-  const tabletView = window.matchMedia('(max-width: 990px)');
-  const mobileView = window.matchMedia('(max-width: 767px)');
-  const cardsList = block.querySelector('.cards-list');
+function setNextItemActive(block) {
+  const activeSlideNum = Number(block.getAttribute('data-active-slide'));
+  const totalSlides = Number(block.getAttribute('data-total-slides'));
+  const nextSlide = activeSlideNum + 1;
 
-  if (desktopView.matches) {
-    const cardItems = cardsList.querySelectorAll('.card-item');
-    cardsList.setAttribute('data-visible-items', cardItems.length);
+  if (nextSlide === totalSlides) {
+    const slider = block.querySelector('.slider');
+
+    setTimeout(() => {
+      switchToSlide(nextSlide, block);
+      block.setAttribute('data-active-slide', 0);
+      slider.scrollTo({ left: 0, behavior: 'instant' });
+    }, 300); // Allow smooth scroll to finish
+  } else {
+    switchToSlide(nextSlide, block);
+  }
+}
+
+function setPreviousItemActive(block) {
+  const activeSlideNum = Number(block.getAttribute('data-active-slide'));
+  const totalSlides = Number(block.getAttribute('data-total-slides'));
+  const prevSlide = activeSlideNum - 1;
+
+  if (prevSlide < 0) {
+    const slider = block.querySelector('.slider');
+    setTimeout(() => {
+      switchToSlide(prevSlide, block);
+      block.setAttribute('data-active-slide', totalSlides - 1);
+      const lastSlideOffset = slider.scrollWidth - slider.offsetWidth;
+      slider.scrollTo({ left: lastSlideOffset, behavior: 'instant' });
+    }, 300); // Allow smooth scroll to finish
+  } else {
+    switchToSlide(prevSlide, block);
+  }
+}
+
+function decorateSliderItem(item, index, slider, block) {
+  item.id = `slide-${index}`;
+  item.classList.add('item');
+  const existingHeading = item.querySelector('h2');
+  if (existingHeading) {
+    const h4 = createAemElement('h4', { class: 'heading' });
+    h4.textContent = existingHeading.textContent;
+    item.prepend(h4);
+    existingHeading.remove();
   }
 
-  if (tabletView.matches) {
-    cardsList.setAttribute('data-visible-items', 2);
+  const anchor = item.querySelector('a:last-of-type');
+  if (anchor) {
+    anchor.classList.add('find-more');
+    const findMoreLongRightArrowIcon = createAemElement('span', { class: 'icon-long-right-arrow' });
+    const findMoreIcon = createAemElement('span', { class: 'icon-chevron-right-circle-white' });
+    anchor.prepend(findMoreLongRightArrowIcon);
+    anchor.prepend(findMoreIcon);
   }
 
-  if (mobileView.matches) {
-    cardsList.setAttribute('data-visible-items', 1);
-  }
-  setActiveItemsByIndex(block, -1, 0);
-};
+  const progressBar = createAemElement('div', { class: 'progress-bar' });
+  progressBar.addEventListener('animationend', () => setNextItemActive(block));
 
-function startProgressBar(block, currentIndex) {
-  const progressBars = block.querySelectorAll('.progress-bar');
-  const cardItemWidth = getCardItemWidthByIndex(block, currentIndex);
-  const progressBarJump = cardItemWidth / 100;
-  const currentProgressBar = progressBars[currentIndex];
-  let newIndex = currentIndex;
-
-  block.timeoutId = setTimeout(() => {
-    const width = parseFloat(currentProgressBar.style.width || 0) + progressBarJump;
-    currentProgressBar.style.width = `${width}px`;
-    currentProgressBar.setAttribute('state', 'started');
-
-    // current progress bar reached 100% width
-    if (width >= cardItemWidth) {
-      // If last progress bar, scroll the cards list back to the first card
-      newIndex = (currentIndex + 1) % progressBars.length;
-      setActiveItemsByIndex(block, currentIndex, newIndex);
-    }
-
-    // Infinite loop to start the progress bar
-    // 'newIndex' is updated once the current progress bar reaches 100% width
-    startProgressBar(block, newIndex);
-  }, PROGRESS_BAR_TIMEOUT);
-}
-
-function moveNextCard(block) {
-  const cardItems = block.querySelectorAll('.card-item');
-  const currentCardItem = block.querySelector('.card-item.active');
-  const currentIndex = [...cardItems].indexOf(currentCardItem);
-  const nextIndex = (currentIndex + 1) % cardItems.length;
-  setActiveItemsByIndex(block, currentIndex, nextIndex);
-  startProgressBar(block, nextIndex);
-}
-
-function movePrevCard(block) {
-  const cardItems = block.querySelectorAll('.card-item');
-  const currentCardItem = block.querySelector('.card-item.active');
-  const currentIndex = [...cardItems].indexOf(currentCardItem);
-  const prevIndex = (currentIndex - 1 + cardItems.length) % cardItems.length;
-  setActiveItemsByIndex(block, currentIndex, prevIndex, 'animate-l2r');
-  startProgressBar(block, prevIndex);
-}
-
-function decorateHeroBanners(block) {
-  const bannerWrapper = createAemElement('div', { class: 'banner-wrapper' });
-  const banners = [...block.children];
-
-  banners.forEach((banner, index) => {
-    banner.id = `banner-${index}`;
-    banner.classList.add('banner');
-
-    const bannerChildren = banner.children;
-    const bannerImg = bannerChildren[0];
-    bannerImg.id = `banner-img-${index}`;
-    bannerImg.classList.add('banner-img');
-
-    const bannerContent = bannerChildren[1];
-    bannerContent.classList.add('banner-content');
-
-    bannerWrapper.appendChild(banner);
+  item.addEventListener('click', () => {
+    switchToSlide(index, block);
   });
-  block.appendChild(bannerWrapper);
 
-  // decorate hero slider wrapper with background div
-  // move banner images to background div
-  const heroSliderBlockWrapper = block.parentElement;
-  const heroSliderBackgroundDiv = createAemElement('div', { class: 'hero-slider-background' });
-  heroSliderBlockWrapper.prepend(heroSliderBackgroundDiv);
-  const bannerImgs = block.querySelectorAll('.banner-img');
-  bannerImgs.forEach((bannerImg) => {
-    heroSliderBackgroundDiv.appendChild(bannerImg);
-  });
-}
-
-function decorateCardFindMoreButton(card) {
-  const findMore = card.querySelector('p > a');
-  if (!findMore) return;
-  const findMoreLongRightArrowIcon = createAemElement('span', { class: 'icon-long-right-arrow' });
-  const findMoreIcon = createAemElement('span', { class: 'icon-chevron-right-circle-white' });
-  findMore.prepend(findMoreLongRightArrowIcon);
-  findMore.prepend(findMoreIcon);
-  findMore.classList.add('find-more');
-
-  // seo: making link descriptive
-  const cardHeading = card.querySelector('h4');
-  if (cardHeading) {
-    findMore.title = cardHeading.textContent;
-  }
+  item.append(progressBar);
+  slider.append(item);
 }
 
 function decorateArrowControls(block) {
@@ -231,92 +156,67 @@ function decorateArrowControls(block) {
     'button',
     { class: 'arrow left', 'aria-label': 'previous' },
   );
-  leftControl.addEventListener('click', () => movePrevCard(block));
+  leftControl.addEventListener('click', () => setPreviousItemActive(block));
 
   const rightControl = createAemElement(
     'button',
     { class: 'arrow right', 'aria-label': 'next' },
   );
-  rightControl.addEventListener('click', () => moveNextCard(block));
+  rightControl.addEventListener('click', () => setNextItemActive(block));
   const arrowControls = createAemElement('div', { class: 'arrow-controls' }, null, leftControl, rightControl);
   block.append(arrowControls);
 }
 
 function decorateTilesControls(block) {
-  const banners = block.querySelectorAll('.banner');
+  const totalSlides = Number(block.getAttribute('data-total-slides'));
   const tilesBar = createAemElement('ul', { class: 'tiles-bar' });
-  for (let i = 0; i < banners.length; i += 1) {
-    const tile = createAemElement('li', { class: `tile tile-${i}` });
+  for (let i = 0; i < totalSlides; i += 1) {
+    const tile = createAemElement('li', { class: 'tile' });
+    if (i === 0) tile.classList.add('active');
     tile.addEventListener('click', () => {
-      const currentIndex = getCurrentIndex(block);
-      const animateClass = i > currentIndex ? 'animate-r2l' : 'animate-l2r';
-      setActiveItemsByIndex(block, currentIndex, i, animateClass);
-      startProgressBar(block, i);
+      switchToSlide(i, block);
     });
     tilesBar.appendChild(tile);
   }
   block.append(tilesBar);
 }
 
-function decorateCardListWithControls(block) {
+function decorateControls(block) {
   decorateArrowControls(block);
   decorateTilesControls(block);
 }
 
-function decorateHeroSlidingCards(block) {
-  const cardsList = createAemElement('div', { class: 'cards-list' });
-  const banners = block.querySelectorAll('.banner');
-  banners.forEach((banner, index) => {
-    const cardHeading = createAemElement('h4', null, { innerHTML: banner.querySelector('h2').innerHTML });
-    const bannerContent = banner.querySelector('.banner-content');
-    const bannerContentChildren = [...bannerContent.children];
-    const progressBar = createAemElement('div', { class: `progress-bar progress-bar-${index}`, state: 'none' });
-    const card = createAemElement('div', { class: `card-item card-${index}` }, null, cardHeading, ...bannerContentChildren.slice(1), progressBar);
-    const reportButton = createAemElement('a', { class: 'report-button' }, { innerHTML: PLACEHOLDERS.report, href: card.querySelector('a').href });
-    bannerContent.prepend(reportButton);
-    cardsList.appendChild(card);
-    card.addEventListener('click', () => {
-      const currentIndex = getCurrentIndex(block);
-      setActiveItemsByIndex(block, currentIndex, index);
-      startProgressBar(block, index);
-    });
-    decorateCardFindMoreButton(card);
-  });
-  block.append(cardsList);
-}
-
-const setProgressBarPosition = (block) => {
-  const cardsList = block.querySelector('.cards-list');
-
-  if (cardsList.getAttribute('progress-bar') !== 'initialised') {
-    cardsList.setAttribute('progress-bar', 'initialised');
-    setActiveItemsByIndex(block, -1, 0);
-    startProgressBar(block, 0);
-  }
-};
-
-function onLoadSetItemsPosition(block) {
-  document.addEventListener('load', () => {
-    const onLoadEventHandled = block.getAttribute('data-onload-event');
-    if (onLoadEventHandled === 'true') return;
-    setCardsListVisibleItems(block);
-    setProgressBarPosition(block);
-    block.setAttribute('data-onload-event', 'true');
-  }, true);
-
-  window.addEventListener('resize', () => {
-    const cardsList = block.querySelector('.cards-list');
-    stopAllActiveItems(block);
-    cardsList.setAttribute('progress-bar', 'none');
-    setCardsListVisibleItems(block);
-    setProgressBarPosition(block);
-  });
-}
-
 export default async function decorate(block) {
   await getPlaceHolders(PLACEHOLDERS);
-  decorateHeroBanners(block);
-  decorateHeroSlidingCards(block);
-  decorateCardListWithControls(block);
-  onLoadSetItemsPosition(block);
+  const bannerImages = block.querySelectorAll(':scope > div > div:nth-child(odd)');
+  const bannerImgWrapper = createAemElement('div', { class: 'banner-image-wrapper' });
+  const bannerContentWrapper = createAemElement('div', { class: 'banner-content-wrapper' });
+  bannerImages.forEach((item, index) => {
+    decorateBanner(item, index, bannerImgWrapper, bannerContentWrapper);
+  });
+
+  const slider = createAemElement('div', { class: 'slider' });
+  Array.from(block.querySelectorAll(':scope > div > div'))
+    .filter((item) => item.innerHTML.trim() !== '')
+    .forEach((item, index) => {
+      decorateSliderItem(item, index, slider, block);
+    });
+
+  const blockWrapper = block.parentElement;
+  blockWrapper.prepend(bannerImgWrapper);
+  block.prepend(bannerContentWrapper);
+  block.append(slider);
+
+  bannerImgWrapper.querySelector(':scope > picture:first-child').classList.add('active');
+  bannerContentWrapper.querySelector(':scope > div:first-child').classList.add('active');
+  slider.querySelector(':scope > div:first-child').classList.add('active');
+  block.setAttribute('data-active-slide', 0);
+  block.setAttribute('data-total-slides', slider.children.length);
+  decorateControls(block);
+
+  Array.from(block.querySelectorAll(':scope > div > div')).forEach((div) => {
+    if (div.innerHTML.trim() === '') {
+      div.parentElement.remove();
+    }
+  });
 }
