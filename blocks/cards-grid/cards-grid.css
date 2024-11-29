@@ -212,6 +212,11 @@
     height: 19.7rem;
   }
 
+  .cards-grid .right-aligned img {
+    right: 0;
+    width: 50%;
+  }
+
   .cards-grid .card:has(div.card-image.left-aligned) img {
     width: 60%;
   }
@@ -228,11 +233,6 @@
     width: 80%;
     right: 0;
     top: 0;
-  }
-
-  .cards-grid .right-aligned img {
-    right: 0;
-    width: 50%;
   }
 
   .cards-grid .card-data {
