@@ -95,7 +95,7 @@
   --heading-font-size-xs: calc(1.2 * var(--base-font-size));
 
   /* nav height */
-  --nav-height: 84px;
+  --nav-height: 6.573rem;
 
   /* content width */
   --content-width: 1210px;
@@ -120,6 +120,7 @@
   :root {
     --heading-font-size-xxl: calc(8 * var(--base-font-size));
     --heading-font-size-xl: 6.3rem;
+    --nav-height: 7.516rem;
   }
 }
 
@@ -132,6 +133,7 @@
     --heading-font-size-m: calc(2.4 * var(--base-font-size));
     --heading-font-size-s: calc(1.8 * var(--base-font-size));
     --heading-font-size-xs: calc(1.35 * var(--base-font-size));
+    --nav-height: 6.68rem;
   }
 }
 
@@ -144,6 +146,7 @@
     --heading-font-size-m: calc(2.4 * var(--base-font-size));
     --heading-font-size-s: calc(1.8 * var(--base-font-size));
     --heading-font-size-xs: calc(1.2 * var(--base-font-size));
+    --nav-height: 8.4rem;
   }
 }
 
@@ -326,11 +329,11 @@ main img {
 }
 
 main .section.small-header h1 {
-  font-size: var(--body-font-size-xl);
+  font-size: 1.98rem;
   font-family: var(--body-font-family);
   font-weight: 400;
   color: var(--off-white);
-  padding: 1.6rem 0;
+  padding: 1.44rem 0;
 }
 
 main .section.black-background {
@@ -423,6 +426,11 @@ main .scroll-to-top {
   main .scroll-to-top:hover .icon-right-angle {
     color: white;
   }
+
+  main .section.small-header h1 {
+    font-size: 1.76rem;
+    padding: 1.28rem 0;
+  }
 }
 
 @media (width > 1210px) {
@@ -458,4 +466,10 @@ main .section.top-heading-gray h2:first-of-type {
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
+}
+
+@media (width > 1600px) {
+  main .section.small-header h1 {
+    font-size: 2.2rem;
+  }
 }

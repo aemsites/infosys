@@ -117,8 +117,9 @@ div.section.hero-slider-container {
   background-color: var(--button-bg-color);
   color: var(--button-font-color);
   text-transform: uppercase;
-  font-size: var(--body-font-size-xxs);
+  font-size: 1.26rem;
   font-weight: 600;
+  line-height: 1.827rem;
   padding: 0.7rem 1.8rem 0.5rem;
   letter-spacing: 0.16rem;
   text-align: center;
@@ -372,6 +373,11 @@ div.section.hero-slider-container {
 }
 
 @media (width > 991px) {
+  .hero-slider .banner a {
+    font-size: 1.12rem;
+    line-height: 1.624rem;
+  }
+
   .hero-slider .slider {
     background-color: white;
     margin-bottom: 1rem;
@@ -396,6 +402,11 @@ div.section.hero-slider-container {
 }
 
 @media (width > 1600px) {
+  .hero-slider .banner a {
+    font-size: 1.4rem;
+    line-height: 2.03rem;
+  }
+
   .hero-slider .banner .heading {
     line-height: 8rem;
   }
