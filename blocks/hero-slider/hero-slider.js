@@ -4,28 +4,6 @@ const PLACEHOLDERS = {
   report: 'Report',
 };
 
-function decorateBanner(item, index, bannerImgWrapper, bannerContentWrapper) {
-  const bannerPicture = item.querySelector('picture');
-  bannerPicture.classList.add('banner');
-  bannerImgWrapper.append(bannerPicture);
-
-  const bannerContent = createAemElement('div', { class: 'banner' });
-  const content = item.nextElementSibling;
-  const reportContent = content.querySelector('p.button-container a');
-  if (reportContent) {
-    const report = reportContent.cloneNode(true);
-    report.textContent = PLACEHOLDERS.report;
-    bannerContent.append(report);
-  }
-  const headingContent = content.querySelector('h2');
-  if (headingContent) {
-    const heading = createAemElement('h1', { class: 'heading' });
-    heading.textContent = headingContent.textContent;
-    bannerContent.append(heading);
-  }
-  bannerContentWrapper.append(bannerContent);
-}
-
 function hideActiveItems(block) {
   const activeBannerImg = block.parentElement.querySelector('.banner-image-wrapper .banner.active');
   const activeBannerContent = block.querySelector('.banner-content-wrapper .banner.active');
@@ -120,35 +98,50 @@ function setPreviousItemActive(block) {
   }
 }
 
-function decorateSliderItem(item, index, slider, block) {
-  item.id = `slide-${index}`;
-  item.classList.add('item');
-  const existingHeading = item.querySelector('h2');
-  if (existingHeading) {
-    const h4 = createAemElement('h4', { class: 'heading' });
-    h4.textContent = existingHeading.textContent;
-    item.prepend(h4);
-    existingHeading.remove();
+function addTouchEvents(element, block) {
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+  let isSwiping = false; // Debounce flag
+
+  function debounce(callback, delay) {
+    if (isSwiping) return;
+    isSwiping = true;
+    callback();
+    setTimeout(() => {
+      isSwiping = false;
+    }, delay);
   }
 
-  const anchor = item.querySelector('a:last-of-type');
-  if (anchor) {
-    anchor.classList.add('find-more');
-    const findMoreLongRightArrowIcon = createAemElement('span', { class: 'icon-long-right-arrow' });
-    const findMoreIcon = createAemElement('span', { class: 'icon-chevron-right-circle-white' });
-    anchor.prepend(findMoreLongRightArrowIcon);
-    anchor.prepend(findMoreIcon);
-  }
-
-  const progressBar = createAemElement('div', { class: 'progress-bar' });
-  progressBar.addEventListener('animationend', () => setNextItemActive(block));
-
-  item.addEventListener('click', () => {
-    switchToSlide(index, block);
+  element.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    element.style.transition = 'none';
   });
 
-  item.append(progressBar);
-  slider.append(item);
+  element.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+
+    currentX = e.touches[0].clientX - startX;
+    element.style.transform = `translateX(${currentX}px)`;
+  });
+
+  element.addEventListener('touchend', () => {
+    if (!isDragging) return;
+
+    isDragging = false;
+
+    debounce(() => {
+      if (currentX < -50) {
+        setNextItemActive(block);
+      } else if (currentX > 50) {
+        setPreviousItemActive(block);
+      }
+      element.style.transition = 'transform 0.3s ease'; // Add smooth transition back
+      element.style.transform = 'translateX(0)';
+      currentX = 0;
+    }, 300); // 300ms debounce
+  });
 }
 
 function decorateArrowControls(block) {
@@ -186,13 +179,67 @@ function decorateControls(block) {
   decorateTilesControls(block);
 }
 
+function decorateSliderItem(item, index, slider, block) {
+  item.id = `slide-${index}`;
+  item.classList.add('item');
+  const existingHeading = item.querySelector('h2');
+  if (existingHeading) {
+    const h4 = createAemElement('h4', { class: 'heading' });
+    h4.textContent = existingHeading.textContent;
+    item.prepend(h4);
+    existingHeading.remove();
+  }
+
+  const anchor = item.querySelector('a:last-of-type');
+  if (anchor) {
+    anchor.classList.add('find-more');
+    const findMoreLongRightArrowIcon = createAemElement('span', { class: 'icon-long-right-arrow' });
+    const findMoreIcon = createAemElement('span', { class: 'icon-chevron-right-circle-white' });
+    anchor.prepend(findMoreLongRightArrowIcon);
+    anchor.prepend(findMoreIcon);
+  }
+
+  const progressBar = createAemElement('div', { class: 'progress-bar' });
+  progressBar.addEventListener('animationend', () => setNextItemActive(block));
+
+  item.addEventListener('click', () => {
+    switchToSlide(index, block);
+  });
+
+  item.append(progressBar);
+  slider.append(item);
+}
+
+function decorateBanner(item, index, bannerImgWrapper, bannerContentWrapper, block) {
+  const bannerPicture = item.querySelector('picture');
+  bannerPicture.classList.add('banner');
+  bannerImgWrapper.append(bannerPicture);
+  addTouchEvents(bannerPicture, block);
+
+  const bannerContent = createAemElement('div', { class: 'banner' });
+  const content = item.nextElementSibling;
+  const reportContent = content.querySelector('p.button-container a');
+  if (reportContent) {
+    const report = reportContent.cloneNode(true);
+    report.textContent = PLACEHOLDERS.report;
+    bannerContent.append(report);
+  }
+  const headingContent = content.querySelector('h2');
+  if (headingContent) {
+    const heading = createAemElement('h1', { class: 'heading' });
+    heading.textContent = headingContent.textContent;
+    bannerContent.append(heading);
+  }
+  bannerContentWrapper.append(bannerContent);
+}
+
 export default async function decorate(block) {
   await getPlaceHolders(PLACEHOLDERS);
   const bannerImages = block.querySelectorAll(':scope > div > div:nth-child(odd)');
   const bannerImgWrapper = createAemElement('div', { class: 'banner-image-wrapper' });
   const bannerContentWrapper = createAemElement('div', { class: 'banner-content-wrapper' });
   bannerImages.forEach((item, index) => {
-    decorateBanner(item, index, bannerImgWrapper, bannerContentWrapper);
+    decorateBanner(item, index, bannerImgWrapper, bannerContentWrapper, block);
   });
 
   const slider = createAemElement('div', { class: 'slider' });
@@ -201,6 +248,7 @@ export default async function decorate(block) {
     .forEach((item, index) => {
       decorateSliderItem(item, index, slider, block);
     });
+  addTouchEvents(slider, block);
 
   const blockWrapper = block.parentElement;
   blockWrapper.prepend(bannerImgWrapper);
