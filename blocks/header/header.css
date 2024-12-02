@@ -74,12 +74,6 @@ header nav .mobile-side-nav .side-nav-header {
   gap: 3rem;
 }
 
-header nav[aria-expanded="true"] > .nav-hamburger,
-header nav[aria-expanded="true"] > .nav-container,
-header nav[aria-expanded="true"] > .nav-tools {
-  display: none;
-}
-
 header nav[aria-expanded="true"] .nav-hamburger span.icon.open,
 header nav[aria-expanded="false"] .nav-hamburger span.icon.close {
   display: none;
@@ -510,6 +504,12 @@ header nav[aria-expanded="false"] .nav-tools ul li:has(span.icon-search) {
 /* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-container {
   flex-direction: column;
+}
+
+header nav[aria-expanded="true"] > .nav-hamburger,
+header nav[aria-expanded="true"] > .nav-container,
+header nav[aria-expanded="true"] > .nav-tools {
+  display: none;
 }
 
 @media (width > 767px) {
