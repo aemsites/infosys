@@ -5,8 +5,9 @@ header {
   box-shadow: 0 1px 4px rgb(0 0 0 / 16%);
   z-index: 1000;
 
-  --header-font-size-m: 20px;
-  --header-font-size-s: 18px;
+  --header-font-size-l: 2rem;
+  --header-font-size-m: 1.8rem;
+  --header-font-size-s: 1.44rem;
 }
 
 /* header and nav layout */
@@ -112,7 +113,15 @@ header nav .nav-sections .default-content-wrapper > ul > li:hover > ul {
   transition: 0.3s all;
 }
 
-@media (width >= 993px) {
+header nav .nav-brand img {
+  padding-top: 0.2813rem;
+  padding-bottom: 0.2813rem;
+  max-width: 20.7rem;
+  width: auto;
+  height: auto;
+}
+
+@media (width >= 992px) {
   header nav {
     display: flex;
     justify-content: space-between;
@@ -166,7 +175,7 @@ header nav .nav-hamburger button {
 }
 
 header nav .nav-hamburger button span.icon{
-  font-size: var(--header-font-size-m);
+  font-size: var(--header-font-size-l);
 }
 
 header nav .nav-hamburger-icon,
@@ -222,7 +231,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   transform: rotate(-45deg);
 }
 
-@media (width >= 993px) {
+@media (width >= 992px) {
   header nav .nav-hamburger {
     display: none;
     visibility: hidden;
@@ -239,11 +248,6 @@ header .nav-brand {
   line-height: 1;
 }
 
-header nav .nav-brand img {
-  width: auto;
-  height: auto;
-}
-
 /* sections */
 header nav .nav-sections {
   grid-area: sections;
@@ -257,7 +261,7 @@ header nav[aria-expanded="true"] .nav-sections {
   display: block;
   visibility: visible;
   align-self: start;
-  font-size: var(--header-font-size-s);
+  font-size: var(--header-font-size-m);
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -284,7 +288,11 @@ header nav .nav-sections ul > li > ul > li {
   padding: 1rem;
 }
 
-@media (width >= 993px) {
+@media (width >= 992px) {
+  header nav {
+    max-width: 100%;
+  }
+
   header nav .nav-sections {
     display: block;
     visibility: visible;
@@ -337,7 +345,7 @@ header nav .nav-sections ul > li > ul > li {
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
     padding: 1rem;
     font-weight: 600;
-    font-size: var(--header-font-size-s);
+    font-size: var(--header-font-size-m);
     color: var(--dark-gunmetal);
     border-bottom: 1px solid rgb(112 112 112 / 20%);
   }
@@ -404,7 +412,7 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
-  font-size: var(--header-font-size-s);
+  font-size: var(--header-font-size-m);
 }
 
 header nav .nav-tools .icon img {
@@ -442,20 +450,36 @@ header nav[aria-expanded="false"] .nav-tools ul li:has(span.icon-search) {
 }
 
 .section.nav-tools ul > li a[title='Sign in'] {
-  color: var(--bright-blue);
+  color: var(--dark-denim);
   white-space: nowrap;
 }
 
-/* Nav Container */
+.section.nav-tools ul > li a[title='Sign in']:hover {
+  color: var(--bright-blue);
+}
+
+  /* Nav Container */
 /* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-container {
   flex-direction: column;
 }
 
-@media (width >= 993px) {
-    header nav .nav-tools ul li {
-        display: block;
-    }
+@media (width > 767px) {
+  header nav .nav-brand img {
+    padding-top: 0.2813rem;
+    padding-bottom: 0.2813rem;
+    max-width: 28.8rem;
+  }
+}
+
+@media (width >= 992px) {
+  header nav .nav-sections {
+    font-size: var(--header-font-size-s);
+  }
+
+  header nav .nav-tools ul li {
+      display: block;
+  }
 
   header nav .nav-container {
     display: flex;
@@ -476,7 +500,20 @@ header nav .nav-container {
   header nav .nav-sections ul > li {
     font-weight: 700;
   }
+
+  header nav .nav-brand img {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    max-width: 25.6rem;
+  }
 }
+
+@media (width > 1400px) {
+  header nav {
+    max-width: var(--content-width);
+  }
+}
+
 
 @media (width >= 1451px) {
   header nav .nav-container {
@@ -485,6 +522,14 @@ header nav .nav-container {
 }
 
 @media (width >= 1601px) {
+  header nav .nav-sections {
+    font-size: var(--header-font-size-l);
+  }
+
+  header nav .nav-tools {
+    font-size: var(--header-font-size-l);
+  }
+
   header nav .nav-sections ul {
     gap: 6rem;
   }
@@ -496,5 +541,11 @@ header nav .nav-container {
   header nav .nav-sections .nav-drop > .icon {
     height: 24px;
     width: 24px;
+  }
+
+  header nav .nav-brand img {
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    max-width: 32rem;
   }
 }

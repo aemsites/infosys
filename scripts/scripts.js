@@ -93,7 +93,7 @@ function scrollToTop() {
 function buildScrollToTopButton(main) {
   if (document.querySelector('.scroll-to-top')) return;
 
-  const scrollToTopBtn = document.createElement('button');
+  const scrollToTopBtn = document.createElement('div');
   scrollToTopBtn.classList.add('scroll-to-top');
   scrollToTopBtn.onclick = scrollToTop;
 
