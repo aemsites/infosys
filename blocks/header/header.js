@@ -107,6 +107,33 @@ function decorateShareOption(fragment, navTools) {
   });
 }
 
+function decorateMobileSideNav(nav) {
+  const sideNav = document.createElement('div');
+  sideNav.classList.add('mobile-side-nav');
+  [...nav.children].forEach((child) => {
+    const clonedNode = child.cloneNode(true);
+    sideNav.append(clonedNode);
+  });
+
+  // eslint-disable-next-line no-unused-vars
+  const [hamburger, navContainer, socialContainer] = sideNav.children;
+  const header = document.createElement('div');
+  header.classList.add('side-nav-header');
+  if (socialContainer) {
+    const socialLink = socialContainer.querySelector('span.icon-share');
+    const socialMenu = socialContainer.querySelector('ul li.social');
+    socialLink.addEventListener('click', () => socialMenu.classList.toggle('show'));
+    header.append(socialContainer);
+  }
+  if (hamburger) {
+    const navSections = navContainer.querySelector('.nav-sections');
+    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+    header.append(hamburger);
+  }
+  sideNav.prepend(header);
+  nav.append(sideNav);
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -178,6 +205,7 @@ export default async function decorate(block) {
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
+  decorateMobileSideNav(nav);
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
@@ -197,7 +225,7 @@ function debounce(func, wait) {
 
 function updateAriaExpandedForMobileNav() {
   const mobileNav = document.querySelector('.header.block nav');
-  if (window.innerWidth >= 993) {
+  if (window.innerWidth >= 992) {
     mobileNav.setAttribute('aria-expanded', 'false');
   }
 }
