@@ -403,8 +403,8 @@ main .scroll-to-top {
     z-index: 1;
     transition: all 0.5s;
     transform: rotate(180deg);
-    width: 6.2rem;
-    height: 6.2rem;
+    width: 4.9594rem;
+    height: 4.9594rem;
     background: white;
     border-radius: 50%;
     justify-content: center;
@@ -416,6 +416,7 @@ main .scroll-to-top {
   main .scroll-to-top .icon-right-angle {
     transform: rotate(90deg);
     font-size: 2.4rem;
+    -webkit-font-smoothing: antialiased;
   }
 
   main .scroll-to-top:hover {
@@ -434,15 +435,6 @@ main .scroll-to-top {
 }
 
 @media (width > 1210px) {
-  main .scroll-to-top {
-    width: 7rem;
-    height: 7rem;
-  }
-
-  main .scroll-to-top .icon-right-angle {
-    font-size: 3rem;
-  }
-
   .section > div,
   .section > div > div {
     max-width: var(--content-width);
@@ -469,6 +461,15 @@ main .section.highlight {
 }
 
 @media (width > 1600px) {
+  main .scroll-to-top {
+    width: 6.2rem;
+    height: 6.2rem;
+  }
+
+  main .scroll-to-top .icon-right-angle {
+    font-size: 3rem;
+  }
+
   main .section.small-header h1 {
     font-size: 2.2rem;
   }

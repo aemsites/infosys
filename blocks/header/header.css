@@ -450,11 +450,15 @@ header nav[aria-expanded="false"] .nav-tools ul li:has(span.icon-search) {
 }
 
 .section.nav-tools ul > li a[title='Sign in'] {
-  color: var(--bright-blue);
+  color: var(--dark-denim);
   white-space: nowrap;
 }
 
-/* Nav Container */
+.section.nav-tools ul > li a[title='Sign in']:hover {
+  color: var(--bright-blue);
+}
+
+  /* Nav Container */
 /* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-container {
   flex-direction: column;
