@@ -9,6 +9,7 @@
 header nav[aria-expanded="true"] .block.social-wrapper {
     top: 0;
     transform: translate(-50px, -5px);
+    padding-top: var(--nav-mobile-top-padding);
 }
 
 .block.social-wrapper .social span.icon {
