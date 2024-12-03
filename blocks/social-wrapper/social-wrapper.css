@@ -12,8 +12,8 @@ header nav[aria-expanded="true"] .block.social-wrapper {
 }
 
 .block.social-wrapper .social span.icon {
-    width: 4rem;
-    height: 4rem;
+    width: 3.2rem;
+    height: 3.2rem;
     border-radius: 50%;
     border: 2px solid black;
     display: flex;
@@ -35,6 +35,7 @@ header nav .nav-tools ul li:has(.social) {
 
 header nav .nav-tools ul li.social.show div {
     display: flex;
+    padding-bottom: 0.5rem;
 }
 
 @media (width >= 1601px) {
