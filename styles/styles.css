@@ -176,6 +176,10 @@ body.appear {
   display: block;
 }
 
+body:has(.modal dialog[data-link="/modals/search"][open]) {
+  overflow: hidden;
+}
+
 header {
   height: var(--nav-height);
 }
@@ -396,10 +400,10 @@ main .scroll-to-top {
 }
 
 @media (width >= 992px) {
-  main .scroll-to-top {
+  main .scroll-to-top.show {
     position: fixed;
     right: 5%;
-    bottom: 20rem;
+    bottom: 16rem;
     z-index: 1;
     transition: all 0.5s;
     transform: rotate(180deg);
@@ -458,6 +462,12 @@ main .section.top-heading-gray h2:first-of-type {
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
+}
+
+@media (width >= 1400px) {
+  main .scroll-to-top {
+    bottom: 20rem;
+  }
 }
 
 @media (width > 1600px) {

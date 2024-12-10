@@ -101,6 +101,14 @@ function buildScrollToTopButton(main) {
   icon.classList.add('icon', 'icon-right-angle');
   scrollToTopBtn.appendChild(icon);
 
+  const scrollHandler = () => {
+    if (window.scrollY >= 800) {
+      scrollToTopBtn.classList.add('show');
+    } else {
+      scrollToTopBtn.classList.remove('show');
+    }
+  };
+  window.addEventListener('scroll', scrollHandler);
   main.appendChild(scrollToTopBtn);
 }
 

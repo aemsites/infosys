@@ -7,14 +7,26 @@ ul {
 
 /* Modal Styles */
 main .modal dialog[data-link="/modals/search"] {
-    height: 36rem;
-    position: absolute;
-    top: 50%;
+    height: 16.9rem;
+    top: var(--nav-height);
     bottom: auto;
     overflow: visible;
     opacity: 0;
-    transform: translate(0, -25%);
+    border-top: 1px solid rgb(0 0 0 / 16%);
     transition: opacity 0.3s linear, transform 0.3s ease-out;
+    z-index: 100;
+}
+
+main .modal:has(dialog[data-link="/modals/search"][open]) > div {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0 0 0 / 50%);
+    z-index: 99;
+}
+
+.modal dialog[data-link="/modals/search"]::backdrop {
+    background-color: unset;
 }
 
 main .modal dialog[data-link="/modals/search"][open] {
@@ -37,32 +49,25 @@ main .modal dialog[data-link="/modals/search"] p {
     margin: 0;
 }
 
-/* Icon Sizes */
-main .modal dialog[data-link="/modals/search"] .search.block span.icon-search::before {
-    font-size: var(--heading-font-size-xl);
-}
-
 main .modal dialog[data-link="/modals/search"] .search.block span.icon-popup-cross::before {
     font-size: var(--heading-font-size-l);
 }
 
 /* Search Block Styles */
-main .modal dialog[data-link="/modals/search"] .search.block {
-    padding-top: 7.4rem;
-}
-
 main .modal dialog[data-link="/modals/search"] .search.block .search-input {
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--silver);
+    font-size: 2.25rem;
 }
 
 main .modal dialog[data-link="/modals/search"] .search.block .search-input .icon-search {
     margin-right: 1.5rem;
+    font-size: inherit;
 }
 
 main .modal dialog[data-link="/modals/search"] .search.block input.form-control.search {
-    font-size: var(--heading-font-size-xl);
+    font-size: inherit;
     font-weight: 300;
     border: none;
     padding-left: 0;
@@ -179,10 +184,6 @@ main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .most-
     -webkit-box-orient: vertical;
 }
 
-main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search::before {
-    font-size: 2rem;
-}
-
 main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search::before,
 main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-slick-arrow::before {
     color: var(--grey);
@@ -200,6 +201,14 @@ main .modal dialog[data-link="/modals/search"] .search-popup .search-results .su
 /* Media Query Styles */
 
 @media (width >= 768px) {
+    main .modal dialog[data-link="/modals/search"] {
+        height: 27.5rem;
+    }
+
+    main .modal dialog[data-link="/modals/search"] .search.block .search-input {
+        font-size: 4.86rem;
+    }
+
     main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search,
     main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-slick-arrow {
         display: none;
@@ -211,6 +220,10 @@ main .modal dialog[data-link="/modals/search"] .search-popup .search-results .su
 }
 
 @media (width >= 992px) {
+    main .modal dialog[data-link="/modals/search"] .search.block .search-input {
+        font-size: 4.32rem;
+    }
+
     main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-search,
     main .modal dialog[data-link="/modals/search"] .search-popup .search-results .search-list li .icon-slick-arrow {
         display: none;
@@ -240,5 +253,11 @@ main .modal dialog[data-link="/modals/search"] .search-popup .search-results .su
     main .modal dialog[data-link="/modals/search"] .search-popup .suggestions .row > div {
         flex: 0 0 50%;
         max-width: 50%;
+    }
+}
+
+@media (width > 1600px) {
+    main .modal dialog[data-link="/modals/search"] .search.block .search-input {
+        font-size: 5.4rem;
     }
 }

@@ -36,8 +36,8 @@ div.section.hero-slider-container {
   --icon-long-right-arrow-font-color: var(--bright-blue);
   --progress-bar-bg-color: var(--bright-blue);
   --tile-active-bg-color: var(--bright-blue);
-  --tiles-bar-top: 122%;
-  --arrow-control-top: 120%;
+  --tiles-bar-top: 124%;
+  --arrow-control-top: 122%;
 }
 
 @media (width > 767px) {
@@ -53,7 +53,7 @@ div.section.hero-slider-container {
 
   .hero-slider {
     --slide-item-font-size: 1.8rem;
-    --slide-item-find-more-font-size: 2rem;
+    --slide-item-find-more-font-size: 1.6rem;
     --banner-content-top: 18rem;
   }
 }
@@ -61,6 +61,7 @@ div.section.hero-slider-container {
 @media (width > 1600px) {
   .hero-slider {
     --banner-content-top: 12rem;
+    --slide-item-find-more-font-size: 2rem;
   }
 }
 
@@ -73,7 +74,7 @@ div.section.hero-slider-container {
 .hero-slider-wrapper .banner {
   display: block;
   position: absolute;
-  width: 100vw;
+  width: 100%;
   left: 0;
   opacity: 0;
   transition: opacity 800ms linear;
@@ -165,7 +166,6 @@ div.section.hero-slider-container {
   font-weight: 300;
   line-height: 1.45;
   padding: 2.5rem 1rem 2.5rem 2rem;
-  height: 19.5rem;
   box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
   border-bottom: 2px solid rgb(0 0 0 / 5%);
   border-right: 1px solid rgb(0 0 0 / 5%);;
