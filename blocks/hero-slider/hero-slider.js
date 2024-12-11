@@ -5,7 +5,7 @@ const PLACEHOLDERS = {
 };
 
 const BREAKPOINTS = {
-  desktop: '(min-width: 991px)',
+  desktop: '(min-width: 992px)',
 };
 
 function isDesktop() {
