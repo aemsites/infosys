@@ -1,9 +1,9 @@
 header {
   position: sticky;
   top: 0;
+  z-index: 100;
   background: #fff;
   box-shadow: 0 1px 4px rgb(0 0 0 / 16%);
-  z-index: 1000;
 
   --header-font-size-l: 2rem;
   --header-font-size-m: 1.8rem;
@@ -14,7 +14,6 @@ header {
 header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
-  z-index: 2;
 }
 
 header nav {
@@ -382,7 +381,6 @@ header nav .nav-sections ul > li > ul > li {
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
     padding: 1rem;
     font-weight: 600;
-    font-size: var(--header-font-size-m);
     color: var(--dark-gunmetal);
     border-bottom: 1px solid rgb(112 112 112 / 20%);
   }

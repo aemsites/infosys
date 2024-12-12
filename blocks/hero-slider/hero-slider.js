@@ -4,6 +4,14 @@ const PLACEHOLDERS = {
   report: 'Report',
 };
 
+const BREAKPOINTS = {
+  desktop: '(min-width: 992px)',
+};
+
+function isDesktop() {
+  return window.matchMedia(BREAKPOINTS.desktop).matches;
+}
+
 function hideActiveItems(block) {
   const activeBannerImg = block.parentElement.querySelector('.banner-image-wrapper .banner.active');
   const activeBannerContent = block.querySelector('.banner-content-wrapper .banner.active');
@@ -16,10 +24,7 @@ function hideActiveItems(block) {
 }
 
 function setActiveItems(index, block) {
-  const slider = block.querySelector('.slider');
   const totalSlides = Number(block.getAttribute('data-total-slides'));
-
-  const items = [...slider.querySelectorAll('.item')];
   const adjustedIndex = (index + totalSlides) % totalSlides; // Ensure cyclic behavior
 
   const nextBannerImg = block.parentElement.querySelector(
@@ -28,8 +33,7 @@ function setActiveItems(index, block) {
   const nextBannerContent = block.querySelector(
     `.banner-content-wrapper .banner:nth-child(${adjustedIndex + 1})`,
   );
-  const nextActiveSlide = items[adjustedIndex]; // Select from non-cloned items only
-
+  const nextActiveSlide = block.querySelector(`#slide-${adjustedIndex}`);
   const nextActiveTile = block.querySelector(`.tiles-bar .tile:nth-child(${adjustedIndex + 1})`);
 
   if (!nextBannerImg || !nextBannerContent || !nextActiveSlide) {
@@ -42,13 +46,99 @@ function setActiveItems(index, block) {
   nextBannerContent.classList.add('active');
   nextActiveSlide.classList.add('active');
   nextActiveTile.classList.add('active');
+  block.setAttribute('data-active-slide', adjustedIndex);
+}
 
-  // Scroll the slider to make the active slide visible
+function isSlideVisible(slide, slider) {
+  const slideRect = slide.getBoundingClientRect();
   const sliderRect = slider.getBoundingClientRect();
-  const activeSlideRect = nextActiveSlide.getBoundingClientRect();
-  const offset = activeSlideRect.left - sliderRect.left + slider.scrollLeft;
 
-  if (activeSlideRect.left < sliderRect.left || activeSlideRect.right > sliderRect.right) {
+  // Check if the slide is within the visible bounds of the slider
+  return slideRect.left >= sliderRect.left && slideRect.right <= sliderRect.right;
+}
+
+function checkIfNextElementIsInRight(active, next) {
+  let current = active;
+  while (current.nextElementSibling) {
+    if (current.nextElementSibling === next) return true;
+    current = current.nextElementSibling;
+  }
+  return false;
+}
+
+function checkIfPrevElementIsInLeft(active, prev) {
+  let current = active;
+  while (current.previousElementSibling) {
+    if (current.previousElementSibling === prev) return true;
+    current = current.previousElementSibling;
+  }
+  return false;
+}
+
+function moveSlidesToRightForCyclicBehavior(nextSlideNum, activeSlideNum, block) {
+  const activeSlide = block.querySelector(`#slide-${activeSlideNum}`);
+  const nextSlide = block.querySelector(`#slide-${nextSlideNum}`);
+  const slider = block.querySelector('.slider');
+  if (checkIfNextElementIsInRight(activeSlide, nextSlide)
+  || isSlideVisible(nextSlide, slider)) {
+    return;
+  }
+  let lastItem = slider.querySelector('.item:last-child');
+  const items = Array.from(block.querySelectorAll('.slider .item'));
+  for (let i = 0; i < items.length; i += 1) {
+    const item = items[i];
+    if (item.id === activeSlide.id) break;
+    const currentScrollLeft = slider.scrollLeft;
+    lastItem.after(item);
+    lastItem = item;
+    const slideWidth = item.offsetWidth;
+    slider.scrollLeft = currentScrollLeft - slideWidth;
+  }
+}
+
+function moveSlidesToLeftForCyclicBehavior(prevSlideNum, activeSlideNum, block) {
+  const activeSlide = block.querySelector(`#slide-${activeSlideNum}`);
+  const prevSlideElement = block.querySelector(`#slide-${prevSlideNum}`);
+  const slider = block.querySelector('.slider');
+  if (checkIfPrevElementIsInLeft(activeSlide, prevSlideElement)
+    || isSlideVisible(prevSlideElement, slider)) {
+    return;
+  }
+  let lastItem = slider.querySelector('.item:first-child');
+  const items = Array.from(block.querySelectorAll('.slider .item'));
+  for (let i = items.length - 1; i >= 0; i -= 1) {
+    const item = items[i];
+    if (item.id === activeSlide.id) break;
+    const currentScrollLeft = slider.scrollLeft;
+    lastItem.before(item);
+    lastItem = item;
+    const slideWidth = item.offsetWidth;
+    slider.scrollLeft = currentScrollLeft + slideWidth;
+  }
+}
+
+function switchToSlide(index, block, scrollLeft = true) {
+  const slider = block.querySelector('.slider');
+  const activeSlideIndex = Number(block.getAttribute('data-active-slide'));
+  const totalSlides = Number(block.getAttribute('data-total-slides'));
+  if (index === activeSlideIndex) return;
+
+  if (!isDesktop()) {
+    if (scrollLeft && (index > activeSlideIndex || index === 0)) {
+      moveSlidesToRightForCyclicBehavior(index, activeSlideIndex, block);
+    } else if (!scrollLeft && (index < activeSlideIndex || index === totalSlides - 1)) {
+      moveSlidesToLeftForCyclicBehavior(index, activeSlideIndex, block);
+    }
+  }
+  hideActiveItems(block);
+  setActiveItems(index, block);
+
+  if (!isDesktop()) {
+    // Scroll the slider to make the active slide visible
+    const sliderRect = slider.getBoundingClientRect();
+    const nextActiveSlide = slider.querySelector('.item.active');
+    const activeSlideRect = nextActiveSlide.getBoundingClientRect();
+    const offset = slider.scrollLeft + (activeSlideRect.left - sliderRect.left);
     slider.scrollTo({
       left: offset,
       behavior: 'smooth',
@@ -56,46 +146,18 @@ function setActiveItems(index, block) {
   }
 }
 
-function switchToSlide(index, block) {
-  hideActiveItems(block);
-  setActiveItems(index, block);
-  block.setAttribute('data-active-slide', index);
-}
-
 function setNextItemActive(block) {
   const activeSlideNum = Number(block.getAttribute('data-active-slide'));
   const totalSlides = Number(block.getAttribute('data-total-slides'));
-  const nextSlide = activeSlideNum + 1;
-
-  if (nextSlide === totalSlides) {
-    const slider = block.querySelector('.slider');
-
-    setTimeout(() => {
-      switchToSlide(nextSlide, block);
-      block.setAttribute('data-active-slide', 0);
-      slider.scrollTo({ left: 0, behavior: 'instant' });
-    }, 300); // Allow smooth scroll to finish
-  } else {
-    switchToSlide(nextSlide, block);
-  }
+  const nextSlide = (activeSlideNum + 1) % totalSlides;
+  switchToSlide(nextSlide, block, true);
 }
 
 function setPreviousItemActive(block) {
   const activeSlideNum = Number(block.getAttribute('data-active-slide'));
   const totalSlides = Number(block.getAttribute('data-total-slides'));
-  const prevSlide = activeSlideNum - 1;
-
-  if (prevSlide < 0) {
-    const slider = block.querySelector('.slider');
-    setTimeout(() => {
-      switchToSlide(prevSlide, block);
-      block.setAttribute('data-active-slide', totalSlides - 1);
-      const lastSlideOffset = slider.scrollWidth - slider.offsetWidth;
-      slider.scrollTo({ left: lastSlideOffset, behavior: 'instant' });
-    }, 300); // Allow smooth scroll to finish
-  } else {
-    switchToSlide(prevSlide, block);
-  }
+  const prevSlide = (activeSlideNum - 1 + totalSlides) % totalSlides;
+  switchToSlide(prevSlide, block, false);
 }
 
 function addTouchEvents(element, block) {
@@ -167,7 +229,8 @@ function decorateTilesControls(block) {
     const tile = createAemElement('li', { class: 'tile' });
     if (i === 0) tile.classList.add('active');
     tile.addEventListener('click', () => {
-      switchToSlide(i, block);
+      const activeSlideIndex = Number(block.getAttribute('data-active-slide'));
+      switchToSlide(i, block, i > activeSlideIndex);
     });
     tilesBar.appendChild(tile);
   }
@@ -203,7 +266,8 @@ function decorateSliderItem(item, index, slider, block) {
   progressBar.addEventListener('animationend', () => setNextItemActive(block));
 
   item.addEventListener('click', () => {
-    switchToSlide(index, block);
+    const activeSlideIndex = Number(block.getAttribute('data-active-slide'));
+    switchToSlide(index, block, index > activeSlideIndex);
   });
 
   item.append(progressBar);
@@ -261,6 +325,19 @@ export default async function decorate(block) {
   block.setAttribute('data-active-slide', 0);
   block.setAttribute('data-total-slides', slider.children.length);
   decorateControls(block);
+
+  window.addEventListener('resize', () => {
+    if (isDesktop()) {
+      // ensure slide item with id 'slide-0' is the first child and so on
+      const slides = Array.from(slider.children);
+      slides.sort((a, b) => {
+        const aIndex = Number(a.id.split('-')[1]);
+        const bIndex = Number(b.id.split('-')[1]);
+        return aIndex - bIndex;
+      });
+      slides.forEach((slide) => slider.append(slide));
+    }
+  });
 
   Array.from(block.querySelectorAll(':scope > div > div')).forEach((div) => {
     if (div.innerHTML.trim() === '') {
