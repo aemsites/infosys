@@ -48,13 +48,6 @@ export default async function decorate(block) {
     innerContainer.appendChild(carouselItem);
   });
 
-  const getVisibleItems = () => {
-    if (window.innerWidth >= 1200) {
-      return 3;
-    }
-    return 2;
-  };
-
   const updateCarousel = () => {
     innerContainer.style.transition = 'none';
     innerContainer.style.transform = 'translateX(0)';
@@ -70,23 +63,6 @@ export default async function decorate(block) {
   dotsContainer.appendChild(prevBtn);
 
   const dots = [];
-
-  const createDots = () => {
-    dotsContainer.innerHTML = '';
-    dotsContainer.appendChild(prevBtn);
-    dots.length = 0; // Clear the dots array
-    blockChildren.forEach((_, index) => {
-      const dot = createCustomElement('span', 'carousel-dot');
-      dot.dataset.index = index;
-      dot.addEventListener('click', () => {
-        moveToDot(index);
-      });
-      dots.push(dot);
-      dotsContainer.appendChild(dot);
-    });
-    dotsContainer.appendChild(nextBtn);
-    updateDots();
-  };
 
   const updateDots = () => {
     const firstItemIndex = parseInt(innerContainer.firstElementChild.getAttribute('data-absolute-index'), 10);
@@ -119,14 +95,31 @@ export default async function decorate(block) {
     const shift = index - firstItemIndex;
 
     if (shift > 0) {
-      for (let i = 0; i < shift; i++) {
+      for (let i = 0; i < shift; i += 1) {
         moveToNext();
       }
     } else if (shift < 0) {
-      for (let i = 0; i < Math.abs(shift); i++) {
+      for (let i = 0; i < Math.abs(shift); i += 1) {
         moveToPrev();
       }
     }
+  };
+
+  const createDots = () => {
+    dotsContainer.innerHTML = '';
+    dotsContainer.appendChild(prevBtn);
+    dots.length = 0; // Clear the dots array
+    blockChildren.forEach((_, index) => {
+      const dot = createCustomElement('span', 'carousel-dot');
+      dot.dataset.index = index;
+      dot.addEventListener('click', () => {
+        moveToDot(index);
+      });
+      dots.push(dot);
+      dotsContainer.appendChild(dot);
+    });
+    dotsContainer.appendChild(nextBtn);
+    updateDots();
   };
 
   prevBtn.addEventListener('click', () => {
