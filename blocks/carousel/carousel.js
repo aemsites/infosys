@@ -5,8 +5,10 @@ export default async function decorate(block) {
   const slidingContainer = createCustomElement('div', 'sliding-container');
   const innerContainer = createCustomElement('div', 'inner-container');
   const blockChildren = Array.from(block.children);
-  blockChildren.forEach((row) => {
+
+  blockChildren.forEach((row, absoluteIndex) => {
     const carouselItem = createCustomElement('div', 'carousel-item');
+    carouselItem.setAttribute('data-absolute-index', absoluteIndex);
 
     const data = row.children[1];
     const cardHeading = createCustomElement('div', 'card-heading');
@@ -46,8 +48,6 @@ export default async function decorate(block) {
     innerContainer.appendChild(carouselItem);
   });
 
-  let currentIndex = 0;
-
   const getVisibleItems = () => {
     if (window.innerWidth >= 1200) {
       return 3;
@@ -56,19 +56,8 @@ export default async function decorate(block) {
   };
 
   const updateCarousel = () => {
-    const offset = -currentIndex * (100 / getVisibleItems());
-    innerContainer.style.transform = `translateX(${offset}%)`;
-  };
-
-  const updateDots = () => {
-    const dots = document.querySelectorAll('.carousel-dot');
-    dots.forEach((dot, index) => {
-      if (index === currentIndex) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
+    innerContainer.style.transition = 'none';
+    innerContainer.style.transform = 'translateX(0)';
   };
 
   const prevBtn = createCustomElement('span', 'icon');
@@ -80,35 +69,72 @@ export default async function decorate(block) {
   const dotsContainer = createCustomElement('div', 'carousel-dots');
   dotsContainer.appendChild(prevBtn);
 
-  const dotListener = (index) => () => {
-    currentIndex = index;
+  const dots = [];
+
+  const createDots = () => {
+    dotsContainer.innerHTML = '';
+    dotsContainer.appendChild(prevBtn);
+    dots.length = 0; // Clear the dots array
+    blockChildren.forEach((_, index) => {
+      const dot = createCustomElement('span', 'carousel-dot');
+      dot.dataset.index = index;
+      dot.addEventListener('click', () => {
+        moveToDot(index);
+      });
+      dots.push(dot);
+      dotsContainer.appendChild(dot);
+    });
+    dotsContainer.appendChild(nextBtn);
+    updateDots();
+  };
+
+  const updateDots = () => {
+    const firstItemIndex = parseInt(innerContainer.firstElementChild.getAttribute('data-absolute-index'), 10);
+    dots.forEach((dot, index) => {
+      if (index === firstItemIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  };
+
+  const moveToNext = () => {
+    const firstItem = innerContainer.firstElementChild;
+    innerContainer.appendChild(firstItem);
     updateCarousel();
     updateDots();
   };
 
-  for (let i = 0; i <= blockChildren.length - getVisibleItems(); i += 1) {
-    const dot = createCustomElement('span', 'carousel-dot');
-    dot.addEventListener('click', dotListener(i));
-    dotsContainer.appendChild(dot);
-  }
-
-  dotsContainer.appendChild(nextBtn);
-  const totalItems = blockChildren.length;
-
-  prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex -= 1;
-    }
+  const moveToPrev = () => {
+    const lastItem = innerContainer.lastElementChild;
+    innerContainer.insertBefore(lastItem, innerContainer.firstElementChild);
     updateCarousel();
     updateDots();
+  };
+
+  const moveToDot = (index) => {
+    const items = Array.from(innerContainer.children);
+    const firstItemIndex = parseInt(items[0].getAttribute('data-absolute-index'), 10);
+    const shift = index - firstItemIndex;
+
+    if (shift > 0) {
+      for (let i = 0; i < shift; i++) {
+        moveToNext();
+      }
+    } else if (shift < 0) {
+      for (let i = 0; i < Math.abs(shift); i++) {
+        moveToPrev();
+      }
+    }
+  };
+
+  prevBtn.addEventListener('click', () => {
+    moveToPrev();
   });
 
   nextBtn.addEventListener('click', () => {
-    if (currentIndex < totalItems - getVisibleItems()) {
-      currentIndex += 1;
-    }
-    updateCarousel();
-    updateDots();
+    moveToNext();
   });
 
   block.textContent = '';
@@ -116,6 +142,7 @@ export default async function decorate(block) {
   block.appendChild(slidingContainer);
   block.appendChild(dotsContainer);
 
-  // Initialize the first active dot
-  updateDots();
+  // Initialize dots and carousel
+  createDots();
+  updateCarousel();
 }
