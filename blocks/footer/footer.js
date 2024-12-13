@@ -15,6 +15,8 @@ function traverseAndPrint(element, level, columnDiv) {
     } else if (level === 3) {
       if (element.children.length > 1) {
         const link = element.children[0];
+        link.innerHTML = '';
+        link.setAttribute('target', '_blank');
         link.classList.add('icons-link');
         const icon = element.children[1].querySelector('img');
         link.appendChild(icon);
@@ -79,8 +81,10 @@ async function toggleDropdown(countriesdatapath) {
 function createDropdown(div, dropdowntitle, countriesdatapath) {
   const dropdownContainer = createCustomElement('div', 'dropdown');
   const dropdownToggle = createCustomElement('a', 'dropdown-toggle');
+  dropdownToggle.href = '#';
   dropdownToggle.textContent = dropdowntitle;
-  dropdownToggle.onclick = function handleDropdownToggle() {
+  dropdownToggle.onclick = function handleDropdownToggle(e) {
+    e.preventDefault();
     toggleDropdown(countriesdatapath);
   };
 

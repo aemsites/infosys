@@ -45,6 +45,7 @@
 
 .carousel .carousel-item .card-image img {
   transition: .5s ease-in-out;
+  display: block;
 }
 
 .carousel .carousel-item .card-image:hover img {
@@ -231,8 +232,11 @@
     cursor: pointer;
   }
 
-  .carousel .carousel-dot.active {
+  .carousel .carousel-dot.active,
+  .carousel .carousel-dot:hover {
     background-color: #239de0;
+    width: 1.44rem;
+    height: 1.44rem;
   }
 }
 
@@ -270,6 +274,12 @@
   .carousel .carousel-item span {
     font-size: 1.44rem;
     padding-left: 0.8rem;
+  }
+
+  .carousel .carousel-dot.active,
+  .carousel .carousel-dot:hover {
+    width: 1.28rem;
+    height: 1.28rem;
   }
 }
 
@@ -314,5 +324,11 @@
   .carousel .carousel-item span {
     font-size: 1.8rem;
     padding-left: 1rem;
+  }
+
+  .carousel .carousel-dot.active,
+  .carousel .carousel-dot:hover {
+    width: 1.6rem;
+    height: 1.6rem;
   }
 }

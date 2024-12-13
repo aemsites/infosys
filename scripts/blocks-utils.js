@@ -1,3 +1,5 @@
+import { fetchPlaceholders } from './aem.js';
+
 function createAemElement(tagName, attributes, properties, ...children) {
   const el = document.createElement(tagName);
   if (attributes) {
@@ -46,8 +48,57 @@ async function fetchData(url) {
   }
 }
 
+function getOptimalImageFromPictureTag(picture) {
+  if (!picture) return '';
+
+  let sources = picture.querySelectorAll('source');
+  let selectedSrc = '';
+
+  if (sources && sources.length > 0) {
+    sources = Array.from(sources);
+    // Find the first source element that matches the media query
+    const matchingSource = sources
+      .find((source) => source.media && window.matchMedia(source.media).matches);
+
+    if (matchingSource) {
+      selectedSrc = matchingSource.srcset;
+    } else {
+      // Find the default source if no media attribute is present
+      const defaultSource = sources.find((source) => !source.media);
+      if (defaultSource) {
+        selectedSrc = defaultSource.srcset;
+      }
+    }
+  }
+
+  // If no media query matches, use the img element's src as fallback
+  if (!selectedSrc) {
+    const img = picture.querySelector('img');
+    if (img) {
+      selectedSrc = img.currentSrc || img.src;
+    }
+  }
+
+  return selectedSrc;
+}
+
+async function getPlaceHolders(inpPlaceHolders) {
+  const placeholders = await fetchPlaceholders();
+  // Create an object with only the keys present in inpPlaceHolders
+  const filteredPlaceholders = Object.keys(placeholders)
+    .filter((key) => key in inpPlaceHolders)
+    .reduce((obj, key) => {
+      obj[key] = placeholders[key];
+      return obj;
+    }, {});
+
+  Object.assign(inpPlaceHolders, filteredPlaceholders);
+}
+
 export {
   createAemElement,
   createCustomElement,
   fetchData,
+  getOptimalImageFromPictureTag,
+  getPlaceHolders,
 };

@@ -95,7 +95,7 @@
   --heading-font-size-xs: calc(1.2 * var(--base-font-size));
 
   /* nav height */
-  --nav-height: 84px;
+  --nav-height: 6.573rem;
 
   /* content width */
   --content-width: 1210px;
@@ -112,26 +112,28 @@
 @media (width >= 376px) {
   :root {
     --heading-font-size-xxl: calc(5.6 * var(--base-font-size));
-    --heading-font-size-xl: calc(4.6 * var(--base-font-size));
+    --heading-font-size-xl: 4.14rem;
   }
 }
 
 @media (width >= 768px) {
   :root {
     --heading-font-size-xxl: calc(8 * var(--base-font-size));
-    --heading-font-size-xl: calc(7 * var(--base-font-size));
+    --heading-font-size-xl: 6.3rem;
+    --nav-height: 7.516rem;
   }
 }
 
 @media (width >= 992px) {
   :root {
-    --base-font-size: 9px;
+    --base-font-size: 8px;
     --heading-font-size-xxl: calc(8 * var(--base-font-size));
     --heading-font-size-xl: calc(7 * var(--base-font-size));
     --heading-font-size-l: calc(3 * var(--base-font-size));
     --heading-font-size-m: calc(2.4 * var(--base-font-size));
     --heading-font-size-s: calc(1.8 * var(--base-font-size));
     --heading-font-size-xs: calc(1.35 * var(--base-font-size));
+    --nav-height: 6.68rem;
   }
 }
 
@@ -144,6 +146,7 @@
     --heading-font-size-m: calc(2.4 * var(--base-font-size));
     --heading-font-size-s: calc(1.8 * var(--base-font-size));
     --heading-font-size-xs: calc(1.2 * var(--base-font-size));
+    --nav-height: 8.4rem;
   }
 }
 
@@ -171,6 +174,10 @@ body {
 
 body.appear {
   display: block;
+}
+
+body:has(.modal dialog[data-link="/modals/search"][open]) {
+  overflow: hidden;
 }
 
 header {
@@ -326,11 +333,11 @@ main img {
 }
 
 main .section.small-header h1 {
-  font-size: var(--body-font-size-xl);
+  font-size: 1.98rem;
   font-family: var(--body-font-family);
   font-weight: 400;
   color: var(--off-white);
-  padding: 1.6rem 0;
+  padding: 1.44rem 0;
 }
 
 main .section.black-background {
@@ -347,17 +354,37 @@ main .section h2:first-of-type {
   margin: 0;
 }
 
-main .section.separator-top {
-  padding-top: 64px;
+main .section {
+  padding-block: 0;
 }
 
-main .section.separator-bottom {
-  padding-bottom: 128px;
+main .section.separator-top {
+  padding-top: 4.8rem;
 }
 
 main .section .block:not(.no-block-separator) {
-  padding-top: 48px;
+  padding-top: 1.6rem;
 }
+
+@media (width >= 768px) {
+  main .section.separator-top {
+    padding-top: 8.2rem;
+  }
+
+  main .section.separator-bottom-tablet-plus {
+    padding-bottom: 16.8rem;
+  }
+
+  main .section.gray-background-tablet-plus {
+    background: var(--footer-links-bg-color);
+  }
+
+  main .section .block:not(.no-block-separator) {
+    padding-top: 3.4rem;
+  }
+}
+
+
 
 main .section > div > div.full-width,
 main .section > div:has(div.full-width) {
@@ -365,7 +392,7 @@ main .section > div:has(div.full-width) {
 }
 
 main .section:not(.no-inline-padding) > div:not(:has(.full-width)) {
-  padding-inline: 20px;
+  padding-inline: var(--padding-inline);
 }
 
 main .scroll-to-top {
@@ -373,15 +400,15 @@ main .scroll-to-top {
 }
 
 @media (width >= 992px) {
-  main .scroll-to-top {
+  main .scroll-to-top.show {
     position: fixed;
     right: 5%;
-    bottom: 20rem;
+    bottom: 16rem;
     z-index: 1;
     transition: all 0.5s;
     transform: rotate(180deg);
-    width: 6.2rem;
-    height: 6.2rem;
+    width: 4.9594rem;
+    height: 4.9594rem;
     background: white;
     border-radius: 50%;
     justify-content: center;
@@ -393,6 +420,7 @@ main .scroll-to-top {
   main .scroll-to-top .icon-right-angle {
     transform: rotate(90deg);
     font-size: 2.4rem;
+    -webkit-font-smoothing: antialiased;
   }
 
   main .scroll-to-top:hover {
@@ -403,18 +431,14 @@ main .scroll-to-top {
   main .scroll-to-top:hover .icon-right-angle {
     color: white;
   }
+
+  main .section.small-header h1 {
+    font-size: 1.76rem;
+    padding: 1.28rem 0;
+  }
 }
 
 @media (width > 1210px) {
-  main .scroll-to-top {
-    width: 7rem;
-    height: 7rem;
-  }
-
-  main .scroll-to-top .icon-right-angle {
-    font-size: 3rem;
-  }
-
   .section > div,
   .section > div > div {
     max-width: var(--content-width);
@@ -438,4 +462,25 @@ main .section.top-heading-gray h2:first-of-type {
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
+}
+
+@media (width >= 1400px) {
+  main .scroll-to-top {
+    bottom: 20rem;
+  }
+}
+
+@media (width > 1600px) {
+  main .scroll-to-top {
+    width: 6.2rem;
+    height: 6.2rem;
+  }
+
+  main .scroll-to-top .icon-right-angle {
+    font-size: 3rem;
+  }
+
+  main .section.small-header h1 {
+    font-size: 2.2rem;
+  }
 }

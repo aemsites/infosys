@@ -91,13 +91,47 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} fragment - The fragment of the document where the navigation bar is located.
  * @param {Element} navTools - The tools section in the navigation bar.
  */
-function moveShareOptionsToTools(fragment, navTools) {
+function decorateShareOption(fragment, navTools) {
   const socialLink = navTools.querySelector('span.icon-share');
   if (socialLink) {
     const listItemElement = socialLink.closest('li');
+    listItemElement.classList.add('social');
     const socialWrapper = fragment.querySelector('.social-wrapper');
     listItemElement.appendChild(socialWrapper);
   }
+
+  // add click listener to social share button
+  socialLink.addEventListener('click', () => {
+    const socialMenu = navTools.querySelector('ul li.social');
+    socialMenu.classList.toggle('show');
+  });
+}
+
+function decorateMobileSideNav(nav) {
+  const sideNav = document.createElement('div');
+  sideNav.classList.add('mobile-side-nav');
+  [...nav.children].forEach((child) => {
+    const clonedNode = child.cloneNode(true);
+    sideNav.append(clonedNode);
+  });
+
+  // eslint-disable-next-line no-unused-vars
+  const [hamburger, navContainer, socialContainer] = sideNav.children;
+  const header = document.createElement('div');
+  header.classList.add('side-nav-header');
+  if (socialContainer) {
+    const socialLink = socialContainer.querySelector('span.icon-share');
+    const socialMenu = socialContainer.querySelector('ul li.social');
+    socialLink.addEventListener('click', () => socialMenu.classList.toggle('show'));
+    header.append(socialContainer);
+  }
+  if (hamburger) {
+    const navSections = navContainer.querySelector('.nav-sections');
+    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+    header.append(hamburger);
+  }
+  sideNav.prepend(header);
+  nav.append(sideNav);
 }
 
 /**
@@ -152,8 +186,14 @@ export default async function decorate(block) {
   navContainer.appendChild(navSections);
 
   const navTools = fragment.querySelector('.nav-tools');
-  moveShareOptionsToTools(fragment, navTools);
+  decorateShareOption(fragment, navTools);
   nav.appendChild(navTools);
+
+  // making search icon accessible
+  const searchLink = nav.querySelector('a:has(.icon-search)');
+  if (searchLink) {
+    searchLink.setAttribute('aria-label', 'Search');
+  }
 
   // hamburger for mobile
   const hamburger = document.createElement('div');
@@ -165,6 +205,7 @@ export default async function decorate(block) {
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
+  decorateMobileSideNav(nav);
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
@@ -184,7 +225,7 @@ function debounce(func, wait) {
 
 function updateAriaExpandedForMobileNav() {
   const mobileNav = document.querySelector('.header.block nav');
-  if (window.innerWidth >= 993) {
+  if (window.innerWidth >= 992) {
     mobileNav.setAttribute('aria-expanded', 'false');
   }
 }

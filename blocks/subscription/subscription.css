@@ -45,6 +45,7 @@ main .section.full-width .subscription-wrapper {
   flex: 0 0 100%;
   max-width: 100%;
   text-align: center;
+  background-color: var(--subscription-bg-brown-color);
 }
 
 .block.subscription .box span {
@@ -64,6 +65,24 @@ main .section.full-width .subscription-wrapper {
   text-align: left;
   background-color: var(--subscription-bg-topaz-color);
   margin: 0;
+}
+
+@keyframes open-3d {
+  0% {
+    transform: perspective(50px) rotateX(5deg);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.block.subscription .popup.show {
+  display: block;
+  animation: open-3d 1s ease;
 }
 
 .block.subscription .popup ul li {
@@ -96,6 +115,7 @@ main .section.full-width .subscription-wrapper {
 
 .block.subscription .box span.header-icons {
   font-size: 3rem;
+  line-height: 1;
   transform: translateY(0);
   transition: all 0.5s ease;
 }
@@ -175,12 +195,14 @@ main .section.full-width .subscription-wrapper {
   }
 }
 
-@media(width >=768px) {
+@media(width >=576px) {
   .block.subscription .columns {
     flex: 0 0 25%;
     max-width: 25%;
   }
+}
 
+@media(width >=768px) {
   .block.subscription .popup ul li {
     padding: 1.3rem 0;
   }
