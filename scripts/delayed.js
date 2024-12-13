@@ -24,7 +24,7 @@ function loadAdobeLaunch() {
   const adobeLaunchSrc = {
     dev: LAUNCH_DEV,
     preview: LAUNCH_STAGE,
-    live: LAUNCH_PROD,
+    live: LAUNCH_STAGE,
     prod: LAUNCH_PROD,
   };
   loadScript(adobeLaunchSrc[getEnvType()], { async: true });
