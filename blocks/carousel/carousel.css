@@ -10,6 +10,24 @@
   padding: 0 0 6.87rem;
 }
 
+.carousel {
+  --dot-size: 0.8rem;
+  --dot-size-multiplier: 1.44;
+  --dot-active-size: calc(var(--dot-size) * var(--dot-size-multiplier));
+}
+
+@media (width >= 992px) {
+  .carousel {
+    --dot-size-multiplier: 1.28;
+  }
+}
+
+@media (width > 1600px) {
+  .carousel {
+    --dot-size-multiplier: 1.6;
+  }
+}
+
 .carousel .inner-container {
   display: flex;
   flex-direction: column;
@@ -224,19 +242,23 @@
 
   .carousel .carousel-dot {
     display: inline-block;
-    width: 1rem;
-    height: 1rem;
+    width: var(--dot-size);
+    height: var(--dot-size);
     margin: 0 1rem;
     background-color: #dfe1e2;
     border-radius: 50%;
     cursor: pointer;
   }
 
-  .carousel .carousel-dot.active,
-  .carousel .carousel-dot:hover {
+  .carousel .carousel-dot.active {
     background-color: #239de0;
-    width: 1.44rem;
-    height: 1.44rem;
+    width: var(--dot-active-size);
+    height: var(--dot-active-size);
+  }
+
+  .carousel .carousel-dot:hover:not(.active) {
+    background-color: #239de0;
+    transform: scale(var(--dot-size-multiplier));
   }
 }
 
@@ -274,12 +296,6 @@
   .carousel .carousel-item span {
     font-size: 1.44rem;
     padding-left: 0.8rem;
-  }
-
-  .carousel .carousel-dot.active,
-  .carousel .carousel-dot:hover {
-    width: 1.28rem;
-    height: 1.28rem;
   }
 }
 
@@ -324,11 +340,5 @@
   .carousel .carousel-item span {
     font-size: 1.8rem;
     padding-left: 1rem;
-  }
-
-  .carousel .carousel-dot.active,
-  .carousel .carousel-dot:hover {
-    width: 1.6rem;
-    height: 1.6rem;
   }
 }

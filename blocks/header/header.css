@@ -405,7 +405,8 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
     position: absolute;
-    min-width: 27rem;
+    min-width: 18.4rem;
+    font-size: 1.44rem;
     padding: 0 1.5rem;
     background-color: var(--background-color);
     white-space: initial;
@@ -593,5 +594,10 @@ header nav[aria-expanded="true"] > .nav-tools {
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
     max-width: 32rem;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
+    min-width: 23rem;
+    font-size: 1.8rem;
   }
 }
